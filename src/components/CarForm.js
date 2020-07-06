@@ -1,25 +1,48 @@
 import React, {useState} from 'react';
 
 import {Car} from '../data/models';
-import {addCar, deleteCar, updateCar} from '../data/storage';
+import {addCar, updateCar} from '../data/storage';
 import {
   StyleSheet,
   Text,
   TextInput,
   View,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 
-export default function CarForm(props) {
-  const car = {...props.car};
+export default function CarForm({route, navigation}) {
+  const car = route.params.car || {};
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
   const [year, setYear] = useState(car.year);
   const [color, setColor] = useState(car.color);
   const [km, setKm] = useState(car.km);
   const [id, setId] = useState(car.id);
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: route.params.title,
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+      },
+    });
+  }, [navigation]);
 
   const handleAdd = (make, model, year, color, km) => {
+    if (
+      make == '' ||
+      model == '' ||
+      year == '' ||
+      color == '' ||
+      make == null ||
+      model == null ||
+      year == null ||
+      color == null
+    ) {
+      Alert.alert('خطأ', 'يرجى اكمال البيانات');
+      return;
+    }
     const car = new Car(make, model, year, color, km);
     addCar(car);
 
@@ -31,19 +54,9 @@ export default function CarForm(props) {
     setId(car.id);
   };
 
-  const handleDelete = id => {
-    deleteCar(id);
-
-    setMake('');
-    setModel('');
-    setYear(2020);
-    setColor('');
-    setKm(0);
-    setId('');
-  };
-
   const handleUpdate = car => {
     updateCar(car);
+    navigation.navigate('CarView', {...car});
   };
 
   return (
@@ -89,23 +102,21 @@ export default function CarForm(props) {
         <Text style={styles.text}>{km}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => handleAdd(make, model, year, color, km)}>
-          <View>
-            <Text style={[styles.save]}>إضافة</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => handleUpdate({make, model, year, color, km, id})}>
-          <View>
-            <Text style={styles.save}>تعديل</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleDelete(id)}>
-          <View>
-            <Text style={styles.save}>حذف</Text>
-          </View>
-        </TouchableOpacity>
+        {route.params.mode === 'add' ? (
+          <TouchableOpacity
+            onPress={() => handleAdd(make, model, year, color, km)}>
+            <View>
+              <Text style={[styles.save]}>إضافة</Text>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity
+            onPress={() => handleUpdate({make, model, year, color, km, id})}>
+            <View>
+              <Text style={styles.save}>تعديل</Text>
+            </View>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

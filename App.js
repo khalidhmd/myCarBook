@@ -1,13 +1,14 @@
 import React from 'react';
-import CarForm from './src/components/CarForm';
+import CarList from './src/components/CarList';
 import {StatusBar} from 'react-native';
-
+import {NavigationContainer} from '@react-navigation/native';
+import CarStack from './src/routes/CarStack';
 const App = () => {
   return (
-    <>
-      <CarForm car={{}} />
+    <NavigationContainer>
+      <CarStack />
       <StatusBar barStyle="dark-content" />
-    </>
+    </NavigationContainer>
   );
 };
 
