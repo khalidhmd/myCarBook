@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {User} from '../data/models';
+import {getUser, saveUser, deleteUser} from '../data/storage';
 import {
   StyleSheet,
   Text,
@@ -9,17 +10,29 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const handleSave = (name, mobile, passwd) => {
+const handleSave = async (name, mobile, passwd) => {
   const user = new User(name, mobile, passwd);
-  user.saveUser();
+  await saveUser(user);
+};
+
+const handleDelete = async () => {
+  await deleteUser();
 };
 
 export default function UserForm() {
-  const user = User.loadUser();
-  // console.log(user);
-  const [name, setName] = useState(user.name);
-  const [mobile, setMobile] = useState(user.mobile);
-  const [passwd, setPasswd] = useState(user.passwd);
+  const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [passwd, setPasswd] = useState('');
+
+  useEffect(() => {
+    async function loadUser() {
+      const user = await getUser();
+      setMobile(user.mobile);
+      setName(user.name);
+      setPasswd(user.passwd);
+    }
+    loadUser();
+  }, []);
 
   return (
     <View style={styles.container}>
@@ -55,6 +68,11 @@ export default function UserForm() {
           <Text style={styles.save}>حفظ</Text>
         </View>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => handleDelete()}>
+        <View>
+          <Text style={styles.save}> حذف المستخدم</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -69,19 +87,19 @@ const styles = StyleSheet.create({
   subForm: {
     flexDirection: 'row-reverse',
     width: '90%',
-    marginBottom: 7,
+    marginBottom: 10,
   },
   title: {
     fontSize: 24,
     alignSelf: 'center',
-    left: 'auto',
+    width: 150,
   },
   text: {
     fontSize: 24,
     borderStyle: 'solid',
     borderBottomWidth: 2,
-    textAlign: 'auto',
-    left: 'auto',
+    textAlign: 'right',
+    width: 200,
   },
   save: {
     marginTop: 20,

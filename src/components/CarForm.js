@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import {Car} from '../data/models';
+import {addCar, deleteCar, updateCar} from '../data/storage';
 import {
   StyleSheet,
   Text,
@@ -9,18 +10,41 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const cars = Car.loadCars();
-const handleSave = () => {
-  const user = new User(name, mobile, passwd);
-  user.saveCars();
-};
+export default function CarForm(props) {
+  const car = {...props.car};
+  const [make, setMake] = useState(car.make);
+  const [model, setModel] = useState(car.model);
+  const [year, setYear] = useState(car.year);
+  const [color, setColor] = useState(car.color);
+  const [km, setKm] = useState(car.km);
+  const [id, setId] = useState(car.id);
 
-export default function UserForm() {
-  const [make, setMake] = useState('');
-  const [model, setModel] = useState('');
-  const [year, setYear] = useState(2020);
-  const [color, setColor] = useState('');
-  const [km, setKm] = useState(0);
+  const handleAdd = (make, model, year, color, km) => {
+    const car = new Car(make, model, year, color, km);
+    addCar(car);
+
+    setMake('');
+    setModel('');
+    setYear(2020);
+    setColor('');
+    setKm(0);
+    setId(car.id);
+  };
+
+  const handleDelete = id => {
+    deleteCar(id);
+
+    setMake('');
+    setModel('');
+    setYear(2020);
+    setColor('');
+    setKm(0);
+    setId('');
+  };
+
+  const handleUpdate = car => {
+    updateCar(car);
+  };
 
   return (
     <View style={styles.container}>
@@ -62,19 +86,27 @@ export default function UserForm() {
       </View>
       <View style={styles.subForm}>
         <Text style={styles.title}>قراءة العداد</Text>
-        <TextInput
-          style={styles.text}
-          placeholder="قراءة العداد"
-          value={km}
-          onChangeText={text => setKm(text)}
-        />
+        <Text style={styles.text}>{km}</Text>
       </View>
-      <TouchableOpacity
-        onPress={() => handleSave(make, model, year, color, km)}>
-        <View>
-          <Text style={styles.save}>حفظ</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => handleAdd(make, model, year, color, km)}>
+          <View>
+            <Text style={[styles.save]}>إضافة</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => handleUpdate({make, model, year, color, km, id})}>
+          <View>
+            <Text style={styles.save}>تعديل</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => handleDelete(id)}>
+          <View>
+            <Text style={styles.save}>حذف</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -89,30 +121,35 @@ const styles = StyleSheet.create({
   subForm: {
     flexDirection: 'row-reverse',
     width: '90%',
-    marginBottom: 7,
+    marginBottom: 5,
   },
   title: {
-    fontSize: 24,
+    fontSize: 22,
     alignSelf: 'center',
-    left: 'auto',
+    width: 120,
+    fontWeight: 'bold',
   },
   text: {
-    fontSize: 24,
+    fontSize: 22,
     borderStyle: 'solid',
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     textAlign: 'auto',
-    left: 'auto',
+    width: 180,
+  },
+  buttonContainer: {
+    flexDirection: 'row-reverse',
+    width: '90%',
+    justifyContent: 'space-evenly',
   },
   save: {
-    marginTop: 20,
-    fontSize: 25,
+    marginTop: 15,
+    fontSize: 24,
     alignSelf: 'center',
     textAlign: 'center',
-    padding: 5,
-    width: 250,
+    width: 80,
     color: 'white',
     backgroundColor: 'darkblue',
-    borderRadius: 10,
-    paddingVertical: 10,
+    borderRadius: 7,
+    paddingVertical: 5,
   },
 });

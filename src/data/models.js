@@ -8,31 +8,16 @@ export class User {
     this.passwd = passwd;
     this.id = uuid.v4();
   }
-  async saveUser() {
-    setUser(this);
-  }
-
-  static async loadUser() {
-    return await getUser();
-  }
 }
 
 export class Car {
-  constructor(make = '', model = '', year = '', color = '', km = 0) {
+  constructor(make = '', model = '', year = 2000, color = '', km = 0) {
     this.make = make;
     this.model = model;
     this.year = year;
     this.color = color;
     this.km = km;
     this.id = uuid.v4();
-  }
-
-  static async saveCars(cars) {
-    setCar(cars);
-  }
-
-  static async loadCars() {
-    return await getCars();
   }
 }
 
