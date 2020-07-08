@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 
-import {getCars} from '../data/storage';
 import {
   StyleSheet,
   Text,
@@ -9,28 +8,14 @@ import {
   TouchableOpacity,
   FlatList,
 } from 'react-native';
+import {CarContext} from '../contexts/CarContext';
 
 const handlePress = (navigation, car) => {
   navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
 };
 
 export default function CarList({navigation}) {
-  const [cars, setCars] = useState([]);
-
-  useEffect(() => {
-    async function loadCars() {
-      const cars = await getCars();
-
-      setCars(cars);
-    }
-    loadCars();
-    const unsubscribe = navigation.addListener('focus', async () => {
-      const cars = await getCars();
-      setCars(cars);
-    });
-
-    return unsubscribe;
-  }, [navigation]);
+  const {cars} = useContext(CarContext);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({

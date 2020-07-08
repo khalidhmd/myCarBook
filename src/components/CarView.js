@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from 'react';
-import {deleteCar} from '../data/storage';
+import React, {useState, useEffect, useContext} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
+import {CarContext} from '../contexts/CarContext';
 
 export default function CarView({navigation, route}) {
+  const {removeCar} = useContext(CarContext);
+
   const [car, setCar] = useState({...route.params.car});
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
@@ -32,7 +34,7 @@ export default function CarView({navigation, route}) {
         {
           text: 'حذف',
           onPress: async () => {
-            await deleteCar(id);
+            removeCar(id);
             navigation.pop();
           },
         },

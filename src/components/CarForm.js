@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
-
+import React, {useState, useContext} from 'react';
 import {Car} from '../data/models';
-import {addCar, updateCar} from '../data/storage';
 import {
   StyleSheet,
   Text,
@@ -10,15 +8,10 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import {CarContext} from '../contexts/CarContext';
 
 export default function CarForm({route, navigation}) {
-  navigation.setOptions({
-    title: route.params.title,
-    headerTitleStyle: {
-      alignSelf: 'center',
-      fontWeight: 'bold',
-    },
-  });
+  const {addCar, updateCar} = useContext(CarContext);
   const car = route.params.car || {};
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
@@ -26,6 +19,7 @@ export default function CarForm({route, navigation}) {
   const [color, setColor] = useState(car.color);
   const [km, setKm] = useState(car.km);
   const [id, setId] = useState(car.id);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: route.params.title,
@@ -58,7 +52,6 @@ export default function CarForm({route, navigation}) {
     setYear(2020);
     setColor('');
     setKm(0);
-    setId(car.id);
   };
 
   const handleUpdate = car => {
@@ -93,6 +86,7 @@ export default function CarForm({route, navigation}) {
           placeholder="سنة الصنع"
           value={year}
           onChangeText={text => setYear(text)}
+          keyboardType="number-pad"
         />
       </View>
       <View style={styles.subForm}>

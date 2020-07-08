@@ -1,7 +1,5 @@
-import React, {useState, useEffect} from 'react';
-
-import {User} from '../data/models';
-import {getUser, saveUser, deleteUser} from '../data/storage';
+import React, {useState, useEffect, useContext} from 'react';
+var uuid = require('react-native-uuid');
 import {
   StyleSheet,
   Text,
@@ -9,24 +7,16 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-
-const handleSave = async (name, mobile, passwd) => {
-  const user = new User(name, mobile, passwd);
-  await saveUser(user);
-};
-
-const handleDelete = async () => {
-  await deleteUser();
-};
+import {UserContext} from '../contexts/UserContext';
 
 export default function UserForm() {
+  const {deleteUser, saveUser, user} = useContext(UserContext);
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [passwd, setPasswd] = useState('');
 
   useEffect(() => {
-    async function loadUser() {
-      const user = await getUser();
+    function loadUser() {
       setMobile(user.mobile);
       setName(user.name);
       setPasswd(user.passwd);
@@ -52,6 +42,7 @@ export default function UserForm() {
           placeholder="رقم الموبايل"
           value={mobile}
           onChangeText={text => setMobile(text)}
+          keyboardType="phone-pad"
         />
       </View>
       <View style={styles.subForm}>
@@ -63,12 +54,13 @@ export default function UserForm() {
           onChangeText={text => setPasswd(text)}
         />
       </View>
-      <TouchableOpacity onPress={() => handleSave(name, mobile, passwd)}>
+      <TouchableOpacity
+        onPress={() => saveUser({name, mobile, passwd, id: uuid.v4()})}>
         <View>
           <Text style={styles.save}>حفظ</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => handleDelete()}>
+      <TouchableOpacity onPress={() => deleteUser()}>
         <View>
           <Text style={styles.save}> حذف المستخدم</Text>
         </View>

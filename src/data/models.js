@@ -1,6 +1,5 @@
 var uuid = require('react-native-uuid');
 
-import {getUser, setUser} from './storage';
 export class User {
   constructor(name = '', mobile = '', passwd = '') {
     this.name = name;
