@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 const handlePress = (navigation, car) => {
-  navigation.push('CarView', {...car});
+  navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
 };
 
 export default function CarList({navigation}) {
@@ -37,7 +37,10 @@ export default function CarList({navigation}) {
       headerRight: () => (
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate('CarForm', {mode: 'add', title: 'إضافة سيارة'})
+            navigation.navigate('CarForm', {
+              mode: 'add',
+              title: 'إضافة سيارة جديدة',
+            })
           }>
           <Text
             style={{

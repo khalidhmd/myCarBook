@@ -12,6 +12,13 @@ import {
 } from 'react-native';
 
 export default function CarForm({route, navigation}) {
+  navigation.setOptions({
+    title: route.params.title,
+    headerTitleStyle: {
+      alignSelf: 'center',
+      fontWeight: 'bold',
+    },
+  });
   const car = route.params.car || {};
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
@@ -56,7 +63,7 @@ export default function CarForm({route, navigation}) {
 
   const handleUpdate = car => {
     updateCar(car);
-    navigation.navigate('CarView', {...car});
+    navigation.navigate('CarView', {car});
   };
 
   return (
@@ -106,14 +113,14 @@ export default function CarForm({route, navigation}) {
           <TouchableOpacity
             onPress={() => handleAdd(make, model, year, color, km)}>
             <View>
-              <Text style={[styles.save]}>إضافة</Text>
+              <Text style={[styles.save]}>حفظ</Text>
             </View>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity
             onPress={() => handleUpdate({make, model, year, color, km, id})}>
             <View>
-              <Text style={styles.save}>تعديل</Text>
+              <Text style={styles.save}>حفظ</Text>
             </View>
           </TouchableOpacity>
         )}

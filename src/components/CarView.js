@@ -1,10 +1,24 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {deleteCar} from '../data/storage';
 import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 
 export default function CarView({navigation, route}) {
-  const car = {...route.params};
+  const [car, setCar] = useState({...route.params.car});
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', async () => {
+      setCar({...route.params.car});
+    });
 
+    return unsubscribe;
+  }, [navigation, route]);
+
+  navigation.setOptions({
+    title: 'عرض بيانات سيارة',
+    headerTitleStyle: {
+      alignSelf: 'center',
+      fontWeight: 'bold',
+    },
+  });
   const handleDelete = id => {
     Alert.alert(
       'حذف',
@@ -28,7 +42,11 @@ export default function CarView({navigation, route}) {
   };
 
   const handleUpdate = car => {
-    navigation.navigate('CarForm', {mode: 'update', title: 'إضافة سيارة', car});
+    navigation.navigate('CarForm', {
+      mode: 'update',
+      title: 'تعديل بيانات سيارة',
+      car,
+    });
   };
 
   return (
