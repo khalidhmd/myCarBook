@@ -8,12 +8,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {UserContext} from '../contexts/UserContext';
+import {SystemContext} from '../contexts/SystemContext';
 
 export default function UserForm() {
   const {deleteUser, saveUser, user} = useContext(UserContext);
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [passwd, setPasswd] = useState('');
+  const {language} = useContext(SystemContext);
+  const fd = language == 'en' ? 'row-reverse' : 'row';
 
   useEffect(() => {
     function loadUser() {
@@ -26,7 +29,7 @@ export default function UserForm() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>اسم المستخدم</Text>
         <TextInput
           style={styles.text}
@@ -35,7 +38,7 @@ export default function UserForm() {
           onChangeText={text => setName(text)}
         />
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>رقم الموبايل</Text>
         <TextInput
           style={styles.text}
@@ -45,7 +48,7 @@ export default function UserForm() {
           keyboardType="phone-pad"
         />
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>رمز المرور</Text>
         <TextInput
           style={styles.text}

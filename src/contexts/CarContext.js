@@ -39,9 +39,13 @@ const CarContextProvider = props => {
     },
   ]);
   useEffect(() => {
-    AsyncStorage.getItem('MY_CAR_BOOK:cars').then(data =>
-      setCars(JSON.parse(data)),
-    );
+    AsyncStorage.getItem('MY_CAR_BOOK:cars').then(data => {
+      if (!data || data == 'null') {
+        setCars([]);
+      } else {
+        setCars(JSON.parse(data));
+      }
+    });
   }, []);
   useEffect(() => {
     AsyncStorage.setItem('MY_CAR_BOOK:cars', JSON.stringify(cars));

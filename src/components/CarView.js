@@ -1,9 +1,12 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
 import {CarContext} from '../contexts/CarContext';
+import {SystemContext} from '../contexts/SystemContext';
 
 export default function CarView({navigation, route}) {
   const {removeCar} = useContext(CarContext);
+  const {language} = useContext(SystemContext);
+  const fd = language == 'en' ? 'row-reverse' : 'row';
 
   const [car, setCar] = useState({...route.params.car});
   useEffect(() => {
@@ -51,29 +54,36 @@ export default function CarView({navigation, route}) {
     });
   };
 
+  const handleAddKm = car => {
+    navigation.navigate('KmForm', {
+      title: 'تسجيل قراءة العداد',
+      car,
+    });
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>الماركة</Text>
         <Text style={styles.title}>{car.make}</Text>
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>الموديل</Text>
         <Text style={styles.title}>{car.model}</Text>
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>سنة الصنع</Text>
         <Text style={styles.title}>{car.year}</Text>
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>اللون</Text>
         <Text style={styles.title}>{car.color}</Text>
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>قراءة العداد</Text>
         <Text style={styles.title}>{car.km}</Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={[styles.buttonContainer, {flexDirection: fd}]}>
         <TouchableOpacity onPress={() => handleUpdate(car)}>
           <View>
             <Text style={styles.save}>تعديل</Text>
@@ -97,7 +107,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   subForm: {
-    flexDirection: 'row-reverse',
     width: '90%',
     marginBottom: 5,
   },
@@ -115,16 +124,15 @@ const styles = StyleSheet.create({
     width: 180,
   },
   buttonContainer: {
-    flexDirection: 'row-reverse',
     width: '90%',
     justifyContent: 'space-evenly',
   },
   save: {
     marginTop: 15,
-    fontSize: 24,
+    fontSize: 22,
     alignSelf: 'center',
     textAlign: 'center',
-    width: 80,
+    width: 100,
     color: 'white',
     backgroundColor: 'darkblue',
     borderRadius: 7,

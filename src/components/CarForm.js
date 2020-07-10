@@ -9,17 +9,19 @@ import {
   Alert,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
+import {SystemContext} from '../contexts/SystemContext';
 
 export default function CarForm({route, navigation}) {
   const {addCar, updateCar} = useContext(CarContext);
   const car = route.params.car || {};
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
-  const [year, setYear] = useState(car.year);
+  const [year, setYear] = useState(car.year || 2000);
   const [color, setColor] = useState(car.color);
-  const [km, setKm] = useState(car.km);
+  const [km, setKm] = useState(car.km || 0);
   const [id, setId] = useState(car.id);
-
+  const {language} = useContext(SystemContext);
+  const fd = language == 'en' ? 'row-reverse' : 'row';
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: route.params.title,
@@ -30,28 +32,34 @@ export default function CarForm({route, navigation}) {
     });
   }, [navigation]);
 
-  const handleAdd = (make, model, year, color, km) => {
+  const handleAdd = (make, model, y, color, k) => {
     if (
       make == '' ||
       model == '' ||
-      year == '' ||
+      y == '' ||
+      y == 0 ||
       color == '' ||
+      k == '' ||
       make == null ||
       model == null ||
-      year == null ||
-      color == null
+      y == null ||
+      color == null ||
+      k == null ||
+      k == 0
     ) {
       Alert.alert('خطأ', 'يرجى اكمال البيانات');
       return;
     }
+    const year = parseInt(y);
+    const km = parseInt(k);
     const car = new Car(make, model, year, color, km);
     addCar(car);
 
     setMake('');
     setModel('');
-    setYear(2020);
+    setYear('');
     setColor('');
-    setKm(0);
+    setKm('');
   };
 
   const handleUpdate = car => {
@@ -61,7 +69,7 @@ export default function CarForm({route, navigation}) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>الماركة</Text>
         <TextInput
           style={styles.text}
@@ -70,7 +78,7 @@ export default function CarForm({route, navigation}) {
           onChangeText={text => setMake(text)}
         />
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>الموديل</Text>
         <TextInput
           style={styles.text}
@@ -79,17 +87,17 @@ export default function CarForm({route, navigation}) {
           onChangeText={text => setModel(text)}
         />
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>سنة الصنع</Text>
         <TextInput
           style={styles.text}
           placeholder="سنة الصنع"
-          value={year}
+          value={String(year)}
           onChangeText={text => setYear(text)}
           keyboardType="number-pad"
         />
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>اللون</Text>
         <TextInput
           style={styles.text}
@@ -98,11 +106,17 @@ export default function CarForm({route, navigation}) {
           onChangeText={text => setColor(text)}
         />
       </View>
-      <View style={styles.subForm}>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>قراءة العداد</Text>
-        <Text style={styles.text}>{km}</Text>
+        <TextInput
+          style={styles.text}
+          placeholder="قراءة العداد"
+          value={String(km)}
+          onChangeText={text => setKm(text)}
+          keyboardType="number-pad"
+        />
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={[styles.buttonContainer, {flexDirection: fd}]}>
         {route.params.mode === 'add' ? (
           <TouchableOpacity
             onPress={() => handleAdd(make, model, year, color, km)}>
@@ -131,7 +145,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   subForm: {
-    flexDirection: 'row-reverse',
     width: '90%',
     marginBottom: 5,
   },
@@ -149,7 +162,6 @@ const styles = StyleSheet.create({
     width: 180,
   },
   buttonContainer: {
-    flexDirection: 'row-reverse',
     width: '90%',
     justifyContent: 'space-evenly',
   },

@@ -1,45 +1,15 @@
 import AsyncStorage from '@react-native-community/async-storage';
 const USER_KEY = 'MY_CAR_BOOK:user';
 const CARS_KEY = 'MY_CAR_BOOK:cars';
+const KM_KEY = 'MY_CAR_BOOK:km';
 
-export async function getUser() {
+export async function getKms() {
   try {
-    const result = await AsyncStorage.getItem(USER_KEY);
-
-    if (!!result && result[0] === '{') {
-      const user = JSON.parse(result);
-      return user;
-    }
-
-    return {name: '', mobile: '', passwd: ''};
-  } catch (e) {
-    console.log('error' + e);
-  }
-}
-
-export async function saveUser(user) {
-  try {
-    await AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
-  } catch (e) {
-    console.log('error' + e);
-  }
-}
-
-export async function deleteUser() {
-  try {
-    await AsyncStorage.setItem(USER_KEY, '');
-  } catch (e) {
-    console.log('error' + e);
-  }
-}
-
-export async function getCars() {
-  try {
-    const result = await AsyncStorage.getItem(CARS_KEY);
+    const result = await AsyncStorage.getItem(KM_KEY);
 
     if (!!result && result[0] === '[') {
-      const cars = JSON.parse(result);
-      return cars;
+      const kms = JSON.parse(result);
+      return kms;
     }
     return [];
   } catch (e) {
@@ -47,18 +17,10 @@ export async function getCars() {
   }
 }
 
-export async function saveCars(cars) {
-  try {
-    await AsyncStorage.setItem(CARS_KEY, JSON.stringify(cars));
-  } catch (e) {
-    console.log('error' + e);
-  }
-}
-
-export async function addCar(car) {
-  const cars = await getCars();
-  cars.push(car);
-  await saveCars(cars);
+export async function addKms(km) {
+  const kms = await getKms();
+  cars.push(km);
+  await saveCars(kms);
 }
 
 export async function deleteCar(id) {
@@ -69,8 +31,8 @@ export async function deleteCar(id) {
 
 export async function updateCar(car) {
   let cars = await getCars();
-  console.log(cars);
+
   cars = cars.map(c => (c.id !== car.id ? c : car));
-  console.log(cars);
+
   await saveCars(cars);
 }

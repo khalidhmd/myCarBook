@@ -7,9 +7,13 @@ const UserContextProvider = props => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    AsyncStorage.getItem('MY_CAR_BOOK:user').then(data =>
-      setUser(JSON.parse(data)),
-    );
+    AsyncStorage.getItem('MY_CAR_BOOK:user').then(data => {
+      if (!data || data == 'null') {
+        setUser(JSON.parse({}));
+      } else {
+        setUser(JSON.parse(data));
+      }
+    });
   }, []);
 
   useEffect(() => {

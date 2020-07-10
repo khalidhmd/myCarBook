@@ -57,10 +57,11 @@ export class maintenanceOperation {
   }
 }
 
-export class recordKm {
-  constructor(date = '', km = 0) {
+export class RecordKm {
+  constructor(date = '', km = 0, carId) {
     this.date = date;
     this.km = km;
+    this.carId = carId;
     this.id = uuid.v4();
   }
 }

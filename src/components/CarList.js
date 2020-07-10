@@ -17,6 +17,13 @@ const handlePress = (navigation, car) => {
 export default function CarList({navigation}) {
   const {cars} = useContext(CarContext);
 
+  navigation.setOptions({
+    title: 'السيارات المسجلة',
+    headerTitleStyle: {
+      alignSelf: 'center',
+      fontWeight: 'bold',
+    },
+  });
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
