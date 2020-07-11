@@ -9,6 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
+import {Icon} from 'react-native-elements';
 
 const handlePress = (navigation, car) => {
   navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
@@ -36,13 +37,12 @@ export default function CarList({navigation}) {
           }>
           <Text
             style={{
-              fontWeight: 'bold',
-              fontSize: 24,
-              backgroundColor: 'blue',
-              color: 'lightgray',
-              paddingHorizontal: 8,
-              marginRight: 3,
-              borderRadius: 5,
+              fontSize: 32,
+              backgroundColor: '#00C',
+              color: '#eee',
+              paddingHorizontal: 12,
+              marginRight: 5,
+              borderRadius: 22,
             }}>
             +
           </Text>
