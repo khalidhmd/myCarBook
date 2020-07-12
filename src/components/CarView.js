@@ -22,6 +22,12 @@ export default function CarView({navigation, route}) {
     headerTitleStyle: {
       alignSelf: 'center',
       fontWeight: 'bold',
+      color: 'lightgrey',
+      fontSize: 26,
+    },
+    headerTintColor: 'lightgrey',
+    headerStyle: {
+      backgroundColor: 'rebeccapurple',
     },
   });
   const handleDelete = id => {
@@ -102,7 +108,7 @@ export default function CarView({navigation, route}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: 'whitesmoke',
     alignItems: 'center',
     justifyContent: 'center',
   },

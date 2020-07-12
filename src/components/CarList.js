@@ -7,7 +7,6 @@ import {
   View,
   TouchableOpacity,
   FlatList,
-  Dimensions,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 
@@ -23,6 +22,11 @@ export default function CarList({navigation}) {
     headerTitleStyle: {
       alignSelf: 'center',
       fontWeight: 'bold',
+      color: 'lightgrey',
+      fontSize: 26,
+    },
+    headerStyle: {
+      backgroundColor: 'rebeccapurple',
     },
   });
   React.useLayoutEffect(() => {
@@ -37,9 +41,9 @@ export default function CarList({navigation}) {
           }>
           <Text
             style={{
-              fontSize: 32,
-              backgroundColor: '#00C',
-              color: '#eee',
+              fontSize: 34,
+              backgroundColor: 'whitesmoke',
+              color: 'rebeccapurple',
               paddingHorizontal: 12,
               marginRight: 6,
               borderRadius: 22,
@@ -73,7 +77,7 @@ export default function CarList({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f1f1f1',
+    backgroundColor: 'whitesmoke',
     flex: 1,
   },
   title: {
@@ -89,9 +93,9 @@ const styles = StyleSheet.create({
   },
   deck: {
     padding: 5,
-    marginTop: 2,
-    backgroundColor: 'lightgray',
-    marginHorizontal: 5,
-    borderRadius: 5,
+    marginTop: 4,
+    backgroundColor: 'plum',
+    marginHorizontal: 4,
+    borderRadius: 8,
   },
 });

@@ -28,6 +28,12 @@ export default function CarForm({route, navigation}) {
       headerTitleStyle: {
         alignSelf: 'center',
         fontWeight: 'bold',
+        color: 'lightgrey',
+        fontSize: 26,
+      },
+      headerTintColor: 'lightgrey',
+      headerStyle: {
+        backgroundColor: 'rebeccapurple',
       },
     });
   }, [navigation]);
@@ -136,7 +142,7 @@ export default function CarForm({route, navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#eee',
+    backgroundColor: 'whitesmoke',
     alignItems: 'center',
     justifyContent: 'center',
   },
