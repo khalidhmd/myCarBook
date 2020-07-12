@@ -7,9 +7,9 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
-import {Icon} from 'react-native-elements';
 
 const handlePress = (navigation, car) => {
   navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
@@ -41,7 +41,7 @@ export default function CarList({navigation}) {
               backgroundColor: '#00C',
               color: '#eee',
               paddingHorizontal: 12,
-              marginRight: 5,
+              marginRight: 6,
               borderRadius: 22,
             }}>
             +

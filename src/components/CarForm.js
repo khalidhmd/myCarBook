@@ -55,11 +55,7 @@ export default function CarForm({route, navigation}) {
     const car = new Car(make, model, year, color, km);
     addCar(car);
 
-    setMake('');
-    setModel('');
-    setYear('');
-    setColor('');
-    setKm('');
+    navigation.pop();
   };
 
   const handleUpdate = car => {
