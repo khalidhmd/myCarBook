@@ -10,7 +10,19 @@ import {
 import {UserContext} from '../contexts/UserContext';
 import {SystemContext} from '../contexts/SystemContext';
 
-export default function UserForm() {
+export default function UserForm({navigation}) {
+  navigation.setOptions({
+    title: 'بيانات المستخدم',
+    headerTitleStyle: {
+      alignSelf: 'center',
+      fontWeight: 'bold',
+      color: 'lightgrey',
+      fontSize: 26,
+    },
+    headerStyle: {
+      backgroundColor: 'rebeccapurple',
+    },
+  });
   const {deleteUser, saveUser, user} = useContext(UserContext);
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
