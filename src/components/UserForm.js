@@ -23,7 +23,7 @@ export default function UserForm({navigation}) {
       backgroundColor: 'rebeccapurple',
     },
   });
-  const {deleteUser, saveUser, user} = useContext(UserContext);
+  const {deleteUser, handleSaveUser, user} = useContext(UserContext);
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [passwd, setPasswd] = useState('');
@@ -70,7 +70,7 @@ export default function UserForm({navigation}) {
         />
       </View>
       <TouchableOpacity
-        onPress={() => saveUser({name, mobile, passwd, id: uuid.v4()})}>
+        onPress={() => handleSaveUser({name, mobile, passwd, id: uuid.v4()})}>
         <View>
           <Text style={styles.save}>حفظ</Text>
         </View>

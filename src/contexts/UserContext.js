@@ -1,5 +1,5 @@
 import React, {useState, createContext, useEffect} from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+import {getUser, saveUser} from '../data/storage';
 
 export const UserContext = createContext();
 
@@ -7,20 +7,17 @@ const UserContextProvider = props => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    AsyncStorage.getItem('MY_CAR_BOOK:user').then(data => {
-      if (!data || data == 'null') {
-        setUser(JSON.parse({}));
-      } else {
-        setUser(JSON.parse(data));
-      }
-    });
+    (async function() {
+      const u = await getUser();
+      setUser(u);
+    })();
   }, []);
 
   useEffect(() => {
-    AsyncStorage.setItem('MY_CAR_BOOK:user', JSON.stringify(user));
+    saveUser(user);
   }, [user]);
 
-  const saveUser = user => {
+  const handleSaveUser = user => {
     setUser(user);
   };
 
@@ -29,7 +26,7 @@ const UserContextProvider = props => {
   };
 
   return (
-    <UserContext.Provider value={{saveUser, user, deleteUser}}>
+    <UserContext.Provider value={{handleSaveUser, user, deleteUser}}>
       {props.children}
     </UserContext.Provider>
   );

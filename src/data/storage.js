@@ -3,6 +3,42 @@ const USER_KEY = 'MY_CAR_BOOK:user';
 const CARS_KEY = 'MY_CAR_BOOK:cars';
 const KM_KEY = 'MY_CAR_BOOK:km';
 
+export async function getCars() {
+  try {
+    const data = await AsyncStorage.getItem(CARS_KEY);
+
+    if (!data || data == 'null') {
+      return [];
+    } else {
+      return JSON.parse(data);
+    }
+  } catch (e) {
+    console.log('error: ', e);
+  }
+}
+
+export async function saveCars(cars) {
+  AsyncStorage.setItem(CARS_KEY, JSON.stringify(cars));
+}
+
+export async function getUser() {
+  try {
+    const data = await AsyncStorage.getItem(USER_KEY);
+
+    if (!data || data == 'null') {
+      return {};
+    } else {
+      return JSON.parse(data);
+    }
+  } catch (e) {
+    console.log('error: ', e);
+  }
+}
+
+export async function saveUser(user) {
+  AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
+}
+
 export async function getKms() {
   try {
     const result = await AsyncStorage.getItem(KM_KEY);
