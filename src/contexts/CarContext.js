@@ -1,21 +1,19 @@
 import React, {useState, createContext, useEffect} from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
+import {getCars, saveCars} from '../data/storage';
 
 export const CarContext = createContext();
 
 const CarContextProvider = props => {
   const [cars, setCars] = useState([]);
   useEffect(() => {
-    AsyncStorage.getItem('MY_CAR_BOOK:cars').then(data => {
-      if (!data || data == 'null') {
-        setCars([]);
-      } else {
-        setCars(JSON.parse(data));
-      }
-    });
+    (async function() {
+      const data = await getCars();
+      setCars(data);
+    })();
   }, []);
+
   useEffect(() => {
-    AsyncStorage.setItem('MY_CAR_BOOK:cars', JSON.stringify(cars));
+    saveCars(cars);
   }, [cars]);
 
   const addCar = car => {
