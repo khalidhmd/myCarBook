@@ -56,7 +56,7 @@ export default function CarList({navigation}) {
   }, [navigation]);
 
   return (
-    <View>
+    <View style={styles.container}>
       <FlatList
         data={cars}
         renderItem={({item}) => {
