@@ -53,6 +53,7 @@ export default function CarView({navigation, route}) {
   };
 
   const handleUpdate = car => {
+    navigation.pop();
     navigation.navigate('CarForm', {
       mode: 'update',
       title: 'تعديل بيانات سيارة',
