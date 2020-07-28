@@ -41,7 +41,7 @@ export default function CarForm({route, navigation}) {
     });
   }, [navigation]);
 
-  const handleAdd = (make, model, y, color, k) => {
+  const handleAdd = (name, make, model, y, color, k) => {
     if (
       name == '' ||
       make == '' ||
@@ -71,6 +71,7 @@ export default function CarForm({route, navigation}) {
 
   const handleUpdate = car => {
     updateCar(car);
+    navigation.pop();
     navigation.navigate('CarView', {car});
   };
 
