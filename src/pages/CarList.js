@@ -53,6 +53,21 @@ export default function CarList({navigation}) {
           </Text>
         </TouchableOpacity>
       ),
+      headerLeft: () => (
+        <TouchableOpacity onPress={() => navigation.openDrawer()}>
+          <Text
+            style={{
+              fontSize: 20,
+              backgroundColor: 'whitesmoke',
+              color: 'rebeccapurple',
+              paddingHorizontal: 14,
+              marginRight: 6,
+              borderRadius: 22,
+            }}>
+            القائمة
+          </Text>
+        </TouchableOpacity>
+      ),
     });
   }, [navigation]);
 

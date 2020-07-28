@@ -7,9 +7,21 @@ const Drawer = createDrawerNavigator();
 
 export default function MainDrawer() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="CarStack" component={CarStack} />
-      <Drawer.Screen name="UserForm" component={UserForm} />
+    <Drawer.Navigator
+      drawerContentOptions={{
+        activeTintColor: 'rebeccapurple',
+        labelStyle: {fontSize: 22, fontWeight: 'bold'},
+      }}>
+      <Drawer.Screen
+        name="CarStack"
+        component={CarStack}
+        options={{drawerLabel: 'بيانات السيارات'}}
+      />
+      <Drawer.Screen
+        name="UserForm"
+        component={UserForm}
+        options={{drawerLabel: 'بيانات المستخدم'}}
+      />
     </Drawer.Navigator>
   );
 }

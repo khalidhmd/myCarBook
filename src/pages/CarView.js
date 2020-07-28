@@ -70,6 +70,10 @@ export default function CarView({navigation, route}) {
   return (
     <View style={styles.container}>
       <View style={[styles.subForm, {flexDirection: fd}]}>
+        <Text style={styles.title}>اسم المركبة</Text>
+        <Text style={styles.title}>{car.name}</Text>
+      </View>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
         <Text style={styles.title}>الماركة</Text>
         <Text style={styles.title}>{car.make}</Text>
       </View>

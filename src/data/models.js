@@ -10,7 +10,15 @@ export class User {
 }
 
 export class Car {
-  constructor(make = '', model = '', year = 2000, color = '', km = 0) {
+  constructor(
+    name = '',
+    make = '',
+    model = '',
+    year = 2000,
+    color = '',
+    km = 0,
+  ) {
+    this.name = name;
     this.make = make;
     this.model = model;
     this.year = year;
