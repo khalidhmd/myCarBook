@@ -23,7 +23,7 @@ export default function CarList({navigation}) {
       alignSelf: 'center',
       fontWeight: 'bold',
       color: 'lightgrey',
-      fontSize: 26,
+      fontSize: 24,
     },
     headerStyle: {
       backgroundColor: 'rebeccapurple',
@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   title: {
-    fontSize: 30,
+    fontSize: 28,
     alignSelf: 'stretch',
     textAlign: 'center',
     fontWeight: 'bold',
   },
   text: {
-    fontSize: 25,
+    fontSize: 24,
     alignSelf: 'stretch',
     textAlign: 'center',
   },

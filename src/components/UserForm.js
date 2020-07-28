@@ -17,7 +17,7 @@ export default function UserForm({navigation}) {
       alignSelf: 'center',
       fontWeight: 'bold',
       color: 'lightgrey',
-      fontSize: 26,
+      fontSize: 24,
     },
     headerStyle: {
       backgroundColor: 'rebeccapurple',
@@ -69,17 +69,19 @@ export default function UserForm({navigation}) {
           onChangeText={text => setPasswd(text)}
         />
       </View>
-      <TouchableOpacity
-        onPress={() => handleSaveUser({name, mobile, passwd, id: uuid.v4()})}>
-        <View>
-          <Text style={styles.save}>حفظ</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => deleteUser()}>
-        <View>
-          <Text style={styles.save}> حذف المستخدم</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={[styles.buttonContainer, {flexDirection: fd}]}>
+        <TouchableOpacity
+          onPress={() => handleSaveUser({name, mobile, passwd, id: uuid.v4()})}>
+          <View>
+            <Text style={styles.save}>حفظ</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => deleteUser()}>
+          <View>
+            <Text style={styles.save}> حذف </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -93,31 +95,34 @@ const styles = StyleSheet.create({
   },
   subForm: {
     flexDirection: 'row-reverse',
-    width: '90%',
-    marginBottom: 10,
+    width: '95%',
+    marginBottom: 5,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     alignSelf: 'center',
-    width: 150,
+    width: 140,
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
     borderStyle: 'solid',
     borderBottomWidth: 2,
     textAlign: 'right',
-    width: 200,
+    width: 180,
+  },
+  buttonContainer: {
+    width: '95%',
+    justifyContent: 'space-evenly',
   },
   save: {
-    marginTop: 20,
-    fontSize: 25,
+    marginTop: 15,
+    fontSize: 20,
     alignSelf: 'center',
     textAlign: 'center',
-    padding: 5,
-    width: 250,
+    width: 100,
     color: 'white',
     backgroundColor: 'darkblue',
-    borderRadius: 10,
-    paddingVertical: 10,
+    borderRadius: 7,
+    paddingVertical: 5,
   },
 });
