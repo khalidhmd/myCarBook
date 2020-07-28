@@ -1,8 +1,8 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import CarForm from '../components/CarForm';
-import CarView from '../components/CarView';
-import CarList from '../components/CarList';
+import CarForm from '../pages/CarForm';
+import CarView from '../pages/CarView';
+import CarList from '../pages/CarList';
 
 const Stack = createStackNavigator();
 

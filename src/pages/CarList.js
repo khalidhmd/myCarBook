@@ -44,9 +44,10 @@ export default function CarList({navigation}) {
               fontSize: 34,
               backgroundColor: 'whitesmoke',
               color: 'rebeccapurple',
-              paddingHorizontal: 12,
+              paddingHorizontal: 14,
               marginRight: 6,
               borderRadius: 22,
+              fontWeight: 'bold',
             }}>
             +
           </Text>

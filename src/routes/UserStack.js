@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import UserForm from '../components/UserForm';
+import UserForm from '../pages/UserForm';
 
 const Stack = createStackNavigator();
 
