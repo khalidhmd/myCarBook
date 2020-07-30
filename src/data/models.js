@@ -1,8 +1,9 @@
 var uuid = require('react-native-uuid');
 
 export class User {
-  constructor(name = '', mobile = '', passwd = '') {
+  constructor(name = '',email='', mobile = '', passwd = '') {
     this.name = name;
+    this.email = email;
     this.mobile = mobile;
     this.passwd = passwd;
     this.id = uuid.v4();

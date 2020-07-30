@@ -40,6 +40,7 @@ export default function UserForm({navigation}) {
   });
   const {deleteUser, handleSaveUser, user} = useContext(UserContext);
   const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
   const [passwd, setPasswd] = useState('');
   const {language} = useContext(SystemContext);
@@ -49,10 +50,11 @@ export default function UserForm({navigation}) {
     function loadUser() {
       setMobile(user.mobile);
       setName(user.name);
+      setEmail(user.email);
       setPasswd(user.passwd);
     }
     loadUser();
-  }, []);
+  }, [user]);
 
   return (
     <View style={styles.container}>
@@ -63,6 +65,16 @@ export default function UserForm({navigation}) {
           placeholder="اسم المستخدم"
           value={name}
           onChangeText={text => setName(text)}
+        />
+      </View>
+      <View style={[styles.subForm, {flexDirection: fd}]}>
+        <Text style={styles.title}>اسم المستخدم</Text>
+        <TextInput
+          style={styles.text}
+          placeholder="الايميل"
+          value={email}
+          onChangeText={text => setEmail(text)}
+          keyboardType='email-address'
         />
       </View>
       <View style={[styles.subForm, {flexDirection: fd}]}>
@@ -86,7 +98,7 @@ export default function UserForm({navigation}) {
       </View>
       <View style={[styles.buttonContainer, {flexDirection: fd}]}>
         <TouchableOpacity
-          onPress={() => handleSaveUser({name, mobile, passwd, id: uuid.v4()})}>
+          onPress={() => handleSaveUser({name, email, mobile, passwd, id: uuid.v4()})}>
           <View>
             <Text style={styles.save}>حفظ</Text>
           </View>
