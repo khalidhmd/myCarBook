@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 var uuid = require('react-native-uuid');
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   StyleSheet,
   Text,
@@ -14,17 +15,7 @@ export default function UserForm({navigation}) {
   navigation.setOptions({
     headerLeft: () => (
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Text
-          style={{
-            fontSize: 20,
-            backgroundColor: 'whitesmoke',
-            color: 'rebeccapurple',
-            paddingHorizontal: 14,
-            marginRight: 6,
-            borderRadius: 22,
-          }}>
-          القائمة
-        </Text>
+        <Icon name="menu" size={42} color="white" />
       </TouchableOpacity>
     ),
     title: 'بيانات المستخدم',

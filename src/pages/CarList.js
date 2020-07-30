@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   StyleSheet,
   Text,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 
-const handlePress = (navigation, car) => {
+const handleItemPress = (navigation, car) => {
   navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
 };
 
@@ -39,33 +39,12 @@ export default function CarList({navigation}) {
               title: 'إضافة سيارة جديدة',
             })
           }>
-          <Text
-            style={{
-              fontSize: 34,
-              backgroundColor: 'whitesmoke',
-              color: 'rebeccapurple',
-              paddingHorizontal: 14,
-              marginRight: 6,
-              borderRadius: 22,
-              fontWeight: 'bold',
-            }}>
-            +
-          </Text>
+          <Icon name="md-add-circle-sharp" size={42} color="white"/>
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Text
-            style={{
-              fontSize: 20,
-              backgroundColor: 'whitesmoke',
-              color: 'rebeccapurple',
-              paddingHorizontal: 14,
-              marginRight: 6,
-              borderRadius: 22,
-            }}>
-            القائمة
-          </Text>
+          <Icon name="menu" size={42} color="white" />
         </TouchableOpacity>
       ),
     });
@@ -77,7 +56,7 @@ export default function CarList({navigation}) {
         data={cars}
         renderItem={({item}) => {
           return (
-            <TouchableOpacity onPress={() => handlePress(navigation, item)}>
+            <TouchableOpacity onPress={() => handleItemPress(navigation, item)}>
               <Animated.View style={[styles.deck]}>
                 <Text style={styles.title}>{item.make}</Text>
                 <Text style={styles.text}>{item.model}</Text>
