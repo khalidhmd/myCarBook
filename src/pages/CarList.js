@@ -1,7 +1,14 @@
 import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../shared/styles';
-import {Text, Animated, View, TouchableOpacity, ScrollView} from 'react-native';
+import {
+  Text,
+  Animated,
+  View,
+  TouchableOpacity,
+  ScrollView,
+  Image,
+} from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 
 const handleItemPress = (navigation, car) => {
@@ -53,7 +60,10 @@ export default function CarList({navigation}) {
             onPress={() => handleItemPress(navigation, car)}>
             <Animated.View style={[styles.deckCar]}>
               <Text style={styles.titleList}>{car.name}</Text>
-              {/* <Text style={styles.textList}>{car.model}</Text> */}
+              <Image
+                style={styles.imgList}
+                source={require('../../assets/car1.jpeg')}
+              />
             </Animated.View>
           </TouchableOpacity>
         ))}

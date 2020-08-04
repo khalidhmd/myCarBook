@@ -1,7 +1,7 @@
 var uuid = require('react-native-uuid');
 
 export class User {
-  constructor(name = '',email='', mobile = '', passwd = '') {
+  constructor(name = '', email = '', mobile = '', passwd = '') {
     this.name = name;
     this.email = email;
     this.mobile = mobile;
@@ -15,6 +15,7 @@ export class Car {
     name = '',
     make = '',
     model = '',
+    img = '',
     year = 2000,
     color = '',
     km = 0,
@@ -22,6 +23,7 @@ export class Car {
     this.name = name;
     this.make = make;
     this.model = model;
+    this.img = img;
     this.year = year;
     this.color = color;
     this.km = km;
