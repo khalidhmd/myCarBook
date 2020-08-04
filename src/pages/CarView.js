@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
+import styles from '../shared/styles';
 import {
-  StyleSheet,
   Text,
   View,
   TouchableOpacity,
@@ -125,44 +125,3 @@ export default function CarView({navigation, route}) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'whitesmoke',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  subForm: {
-    width: '95%',
-    marginBottom: 5,
-  },
-  title: {
-    fontSize: 20,
-    alignSelf: 'center',
-    width: 140,
-    fontWeight: 'bold',
-  },
-  text: {
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
-    textAlign: 'auto',
-    width: 180,
-  },
-  buttonContainer: {
-    width: '95%',
-    justifyContent: 'space-evenly',
-  },
-  save: {
-    marginTop: 15,
-    fontSize: 20,
-    alignSelf: 'center',
-    textAlign: 'center',
-    width: 100,
-    color: 'white',
-    backgroundColor: 'darkblue',
-    borderRadius: 7,
-    paddingVertical: 5,
-  },
-});

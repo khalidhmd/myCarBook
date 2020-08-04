@@ -15,7 +15,7 @@ export default function MainDrawer() {
       <Drawer.Screen
         name="CarStack"
         component={CarStack}
-        options={{drawerLabel: 'بيانات السيارات'}}
+        options={{drawerLabel: 'السيارات المسجلة'}}
       />
       <Drawer.Screen
         name="UserForm"

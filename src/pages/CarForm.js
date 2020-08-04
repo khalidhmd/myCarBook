@@ -1,7 +1,7 @@
 import React, {useState, useContext} from 'react';
 import {Car} from '../data/models';
+import styles from '../shared/styles';
 import {
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -161,44 +161,3 @@ export default function CarForm({route, navigation}) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'whitesmoke',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  subForm: {
-    width: '95%',
-    marginBottom: 5,
-  },
-  title: {
-    fontSize: 20,
-    alignSelf: 'center',
-    width: 140,
-    fontWeight: 'bold',
-  },
-  text: {
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderBottomWidth: 1,
-    textAlign: 'auto',
-    width: 180,
-  },
-  buttonContainer: {
-    width: '95%',
-    justifyContent: 'space-evenly',
-  },
-  save: {
-    marginTop: 15,
-    fontSize: 22,
-    alignSelf: 'center',
-    textAlign: 'center',
-    width: 80,
-    color: 'white',
-    backgroundColor: 'darkblue',
-    borderRadius: 7,
-    paddingVertical: 5,
-  },
-});

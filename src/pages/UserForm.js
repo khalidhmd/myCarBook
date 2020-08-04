@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
 var uuid = require('react-native-uuid');
 import Icon from 'react-native-vector-icons/Ionicons';
+import styles from '../shared/styles';
 import {
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -115,44 +115,3 @@ export default function UserForm({navigation}) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#eee',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  subForm: {
-    flexDirection: 'row-reverse',
-    width: '95%',
-    marginBottom: 5,
-  },
-  title: {
-    fontSize: 20,
-    alignSelf: 'center',
-    width: 140,
-  },
-  text: {
-    fontSize: 20,
-    borderStyle: 'solid',
-    borderBottomWidth: 2,
-    textAlign: 'right',
-    width: 180,
-  },
-  buttonContainer: {
-    width: '95%',
-    justifyContent: 'space-evenly',
-  },
-  save: {
-    marginTop: 15,
-    fontSize: 20,
-    alignSelf: 'center',
-    textAlign: 'center',
-    width: 100,
-    color: 'white',
-    backgroundColor: 'darkblue',
-    borderRadius: 7,
-    paddingVertical: 5,
-  },
-});
