@@ -6,7 +6,7 @@ import {
   Animated,
   View,
   TouchableOpacity,
-  FlatList,
+  ScrollView
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 
@@ -52,20 +52,16 @@ export default function CarList({navigation}) {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={cars}
-        renderItem={({item}) => {
-          return (
-            <TouchableOpacity onPress={() => handleItemPress(navigation, item)}>
+      <ScrollView>
+        
+        {cars.map(car => (<TouchableOpacity key={car.id} onPress={() => handleItemPress(navigation, car)}>
               <Animated.View style={[styles.deck]}>
-                <Text style={styles.title}>{item.make}</Text>
-                <Text style={styles.text}>{item.model}</Text>
+                <Text style={styles.title}>{car.make}</Text>
+                <Text style={styles.text}>{car.model}</Text>
               </Animated.View>
-            </TouchableOpacity>
-          );
-        }}
-        keyExtractor={item => item.id}
-      />
+            </TouchableOpacity>))}
+        
+      </ScrollView>
     </View>
   );
 }

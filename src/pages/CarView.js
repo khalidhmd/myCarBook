@@ -1,5 +1,13 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {StyleSheet, Text, View, TouchableOpacity, Alert} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Alert,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 
@@ -69,44 +77,52 @@ export default function CarView({navigation, route}) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>اسم المركبة</Text>
-        <Text style={styles.title}>{car.name}</Text>
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>الماركة</Text>
-        <Text style={styles.title}>{car.make}</Text>
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>الموديل</Text>
-        <Text style={styles.title}>{car.model}</Text>
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>سنة الصنع</Text>
-        <Text style={styles.title}>{car.year}</Text>
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>اللون</Text>
-        <Text style={styles.title}>{car.color}</Text>
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>قراءة العداد</Text>
-        <Text style={styles.title}>{car.km}</Text>
-      </View>
-      <View style={[styles.buttonContainer, {flexDirection: fd}]}>
-        <TouchableOpacity onPress={() => handleUpdate(car)}>
-          <View>
-            <Text style={styles.save}>تعديل</Text>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior="height"
+      enabled
+      keyboardVerticalOffset={100}>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>الاسم</Text>
+            <Text style={styles.title}>{car.name}</Text>
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleDelete(car.id)}>
-          <View>
-            <Text style={styles.save}>حذف</Text>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>الماركة</Text>
+            <Text style={styles.title}>{car.make}</Text>
           </View>
-        </TouchableOpacity>
-      </View>
-    </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>الموديل</Text>
+            <Text style={styles.title}>{car.model}</Text>
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>سنة الصنع</Text>
+            <Text style={styles.title}>{car.year}</Text>
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>اللون</Text>
+            <Text style={styles.title}>{car.color}</Text>
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>قراءة العداد</Text>
+            <Text style={styles.title}>{car.km}</Text>
+          </View>
+          <View style={[styles.buttonContainer, {flexDirection: fd}]}>
+            <TouchableOpacity onPress={() => handleUpdate(car)}>
+              <View>
+                <Text style={styles.save}>تعديل</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => handleDelete(car.id)}>
+              <View>
+                <Text style={styles.save}>حذف</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 

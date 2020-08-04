@@ -76,7 +76,6 @@ export default function CarForm({route, navigation}) {
   };
 
   return (
-    // <View style={styles.container}>
     <KeyboardAvoidingView
       style={styles.container}
       behavior="height"
@@ -160,7 +159,6 @@ export default function CarForm({route, navigation}) {
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
-    // </View>
   );
 }
 

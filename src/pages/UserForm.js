@@ -7,6 +7,8 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  KeyboardAvoidingView,
+  ScrollView,
 } from 'react-native';
 import {UserContext} from '../contexts/UserContext';
 import {SystemContext} from '../contexts/SystemContext';
@@ -48,59 +50,69 @@ export default function UserForm({navigation}) {
   }, [user]);
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>اسم المستخدم</Text>
-        <TextInput
-          style={styles.text}
-          placeholder="اسم المستخدم"
-          value={name}
-          onChangeText={text => setName(text)}
-        />
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>اسم المستخدم</Text>
-        <TextInput
-          style={styles.text}
-          placeholder="الايميل"
-          value={email}
-          onChangeText={text => setEmail(text)}
-          keyboardType='email-address'
-        />
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>رقم الموبايل</Text>
-        <TextInput
-          style={styles.text}
-          placeholder="رقم الموبايل"
-          value={mobile}
-          onChangeText={text => setMobile(text)}
-          keyboardType="phone-pad"
-        />
-      </View>
-      <View style={[styles.subForm, {flexDirection: fd}]}>
-        <Text style={styles.title}>رمز المرور</Text>
-        <TextInput
-          style={styles.text}
-          placeholder="رمز المرور"
-          value={passwd}
-          onChangeText={text => setPasswd(text)}
-        />
-      </View>
-      <View style={[styles.buttonContainer, {flexDirection: fd}]}>
-        <TouchableOpacity
-          onPress={() => handleSaveUser({name, email, mobile, passwd, id: uuid.v4()})}>
-          <View>
-            <Text style={styles.save}>حفظ</Text>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior="height"
+      enabled
+      keyboardVerticalOffset={100}>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>اسم المستخدم</Text>
+            <TextInput
+              style={styles.text}
+              placeholder="اسم المستخدم"
+              value={name}
+              onChangeText={text => setName(text)}
+            />
           </View>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => deleteUser()}>
-          <View>
-            <Text style={styles.save}> حذف </Text>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>اسم المستخدم</Text>
+            <TextInput
+              style={styles.text}
+              placeholder="الايميل"
+              value={email}
+              onChangeText={text => setEmail(text)}
+              keyboardType="email-address"
+            />
           </View>
-        </TouchableOpacity>
-      </View>
-    </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>رقم الموبايل</Text>
+            <TextInput
+              style={styles.text}
+              placeholder="رقم الموبايل"
+              value={mobile}
+              onChangeText={text => setMobile(text)}
+              keyboardType="phone-pad"
+            />
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>رمز المرور</Text>
+            <TextInput
+              style={styles.text}
+              placeholder="رمز المرور"
+              value={passwd}
+              onChangeText={text => setPasswd(text)}
+            />
+          </View>
+          <View style={[styles.buttonContainer, {flexDirection: fd}]}>
+            <TouchableOpacity
+              onPress={() =>
+                handleSaveUser({name, email, mobile, passwd, id: uuid.v4()})
+              }>
+              <View>
+                <Text style={styles.save}>حفظ</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => deleteUser()}>
+              <View>
+                <Text style={styles.save}> حذف </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
