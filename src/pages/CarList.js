@@ -10,6 +10,7 @@ import {
   Image,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
+import {SystemContext} from '../contexts/SystemContext';
 
 const handleItemPress = (navigation, car) => {
   navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
@@ -17,21 +18,22 @@ const handleItemPress = (navigation, car) => {
 
 export default function CarList({navigation}) {
   const {cars} = useContext(CarContext);
+  const {language} = useContext(SystemContext);
 
-  navigation.setOptions({
-    title: 'السيارات المسجلة',
-    headerTitleStyle: {
-      alignSelf: 'center',
-      fontWeight: 'bold',
-      color: 'lightgrey',
-      fontSize: 24,
-    },
-    headerStyle: {
-      backgroundColor: 'rebeccapurple',
-    },
-  });
+  const fd = language == 'en' ? 'row' : 'row-reverse';
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
+      title: 'السيارات المسجلة',
+      headerTitleStyle: {
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        color: 'lightgrey',
+        fontSize: 24,
+      },
+      headerStyle: {
+        backgroundColor: 'rebeccapurple',
+      },
       headerRight: () => (
         <TouchableOpacity
           onPress={() =>
@@ -51,23 +53,23 @@ export default function CarList({navigation}) {
     });
   }, [navigation]);
 
-  return (
+  return cars.length ? (
     <View style={styles.containerList}>
       <ScrollView>
-        {cars.map(car => (
-          <TouchableOpacity
-            key={car.id}
-            onPress={() => handleItemPress(navigation, car)}>
-            <Animated.View style={[styles.deckCar]}>
-              <Text style={styles.titleList}>{car.name}</Text>
-              <Image
-                style={styles.imgList}
-                source={require('../../assets/car1.jpeg')}
-              />
-            </Animated.View>
-          </TouchableOpacity>
-        ))}
+        {cars.map(car => {
+          const img = car.imgURL ? car.imgURL : 'sample.jpeg';
+          return (
+            <TouchableOpacity
+              key={car.id}
+              onPress={() => handleItemPress(navigation, car)}>
+              <Animated.View style={[styles.deckCar, {flexDirection: fd}]}>
+                <Text style={styles.titleList}>{car.name}</Text>
+                <Image style={styles.imgList} source={{uri: img}} />
+              </Animated.View>
+            </TouchableOpacity>
+          );
+        })}
       </ScrollView>
     </View>
-  );
+  ) : null;
 }

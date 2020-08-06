@@ -7,6 +7,7 @@ import {
   Alert,
   KeyboardAvoidingView,
   ScrollView,
+  Image,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
@@ -84,6 +85,7 @@ export default function CarView({navigation, route}) {
       keyboardVerticalOffset={100}>
       <ScrollView>
         <View style={styles.container}>
+          <Image style={styles.imgForm} source={{uri: car.imgURL, scale: 1}} />
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>الاسم</Text>
             <Text style={styles.title}>{car.name}</Text>

@@ -15,7 +15,7 @@ export class Car {
     name = '',
     make = '',
     model = '',
-    img = '',
+    imgURL = '../../assets/sample.jpeg',
     year = 2000,
     color = '',
     km = 0,
@@ -23,7 +23,7 @@ export class Car {
     this.name = name;
     this.make = make;
     this.model = model;
-    this.img = img;
+    this.imgURL = imgURL;
     this.year = year;
     this.color = color;
     this.km = km;

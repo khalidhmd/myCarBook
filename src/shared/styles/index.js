@@ -8,11 +8,16 @@ export default StyleSheet.create({
   titleList: {
     fontSize: 28,
     fontWeight: 'bold',
-    marginRight: 15,
+    marginHorizontal: 15,
   },
   imgList: {
-    width: 70,
-    height: 70,
+    width: 65,
+    height: 65,
+    borderRadius: 30,
+  },
+  imgForm: {
+    width: 270,
+    height: 180,
     borderRadius: 30,
   },
   deckCar: {
@@ -22,7 +27,6 @@ export default StyleSheet.create({
     backgroundColor: 'plum',
     marginHorizontal: 4,
     borderRadius: 8,
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-end',
   },
@@ -55,6 +59,7 @@ export default StyleSheet.create({
   buttonContainer: {
     width: '95%',
     justifyContent: 'space-evenly',
+    marginBottom: 20,
   },
   save: {
     marginTop: 15,
