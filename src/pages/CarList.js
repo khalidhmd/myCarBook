@@ -64,7 +64,7 @@ export default function CarList({navigation}) {
               onPress={() => handleItemPress(navigation, car)}>
               <Animated.View style={[styles.deckCar, {flexDirection: fd}]}>
                 <Text style={styles.titleList}>{car.name}</Text>
-                <Image style={styles.imgList} source={{uri: img}} />
+                <Image style={styles.imgList} source={{uri: 'file://' + img}} />
               </Animated.View>
             </TouchableOpacity>
           );

@@ -20,7 +20,6 @@ export default function CarForm({route, navigation}) {
   const {addCar, updateCar} = useContext(CarContext);
 
   const car = route.params.car || {};
-  console.log(car);
   const [name, setName] = useState(car.name);
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
@@ -67,7 +66,7 @@ export default function CarForm({route, navigation}) {
             buttonPositive: 'OK',
           },
         );
-        console.log(granted);
+
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
           console.log('You can use the camera');
         } else {
@@ -85,8 +84,6 @@ export default function CarForm({route, navigation}) {
     };
 
     ImagePicker.launchImageLibrary(options, res => {
-      console.log('Response = ', res);
-
       if (res.didCancel) {
         console.log('User cancelled image picker');
       } else if (res.error) {
@@ -95,8 +92,7 @@ export default function CarForm({route, navigation}) {
         console.log('User tapped custom button: ', res.customButton);
         alert(res.customButton);
       } else {
-        setImgURL(res.uri);
-        console.log(imgURL);
+        setImgURL(res.path);
       }
     });
   };
@@ -133,7 +129,6 @@ export default function CarForm({route, navigation}) {
     navigation.pop();
     navigation.navigate('CarView', {car});
   };
-
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -143,7 +138,7 @@ export default function CarForm({route, navigation}) {
       <ScrollView>
         <View style={styles.container}>
           <TouchableOpacity onPress={imageGalleryLaunch}>
-            <Image style={styles.imgForm} source={{uri: imgURL}} />
+            <Image style={styles.imgForm} source={{uri: 'file://' + imgURL}} />
           </TouchableOpacity>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم المركبة</Text>
