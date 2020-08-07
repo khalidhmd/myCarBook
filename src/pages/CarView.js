@@ -85,10 +85,13 @@ export default function CarView({navigation, route}) {
       keyboardVerticalOffset={100}>
       <ScrollView>
         <View style={styles.container}>
-          <Image
-            style={styles.imgForm}
-            source={{uri: 'file://' + car.imgURL}}
-          />
+          {!!car.imgURL ? (
+            <Image
+              style={styles.imgForm}
+              source={{uri: 'file://' + car.imgURL}}
+            />
+          ) : null}
+
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>الاسم</Text>
             <Text style={styles.title}>{car.name}</Text>

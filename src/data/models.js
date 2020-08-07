@@ -15,7 +15,7 @@ export class Car {
     name = '',
     make = '',
     model = '',
-    imgURL = '../../assets/sample.jpeg',
+    imgURL = null,
     year = 2000,
     color = '',
     km = 0,

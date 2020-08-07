@@ -138,7 +138,24 @@ export default function CarForm({route, navigation}) {
       <ScrollView>
         <View style={styles.container}>
           <TouchableOpacity onPress={imageGalleryLaunch}>
-            <Image style={styles.imgForm} source={{uri: 'file://' + imgURL}} />
+            {!!imgURL ? (
+              <Image
+                style={styles.imgForm}
+                source={{uri: 'file://' + imgURL}}
+              />
+            ) : (
+              <Text
+                style={{
+                  width: 200,
+                  fontSize: 18,
+                  textAlign: 'center',
+                  marginTop: 10,
+                  backgroundColor: 'lightblue',
+                  borderRadius: 10,
+                }}>
+                إضغط هنا لاضافة صورة أو اضغط على الصورة لاحقا لتغييرها
+              </Text>
+            )}
           </TouchableOpacity>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم المركبة</Text>

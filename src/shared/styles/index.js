@@ -16,9 +16,12 @@ export default StyleSheet.create({
     borderRadius: 30,
   },
   imgForm: {
-    width: 270,
-    height: 180,
-    borderRadius: 30,
+    marginTop: 10,
+    width: 240,
+    height: 200,
+    borderRadius: 10,
+    overflow: 'visible',
+    resizeMode: 'contain',
   },
   deckCar: {
     paddingHorizontal: 20,
