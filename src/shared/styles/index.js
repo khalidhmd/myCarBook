@@ -16,11 +16,10 @@ export default StyleSheet.create({
     borderRadius: 30,
   },
   imgForm: {
-    marginTop: 10,
+    marginTop: 5,
     width: 240,
-    height: 200,
-    borderRadius: 10,
-    overflow: 'visible',
+    height: 180,
+    borderRadius: 15,
     resizeMode: 'contain',
   },
   deckCar: {
@@ -42,7 +41,7 @@ export default StyleSheet.create({
   subForm: {
     width: '95%',
     marginBottom: 5,
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderBottomWidth: 1,
   },
   title: {
@@ -62,7 +61,7 @@ export default StyleSheet.create({
   buttonContainer: {
     width: '95%',
     justifyContent: 'space-evenly',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   save: {
     marginTop: 15,
