@@ -17,9 +17,9 @@ export default StyleSheet.create({
   },
   imgForm: {
     marginTop: 5,
-    width: 240,
+    width: 320,
     height: 180,
-    borderRadius: 15,
+    borderRadius: 10,
     resizeMode: 'contain',
   },
   deckCar: {

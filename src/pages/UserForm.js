@@ -93,6 +93,7 @@ export default function UserForm({navigation}) {
               placeholder="رمز المرور"
               value={passwd}
               onChangeText={text => setPasswd(text)}
+              secureTextEntry={true}
             />
           </View>
           <View style={[styles.buttonContainer, {flexDirection: fd}]}>
