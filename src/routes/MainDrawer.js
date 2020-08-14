@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import CustomDrawerContent from '../shared/components/CustomDrawerContent';
+
 import CarStack from './CarStack';
 import UserForm from './UserStack';
 
@@ -8,6 +10,7 @@ const Drawer = createDrawerNavigator();
 export default function MainDrawer() {
   return (
     <Drawer.Navigator
+      drawerContent={props => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
         activeTintColor: 'rebeccapurple',
         labelStyle: {fontSize: 22, fontWeight: 'bold'},
