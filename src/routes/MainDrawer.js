@@ -13,7 +13,8 @@ export default function MainDrawer() {
       drawerContent={props => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
         activeTintColor: 'rebeccapurple',
-        labelStyle: {fontSize: 22, fontWeight: 'bold'},
+        inactiveTintColor: 'black',
+        labelStyle: {fontSize: 20, fontWeight: 'bold', padding: 0, margin: 0},
         style: {
           padding: 0,
           margin: 0,
@@ -21,7 +22,6 @@ export default function MainDrawer() {
         itemStyle: {
           padding: 0,
           margin: 0,
-          width: '100%',
         },
       }}>
       <Drawer.Screen
@@ -32,8 +32,9 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="car-outline"
-              size={42}
+              size={36}
               color={focused ? 'rebeccapurple' : 'gray'}
+              style={{padding: 0, margin: 0}}
             />
           ),
         }}
