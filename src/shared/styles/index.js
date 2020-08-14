@@ -74,4 +74,13 @@ export default StyleSheet.create({
     borderRadius: 7,
     paddingVertical: 5,
   },
+  CreditsTitle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    fontWeight: 'bold',
+  },
+  CreditsText: {
+    fontSize: 20,
+    textAlign: 'left',
+  },
 });

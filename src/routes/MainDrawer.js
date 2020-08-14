@@ -4,6 +4,7 @@ import CustomDrawerContent from '../shared/components/CustomDrawerContent';
 import Icon from 'react-native-vector-icons/Ionicons';
 import CarStack from './CarStack';
 import UserForm from './UserStack';
+import CreditsScreen from './CreditsStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -47,6 +48,20 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="person-circle-outline"
+              size={36}
+              color={focused ? 'indigo' : '#606060'}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="CreditsScreen"
+        component={CreditsScreen}
+        options={{
+          drawerLabel: 'Credits',
+          drawerIcon: ({focused}) => (
+            <Icon
+              name="information-outline"
               size={36}
               color={focused ? 'indigo' : '#606060'}
             />
