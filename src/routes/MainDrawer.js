@@ -12,8 +12,8 @@ export default function MainDrawer() {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
-        activeTintColor: 'rebeccapurple',
-        inactiveTintColor: 'black',
+        activeTintColor: 'indigo',
+        inactiveTintColor: '#404040',
         labelStyle: {fontSize: 20, fontWeight: 'bold', padding: 0, margin: 0},
         style: {
           padding: 0,
@@ -33,7 +33,7 @@ export default function MainDrawer() {
             <Icon
               name="car-outline"
               size={36}
-              color={focused ? 'rebeccapurple' : 'gray'}
+              color={focused ? 'indigo' : '#606060'}
               style={{padding: 0, margin: 0}}
             />
           ),
@@ -47,8 +47,8 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="person-circle-outline"
-              size={42}
-              color={focused ? 'rebeccapurple' : 'gray'}
+              size={36}
+              color={focused ? 'indigo' : '#606060'}
             />
           ),
         }}
