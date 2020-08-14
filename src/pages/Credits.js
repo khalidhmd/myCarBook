@@ -53,7 +53,7 @@ export default function CreditsView({navigation}) {
           <Text style={styles.CreditsTitle}>Splash Screen Photo</Text>
           <Text style={styles.CreditsText}>
             The splash screen photo is downloaded from unsplash.com. Thanks to
-            Samara Doole for sharing the photo on Unsplash.
+            Alex Perez for sharing the photo on Unsplash.
           </Text>
           <Text
             style={[styles.CreditsText, {color: 'blue'}]}
@@ -62,12 +62,8 @@ export default function CreditsView({navigation}) {
           </Text>
           <Text
             style={[styles.CreditsText, {color: 'blue'}]}
-            onPress={() =>
-              Linking.openURL(
-                'https://unsplash.com/@samaradoole?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText',
-              )
-            }>
-            Samara Doole
+            onPress={() => Linking.openURL('https://unsplash.com/@a2eorigins')}>
+            Alex Perez
           </Text>
         </View>
       </View>
