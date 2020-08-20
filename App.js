@@ -6,21 +6,24 @@ import MainDrawer from './src/routes/MainDrawer';
 import CarContextProvider from './src/contexts/CarContext';
 import UserContextProvider from './src/contexts/UserContext';
 import SystemContextProvider from './src/contexts/SystemContext';
+import ActiveCarContextProvider from './src/contexts/ActiveCarContext';
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
   return (
-    <CarContextProvider>
-      <UserContextProvider>
-        <SystemContextProvider>
-          <NavigationContainer>
-            <MainDrawer />
-            <StatusBar barStyle="dark-content" />
-          </NavigationContainer>
-        </SystemContextProvider>
-      </UserContextProvider>
-    </CarContextProvider>
+    <ActiveCarContextProvider>
+      <CarContextProvider>
+        <UserContextProvider>
+          <SystemContextProvider>
+            <NavigationContainer>
+              <MainDrawer />
+              <StatusBar barStyle="dark-content" />
+            </NavigationContainer>
+          </SystemContextProvider>
+        </UserContextProvider>
+      </CarContextProvider>
+    </ActiveCarContextProvider>
   );
 };
 

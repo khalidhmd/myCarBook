@@ -13,13 +13,15 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
+import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import ImagePicker from 'react-native-image-picker';
 
 export default function CarForm({route, navigation}) {
   const {addCar, updateCar} = useContext(CarContext);
+  const {setActiveCar, activeCar} = useContext(ActiveCarContext);
 
-  const car = route.params.car || {};
+  const car = route.params.mode === 'add' ? {} : activeCar;
   const [name, setName] = useState(car.name);
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
@@ -120,12 +122,13 @@ export default function CarForm({route, navigation}) {
     const km = parseInt(k);
     const car = new Car(name, make, model, imgURL, year, color, km);
     addCar(car);
-
+    setActiveCar({...car});
     navigation.pop();
   };
 
   const handleUpdate = car => {
     updateCar(car);
+    setActiveCar({...car});
     navigation.pop();
     navigation.navigate('CarView', {car});
   };

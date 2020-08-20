@@ -11,16 +11,19 @@ import {
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
-
-const handleItemPress = (navigation, car) => {
-  navigation.push('CarView', {car, title: 'عرض بيانات سيارة'});
-};
+import {ActiveCarContext} from '../contexts/ActiveCarContext';
 
 export default function CarList({navigation}) {
+  const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const {cars} = useContext(CarContext);
   const {language} = useContext(SystemContext);
 
   const fd = language == 'en' ? 'row' : 'row-reverse';
+
+  const handleItemPress = (navigation, car) => {
+    setActiveCar({...car});
+    navigation.push('CarView', {title: 'عرض بيانات سيارة'});
+  };
 
   React.useLayoutEffect(() => {
     navigation.setOptions({

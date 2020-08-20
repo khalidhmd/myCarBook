@@ -11,16 +11,18 @@ import {
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
+import {ActiveCarContext} from '../contexts/ActiveCarContext';
 
 export default function CarView({navigation, route}) {
   const {removeCar} = useContext(CarContext);
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
-
-  const [car, setCar] = useState({...route.params.car});
+  const {setActiveCar, activeCar} = useContext(ActiveCarContext);
+  const [car, setCar] = useState({...activeCar});
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
-      setCar({...route.params.car});
+      // setCar({...route.params.car});
+      setCar({...activeCar});
     });
 
     return unsubscribe;
@@ -53,6 +55,7 @@ export default function CarView({navigation, route}) {
           text: 'حذف',
           onPress: async () => {
             removeCar(id);
+            setActiveCar({});
             navigation.pop();
           },
         },
@@ -61,19 +64,11 @@ export default function CarView({navigation, route}) {
     );
   };
 
-  const handleUpdate = car => {
+  const handleUpdate = () => {
     navigation.pop();
     navigation.navigate('CarForm', {
       mode: 'update',
       title: 'تعديل بيانات سيارة',
-      car,
-    });
-  };
-
-  const handleAddKm = car => {
-    navigation.navigate('KmForm', {
-      title: 'تسجيل قراءة العداد',
-      car,
     });
   };
 
