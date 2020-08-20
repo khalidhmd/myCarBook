@@ -52,18 +52,20 @@ export default function CreditsView({navigation}) {
           }}>
           <Text style={styles.CreditsTitle}>Splash Screen Photo</Text>
           <Text style={styles.CreditsText}>
-            The splash screen photo is downloaded from unsplash.com. Thanks to
-            Alex Perez for sharing the photo on Unsplash.
+            The splash screen photo is downloaded from Pexels. Thanks to Tim
+            Mossholder for sharing the photo on Pexels.
           </Text>
           <Text
             style={[styles.CreditsText, {color: 'blue'}]}
-            onPress={() => Linking.openURL('https://unsplash.com/')}>
-            www.unsplash.com
+            onPress={() => Linking.openURL('https://www.pexels.com/')}>
+            www.pexels.com
           </Text>
           <Text
             style={[styles.CreditsText, {color: 'blue'}]}
-            onPress={() => Linking.openURL('https://unsplash.com/@a2eorigins')}>
-            Alex Perez
+            onPress={() =>
+              Linking.openURL('https://www.pexels.com/@timmossholder')
+            }>
+            Tim Mossholder
           </Text>
         </View>
       </View>

@@ -16,6 +16,7 @@ import {CarContext} from '../contexts/CarContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import ImagePicker from 'react-native-image-picker';
+import RNFS from 'react-native-fs';
 
 export default function CarForm({route, navigation}) {
   const {addCar, updateCar} = useContext(CarContext);
@@ -60,10 +61,10 @@ export default function CarForm({route, navigation}) {
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
           {
-            title: 'Cool Photo App Camera Permission',
+            title: 'EgyCarBook file Permission',
             message:
-              'Cool Photo App needs access to your camera ' +
-              'so you can take awesome pictures.',
+              'EgyCarBook App needs access to your files ' +
+              'so you can choose car photo.',
             buttonNeutral: 'Ask Me Later',
             buttonNegative: 'Cancel',
             buttonPositive: 'OK',
@@ -95,7 +96,20 @@ export default function CarForm({route, navigation}) {
         console.log('User tapped custom button: ', res.customButton);
         alert(res.customButton);
       } else {
-        setImgURL(res.path);
+        RNFS.exists(RNFS.DocumentDirectoryPath + '/photos')
+          .then(found => {
+            if (!found)
+              return RNFS.mkdir(RNFS.DocumentDirectoryPath + '/photos');
+          })
+          .then(() => {
+            return RNFS.copyFile(
+              res.path,
+              RNFS.DocumentDirectoryPath + '/photos/' + res.fileName,
+            );
+          })
+          .then(() => {
+            setImgURL(RNFS.DocumentDirectoryPath + '/photos/' + res.fileName);
+          });
       }
     });
   };
