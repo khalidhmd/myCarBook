@@ -13,20 +13,20 @@ import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 
-export default function CarView({navigation, route}) {
+export default function CarView({navigation}) {
   const {removeCar} = useContext(CarContext);
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const [car, setCar] = useState({...activeCar});
+
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
-      // setCar({...route.params.car});
       setCar({...activeCar});
     });
 
     return unsubscribe;
-  }, [navigation, route]);
+  }, [navigation]);
 
   navigation.setOptions({
     title: 'عرض بيانات سيارة',

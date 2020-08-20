@@ -33,6 +33,7 @@ export default function CarForm({route, navigation}) {
 
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: route.params.title,

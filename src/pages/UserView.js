@@ -17,7 +17,7 @@ export default function UserView({navigation}) {
   navigation.setOptions({
     headerLeft: () => (
       <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Icon name="menu" size={42} color="white" />
+        <Icon name="menu-outline" size={42} color="white" />
       </TouchableOpacity>
     ),
     title: 'بيانات المستخدم',

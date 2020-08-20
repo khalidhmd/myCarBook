@@ -50,7 +50,7 @@ export default function CarList({navigation}) {
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Icon name="menu" size={42} color="white" />
+          <Icon name="menu-outline" size={42} color="white" />
         </TouchableOpacity>
       ),
     });
