@@ -70,7 +70,7 @@ export default function MainDrawer() {
           drawerLabel: 'Credits',
           drawerIcon: ({focused}) => (
             <Icon
-              name="information-outline"
+              name="information-circle-outline"
               size={32}
               color={focused ? 'indigo' : '#606060'}
             />
