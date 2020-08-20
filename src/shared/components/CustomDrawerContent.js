@@ -4,7 +4,6 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function CustomDrawerContent(props) {
   return (

@@ -15,7 +15,13 @@ export default function MainDrawer() {
       drawerContentOptions={{
         activeTintColor: 'indigo',
         inactiveTintColor: '#404040',
-        labelStyle: {fontSize: 18, fontWeight: 'bold', padding: 0, margin: 0},
+        labelStyle: {
+          fontSize: 18,
+          fontWeight: 'bold',
+          padding: 0,
+          margin: 0,
+        },
+
         style: {
           padding: 0,
           margin: 0,
@@ -25,6 +31,7 @@ export default function MainDrawer() {
           padding: 0,
           marginVertical: 0,
           width: '100%',
+          alignItems: 'flex-start',
         },
         contentContainerStyle: {padding: 0, margin: 0, width: '100%'},
       }}>
@@ -36,9 +43,8 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="car-outline"
-              size={36}
+              size={32}
               color={focused ? 'indigo' : '#606060'}
-              style={{padding: 0, margin: 0}}
             />
           ),
         }}
@@ -51,7 +57,7 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="person-circle-outline"
-              size={36}
+              size={32}
               color={focused ? 'indigo' : '#606060'}
             />
           ),
@@ -65,7 +71,7 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="information-outline"
-              size={36}
+              size={32}
               color={focused ? 'indigo' : '#606060'}
             />
           ),
