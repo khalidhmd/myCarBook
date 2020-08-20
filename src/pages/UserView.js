@@ -13,8 +13,13 @@ import {
 import {UserContext} from '../contexts/UserContext';
 import {SystemContext} from '../contexts/SystemContext';
 
-export default function UserForm({navigation}) {
+export default function UserView({navigation}) {
   navigation.setOptions({
+    headerLeft: () => (
+      <TouchableOpacity onPress={() => navigation.openDrawer()}>
+        <Icon name="menu" size={42} color="white" />
+      </TouchableOpacity>
+    ),
     title: 'بيانات المستخدم',
     headerTitleStyle: {
       alignSelf: 'center',
@@ -27,27 +32,24 @@ export default function UserForm({navigation}) {
       backgroundColor: 'rebeccapurple',
     },
   });
-  const {deleteUser, handleSaveUser, user} = useContext(UserContext);
+  const {deleteUser, user} = useContext(UserContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [mobile, setMobile] = useState('');
-  const [passwd, setPasswd] = useState('');
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
-
+  const handleUpdate = () => {
+    navigation.navigate('UserForm');
+  };
   useEffect(() => {
     function loadUser() {
       setMobile(user.mobile);
       setName(user.name);
       setEmail(user.email);
-      setPasswd(user.passwd);
     }
     loadUser();
   }, [user]);
-  const handleSave = user => {
-    handleSaveUser(user);
-    navigation.pop();
-  };
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -58,50 +60,21 @@ export default function UserForm({navigation}) {
         <View style={styles.container}>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم المستخدم</Text>
-            <TextInput
-              style={styles.text}
-              placeholder="اسم المستخدم"
-              value={name}
-              onChangeText={text => setName(text)}
-            />
+            <Text style={styles.title}>{name}</Text>
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>الايميل</Text>
-            <TextInput
-              style={styles.text}
-              placeholder="الايميل"
-              value={email}
-              onChangeText={text => setEmail(text)}
-              keyboardType="email-address"
-            />
+            <Text style={styles.title}>الإيميل</Text>
+            <Text style={styles.title}>{email}</Text>
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>رقم الموبايل</Text>
-            <TextInput
-              style={styles.text}
-              placeholder="رقم الموبايل"
-              value={mobile}
-              onChangeText={text => setMobile(text)}
-              keyboardType="phone-pad"
-            />
+            <Text style={styles.title}>{mobile}</Text>
           </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>رمز المرور</Text>
-            <TextInput
-              style={styles.text}
-              placeholder="رمز المرور"
-              value={passwd}
-              onChangeText={text => setPasswd(text)}
-              secureTextEntry={true}
-            />
-          </View>
+
           <View style={[styles.buttonContainer, {flexDirection: fd}]}>
-            <TouchableOpacity
-              onPress={() =>
-                handleSave({name, email, mobile, passwd, id: uuid.v4()})
-              }>
+            <TouchableOpacity onPress={() => handleUpdate()}>
               <View>
-                <Text style={styles.save}>حفظ</Text>
+                <Text style={styles.save}>تعديل</Text>
               </View>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => deleteUser()}>
