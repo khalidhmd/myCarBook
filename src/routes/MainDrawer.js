@@ -15,15 +15,18 @@ export default function MainDrawer() {
       drawerContentOptions={{
         activeTintColor: 'indigo',
         inactiveTintColor: '#404040',
-        labelStyle: {fontSize: 20, fontWeight: 'bold', padding: 0, margin: 0},
+        labelStyle: {fontSize: 18, fontWeight: 'bold', padding: 0, margin: 0},
         style: {
           padding: 0,
           margin: 0,
+          width: '100%',
         },
         itemStyle: {
           padding: 0,
-          margin: 0,
+          marginVertical: 0,
+          width: '100%',
         },
+        contentContainerStyle: {padding: 0, margin: 0, width: '100%'},
       }}>
       <Drawer.Screen
         name="CarStack"

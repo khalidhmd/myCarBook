@@ -1,19 +1,20 @@
 import * as React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, ScrollView} from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function CustomDrawerContent(props) {
   return (
-    <DrawerContentScrollView {...props}>
+    <ScrollView>
       <View
         style={{
           flexDirection: 'row',
           justifyContent: 'center',
-          marginHorizontal: 5,
           backgroundColor: 'rebeccapurple',
+          width: '100%',
         }}>
         <Text
           style={{
@@ -30,8 +31,9 @@ export default function CustomDrawerContent(props) {
           EgyCarBook
         </Text>
       </View>
+      <View />
 
       <DrawerItemList {...props} />
-    </DrawerContentScrollView>
+    </ScrollView>
   );
 }
