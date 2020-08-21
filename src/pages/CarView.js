@@ -41,6 +41,7 @@ export default function CarView({navigation}) {
       backgroundColor: 'rebeccapurple',
     },
   });
+
   const handleDelete = id => {
     Alert.alert(
       'حذف',

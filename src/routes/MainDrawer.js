@@ -16,24 +16,14 @@ export default function MainDrawer() {
         activeTintColor: 'indigo',
         inactiveTintColor: '#404040',
         labelStyle: {
-          fontSize: 18,
-          fontWeight: 'bold',
-          padding: 0,
-          margin: 0,
-        },
-
-        style: {
-          padding: 0,
-          margin: 0,
-          width: '100%',
+          fontSize: 16,
+          fontFamily: 'Almarai-Regular',
         },
         itemStyle: {
-          padding: 0,
           marginVertical: 0,
-          width: '100%',
-          alignItems: 'flex-start',
+          // width: '100%',
         },
-        contentContainerStyle: {padding: 0, margin: 0, width: '100%'},
+        // contentContainerStyle: {width: '100%'},
       }}>
       <Drawer.Screen
         name="CarStack"
