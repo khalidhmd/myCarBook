@@ -45,12 +45,12 @@ export default function CarList({navigation}) {
               title: 'تسجيل سيارة جديدة',
             })
           }>
-          <Icon name="md-add-circle-sharp" size={42} color="white" />
+          <Icon name="md-add-circle-sharp" size={36} color="white" />
         </TouchableOpacity>
       ),
       headerLeft: () => (
         <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Icon name="menu-outline" size={42} color="white" />
+          <Icon name="menu-outline" size={36} color="white" />
         </TouchableOpacity>
       ),
     });
