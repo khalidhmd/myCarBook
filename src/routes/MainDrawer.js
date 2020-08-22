@@ -14,16 +14,19 @@ export default function MainDrawer() {
       drawerContent={props => <CustomDrawerContent {...props} />}
       drawerContentOptions={{
         activeTintColor: 'indigo',
-        inactiveTintColor: '#404040',
+        inactiveTintColor: 'black',
         labelStyle: {
           fontSize: 16,
           fontFamily: 'Almarai-Regular',
+          position: 'relative',
+          left: -15,
         },
         itemStyle: {
           marginVertical: 0,
-          // width: '100%',
+          width: '100%',
+          position: 'relative',
+          left: -10,
         },
-        // contentContainerStyle: {width: '100%'},
       }}>
       <Drawer.Screen
         name="CarStack"
@@ -33,7 +36,7 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="car-outline"
-              size={32}
+              size={30}
               color={focused ? 'indigo' : '#606060'}
             />
           ),
@@ -47,7 +50,7 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="person-circle-outline"
-              size={32}
+              size={30}
               color={focused ? 'indigo' : '#606060'}
             />
           ),
@@ -61,7 +64,7 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="information-circle-outline"
-              size={32}
+              size={30}
               color={focused ? 'indigo' : '#606060'}
             />
           ),
