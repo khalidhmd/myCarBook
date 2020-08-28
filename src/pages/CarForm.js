@@ -182,7 +182,7 @@ export default function CarForm({route, navigation}) {
             <Text style={styles.title}>اسم المركبة</Text>
             <TextInput
               style={styles.text}
-              placeholder="اسم المركبة"
+              placeholder="اسم السيارة"
               value={name}
               onChangeText={text => setName(text)}
             />
