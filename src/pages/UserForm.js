@@ -18,9 +18,9 @@ export default function UserForm({navigation}) {
     title: 'بيانات المستخدم',
     headerTitleStyle: {
       alignSelf: 'center',
-      fontWeight: 'bold',
       color: 'lightgrey',
       fontSize: 24,
+      fontFamily: 'Almarai-Regular',
     },
     headerTintColor: 'lightgrey',
     headerStyle: {

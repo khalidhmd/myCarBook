@@ -32,9 +32,9 @@ export default function CarView({navigation}) {
     title: 'عرض بيانات سيارة',
     headerTitleStyle: {
       alignSelf: 'center',
-      fontWeight: 'bold',
       color: 'lightgrey',
       fontSize: 24,
+      fontFamily: 'Almarai-Regular',
     },
     headerTintColor: 'lightgrey',
     headerStyle: {

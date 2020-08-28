@@ -12,9 +12,9 @@ export default function CreditsView({navigation}) {
     title: 'Credits',
     headerTitleStyle: {
       alignSelf: 'center',
-      fontWeight: 'bold',
       color: 'lightgrey',
       fontSize: 24,
+      fontFamily: 'Almarai-Regular',
     },
     headerStyle: {
       backgroundColor: 'rebeccapurple',

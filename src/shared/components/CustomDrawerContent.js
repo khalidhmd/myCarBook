@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {Text, View, ScrollView} from 'react-native';
-import {
-  DrawerContentScrollView,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import {DrawerItemList} from '@react-navigation/drawer';
 
 export default function CustomDrawerContent(props) {
   return (
@@ -20,12 +17,12 @@ export default function CustomDrawerContent(props) {
             backgroundColor: 'rebeccapurple',
             color: 'whitesmoke',
             fontSize: 36,
-            fontWeight: 'bold',
             textAlign: 'center',
             width: '100%',
             padding: 10,
             paddingVertical: 20,
             letterSpacing: 1,
+            fontFamily: 'Almarai-Regular',
           }}>
           EgyCarBook
         </Text>

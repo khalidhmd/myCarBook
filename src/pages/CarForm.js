@@ -15,6 +15,8 @@ import {
 import {CarContext} from '../contexts/CarContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import ImagePicker from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
 
@@ -40,9 +42,9 @@ export default function CarForm({route, navigation}) {
       title: route.params.title,
       headerTitleStyle: {
         alignSelf: 'center',
-        fontWeight: 'bold',
         color: 'lightgrey',
         fontSize: 24,
+        fontFamily: 'Almarai-Regular',
       },
       headerTintColor: 'lightgrey',
       headerStyle: {
@@ -170,6 +172,7 @@ export default function CarForm({route, navigation}) {
                   marginTop: 10,
                   backgroundColor: 'lightblue',
                   borderRadius: 10,
+                  fontFamily: 'Almarai-Regular',
                 }}>
                 إضغط هنا لاضافة صورة أو اضغط على الصورة لاحقا لتغييرها
               </Text>
@@ -244,9 +247,19 @@ export default function CarForm({route, navigation}) {
             ) : (
               <TouchableOpacity
                 onPress={() =>
-                  handleUpdate({name, make, model, imgURL, year, color, km, id})
+                  handleUpdate({
+                    name,
+                    make,
+                    model,
+                    imgURL,
+                    year,
+                    color,
+                    km,
+                    id,
+                  })
                 }>
-                <View>
+                <View style={styles.buttonView}>
+                  <Icon name="save-outline" size={22} color="rebeccapurple" />
                   <Text style={styles.save}>حفظ</Text>
                 </View>
               </TouchableOpacity>

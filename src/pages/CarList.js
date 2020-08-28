@@ -1,14 +1,7 @@
 import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../shared/styles';
-import {
-  Text,
-  Animated,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
@@ -30,9 +23,9 @@ export default function CarList({navigation}) {
       title: 'السيارات المسجلة',
       headerTitleStyle: {
         alignSelf: 'center',
-        fontWeight: 'bold',
         color: 'lightgrey',
         fontSize: 24,
+        fontFamily: 'Almarai-Regular',
       },
       headerStyle: {
         backgroundColor: 'rebeccapurple',
@@ -65,10 +58,10 @@ export default function CarList({navigation}) {
             <TouchableOpacity
               key={car.id}
               onPress={() => handleItemPress(navigation, car)}>
-              <Animated.View style={[styles.deckCar, {flexDirection: fd}]}>
+              <View style={[styles.deckCar, {flexDirection: fd}]}>
                 <Text style={styles.titleList}>{car.name}</Text>
                 <Image style={styles.imgList} source={{uri: 'file://' + img}} />
-              </Animated.View>
+              </View>
             </TouchableOpacity>
           );
         })}

@@ -1,10 +1,8 @@
 import React, {useState, useEffect, useContext} from 'react';
-var uuid = require('react-native-uuid');
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../shared/styles';
 import {
   Text,
-  TextInput,
   View,
   TouchableOpacity,
   KeyboardAvoidingView,
@@ -23,9 +21,9 @@ export default function UserView({navigation}) {
     title: 'بيانات المستخدم',
     headerTitleStyle: {
       alignSelf: 'center',
-      fontWeight: 'bold',
       color: 'lightgrey',
       fontSize: 24,
+      fontFamily: 'Almarai-Regular',
     },
     headerTintColor: 'lightgrey',
     headerStyle: {
