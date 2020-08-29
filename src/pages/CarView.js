@@ -30,12 +30,7 @@ export default function CarView({navigation}) {
 
   navigation.setOptions({
     title: 'عرض بيانات سيارة',
-    headerTitleStyle: {
-      alignSelf: 'center',
-      color: 'lightgrey',
-      fontSize: 24,
-      fontFamily: 'Almarai-Regular',
-    },
+    headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'lightgrey',
     headerStyle: {
       backgroundColor: 'rebeccapurple',

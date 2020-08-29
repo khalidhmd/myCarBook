@@ -19,12 +19,7 @@ export default function UserView({navigation}) {
       </TouchableOpacity>
     ),
     title: 'بيانات المستخدم',
-    headerTitleStyle: {
-      alignSelf: 'center',
-      color: 'lightgrey',
-      fontSize: 24,
-      fontFamily: 'Almarai-Regular',
-    },
+    headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'lightgrey',
     headerStyle: {
       backgroundColor: 'rebeccapurple',

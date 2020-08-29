@@ -10,12 +10,7 @@ export default function CreditsView({navigation}) {
       </TouchableOpacity>
     ),
     title: 'Credits',
-    headerTitleStyle: {
-      alignSelf: 'center',
-      color: 'lightgrey',
-      fontSize: 24,
-      fontFamily: 'Almarai-Regular',
-    },
+    headerTitleStyle: styles.headerTitleStyle,
     headerStyle: {
       backgroundColor: 'rebeccapurple',
     },

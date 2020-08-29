@@ -76,11 +76,10 @@ export default StyleSheet.create({
     borderRadius: 20,
     width: 100,
     paddingHorizontal: 10,
-    paddingVertical: 3,
     includeFontPadding: false,
     justifyContent: 'space-between',
     borderColor: 'rebeccapurple',
-    borderWidth: 4,
+    borderWidth: 2,
   },
   CreditsTitle: {
     fontSize: 20,
@@ -90,5 +89,11 @@ export default StyleSheet.create({
   CreditsText: {
     fontSize: 20,
     textAlign: 'left',
+  },
+  headerTitleStyle: {
+    alignSelf: 'center',
+    color: 'lightgrey',
+    fontSize: 24,
+    fontFamily: 'Almarai-Regular',
   },
 });

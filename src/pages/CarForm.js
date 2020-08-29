@@ -40,12 +40,7 @@ export default function CarForm({route, navigation}) {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: route.params.title,
-      headerTitleStyle: {
-        alignSelf: 'center',
-        color: 'lightgrey',
-        fontSize: 24,
-        fontFamily: 'Almarai-Regular',
-      },
+      headerTitleStyle: styles.headerTitleStyle,
       headerTintColor: 'lightgrey',
       headerStyle: {
         backgroundColor: 'rebeccapurple',
@@ -240,8 +235,9 @@ export default function CarForm({route, navigation}) {
                 onPress={() =>
                   handleAdd(name, make, model, imgURL, year, color, km)
                 }>
-                <View>
-                  <Text style={[styles.save]}>حفظ</Text>
+                <View style={styles.buttonView}>
+                  <Icon name="save-outline" size={22} color="rebeccapurple" />
+                  <Text style={styles.save}>حفظ</Text>
                 </View>
               </TouchableOpacity>
             ) : (

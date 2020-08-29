@@ -16,12 +16,7 @@ import {SystemContext} from '../contexts/SystemContext';
 export default function UserForm({navigation}) {
   navigation.setOptions({
     title: 'بيانات المستخدم',
-    headerTitleStyle: {
-      alignSelf: 'center',
-      color: 'lightgrey',
-      fontSize: 24,
-      fontFamily: 'Almarai-Regular',
-    },
+    headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'lightgrey',
     headerStyle: {
       backgroundColor: 'rebeccapurple',

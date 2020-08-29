@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useRef} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../shared/styles';
 import {Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
@@ -9,6 +9,8 @@ import {ActiveCarContext} from '../contexts/ActiveCarContext';
 export default function CarList({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const {cars} = useContext(CarContext);
+  const theRef = useRef(null);
+
   const {language} = useContext(SystemContext);
 
   const fd = language == 'en' ? 'row' : 'row-reverse';
@@ -19,14 +21,11 @@ export default function CarList({navigation}) {
   };
 
   React.useLayoutEffect(() => {
+    // theRef.current.setOpacityTo(0.2, 0.2);
+    console.log(theRef);
     navigation.setOptions({
       title: 'السيارات المسجلة',
-      headerTitleStyle: {
-        alignSelf: 'center',
-        color: 'lightgrey',
-        fontSize: 24,
-        fontFamily: 'Almarai-Regular',
-      },
+      headerTitleStyle: styles.headerTitleStyle,
       headerStyle: {
         backgroundColor: 'rebeccapurple',
       },
@@ -38,7 +37,7 @@ export default function CarList({navigation}) {
               title: 'تسجيل سيارة جديدة',
             })
           }>
-          <Icon name="md-add-circle-sharp" size={36} color="white" />
+          <Icon name="md-add-circle-outline" size={36} color="white" />
         </TouchableOpacity>
       ),
       headerLeft: () => (
@@ -56,6 +55,7 @@ export default function CarList({navigation}) {
           const img = car.imgURL ? car.imgURL : 'sample.jpeg';
           return (
             <TouchableOpacity
+              ref={theRef}
               key={car.id}
               onPress={() => handleItemPress(navigation, car)}>
               <View style={[styles.deckCar, {flexDirection: fd}]}>
