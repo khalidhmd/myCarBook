@@ -135,7 +135,7 @@ export default function CarForm({route, navigation}) {
     const car = new Car(name, make, model, imgURL, year, color, km);
     addCar(car);
     setActiveCar({...car});
-    navigation.pop();
+    navigation.popToTop();
   };
 
   const handleUpdate = car => {

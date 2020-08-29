@@ -9,9 +9,11 @@ import {
   ScrollView,
   Image,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
+import CustomButton from '../shared/components/CustomButton';
 
 export default function CarView({navigation}) {
   const {removeCar} = useContext(CarContext);
@@ -19,6 +21,7 @@ export default function CarView({navigation}) {
   const fd = language == 'en' ? 'row-reverse' : 'row';
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const [car, setCar] = useState({...activeCar});
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
@@ -35,9 +38,21 @@ export default function CarView({navigation}) {
     headerStyle: {
       backgroundColor: 'rebeccapurple',
     },
+    headerRight: () => (
+      <TouchableOpacity
+        onPress={() => {
+          setShow(!show);
+        }}>
+        <Icon
+          name="ellipsis-horizontal-circle-outline"
+          size={36}
+          color="white"
+        />
+      </TouchableOpacity>
+    ),
   });
 
-  const handleDelete = id => {
+  const handleDelete = idx => {
     Alert.alert(
       'حذف',
       'هل تريد حذف بيانات السيارة؟',
@@ -50,7 +65,7 @@ export default function CarView({navigation}) {
         {
           text: 'حذف',
           onPress: async () => {
-            removeCar(id);
+            removeCar(idx);
             setActiveCar({});
             navigation.pop();
           },
@@ -61,7 +76,7 @@ export default function CarView({navigation}) {
   };
 
   const handleUpdate = () => {
-    navigation.pop();
+    setShow(false);
     navigation.navigate('CarForm', {
       mode: 'update',
       title: 'تعديل بيانات سيارة',
@@ -74,7 +89,31 @@ export default function CarView({navigation}) {
       behavior="height"
       enabled
       keyboardVerticalOffset={100}>
-      <ScrollView>
+      {show ? (
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            right: 3,
+            zIndex: 1,
+            backgroundColor: 'white',
+          }}>
+          <CustomButton
+            title="تعديل"
+            iconName="create-outline"
+            pressHandler={handleUpdate}
+          />
+          <CustomButton
+            title="حذف"
+            iconName="trash-outline"
+            pressHandler={() => {
+              handleDelete(car.id);
+            }}
+          />
+        </View>
+      ) : null}
+
+      <ScrollView style={{width: '100%'}}>
         <View style={styles.container}>
           {!!car.imgURL ? (
             <Image
@@ -106,18 +145,6 @@ export default function CarView({navigation}) {
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>قراءة العداد</Text>
             <Text style={styles.title}>{car.km}</Text>
-          </View>
-          <View style={[styles.buttonContainer, {flexDirection: fd}]}>
-            <TouchableOpacity onPress={() => handleUpdate(car)}>
-              <View>
-                <Text style={styles.save}>تعديل</Text>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => handleDelete(car.id)}>
-              <View>
-                <Text style={styles.save}>حذف</Text>
-              </View>
-            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

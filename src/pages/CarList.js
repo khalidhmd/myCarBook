@@ -1,4 +1,4 @@
-import React, {useContext, useRef} from 'react';
+import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import styles from '../shared/styles';
 import {Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
@@ -9,7 +9,6 @@ import {ActiveCarContext} from '../contexts/ActiveCarContext';
 export default function CarList({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const {cars} = useContext(CarContext);
-  const theRef = useRef(null);
 
   const {language} = useContext(SystemContext);
 
@@ -21,8 +20,6 @@ export default function CarList({navigation}) {
   };
 
   React.useLayoutEffect(() => {
-    // theRef.current.setOpacityTo(0.2, 0.2);
-    console.log(theRef);
     navigation.setOptions({
       title: 'السيارات المسجلة',
       headerTitleStyle: styles.headerTitleStyle,
@@ -55,7 +52,6 @@ export default function CarList({navigation}) {
           const img = car.imgURL ? car.imgURL : 'sample.jpeg';
           return (
             <TouchableOpacity
-              ref={theRef}
               key={car.id}
               onPress={() => handleItemPress(navigation, car)}>
               <View style={[styles.deckCar, {flexDirection: fd}]}>
