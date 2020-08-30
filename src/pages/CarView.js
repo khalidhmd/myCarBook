@@ -52,6 +52,7 @@ export default function CarView({navigation}) {
     ),
   });
 
+
   const handleDelete = idx => {
     Alert.alert(
       'حذف',
