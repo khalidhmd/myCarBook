@@ -147,7 +147,7 @@ export default function CarForm({route, navigation}) {
       behavior="height"
       enabled
       keyboardVerticalOffset={100}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <TouchableOpacity onPress={imageGalleryLaunch}>
             {!!imgURL ? (

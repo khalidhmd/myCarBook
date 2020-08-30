@@ -47,7 +47,7 @@ export default function CarList({navigation}) {
 
   return cars.length ? (
     <View style={styles.containerList}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {cars.map(car => {
           const img = car.imgURL ? car.imgURL : 'sample.jpeg';
           return (

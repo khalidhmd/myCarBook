@@ -116,7 +116,7 @@ export default function CarView({navigation}) {
         </View>
       ) : null}
 
-      <ScrollView style={{width: '100%'}}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
         <View style={styles.container}>
           {!!car.imgURL ? (
             <Image

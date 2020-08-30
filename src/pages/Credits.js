@@ -17,7 +17,7 @@ export default function CreditsView({navigation}) {
   });
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <View
           style={{

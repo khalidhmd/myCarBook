@@ -49,7 +49,7 @@ export default function UserView({navigation}) {
       behavior="height"
       enabled
       keyboardVerticalOffset={100}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم المستخدم</Text>
