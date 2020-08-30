@@ -59,7 +59,7 @@ export default function CarView({navigation}) {
       [
         {
           text: 'لا',
-          onPress: () => console.log('Cancel Pressed'),
+          onPress: () => {},
           style: 'cancel',
         },
         {

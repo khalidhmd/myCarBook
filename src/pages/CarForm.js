@@ -69,7 +69,6 @@ export default function CarForm({route, navigation}) {
         );
 
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('You can use the camera');
         } else {
           return;
         }
@@ -86,11 +85,9 @@ export default function CarForm({route, navigation}) {
 
     ImagePicker.launchImageLibrary(options, res => {
       if (res.didCancel) {
-        console.log('User cancelled image picker');
       } else if (res.error) {
         console.log('ImagePicker Error: ', res.error);
       } else if (res.customButton) {
-        console.log('User tapped custom button: ', res.customButton);
         alert(res.customButton);
       } else {
         RNFS.exists(RNFS.DocumentDirectoryPath + '/photos')
