@@ -5,6 +5,7 @@ import {Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
+import HeaderLeftButton from '../shared/components/HeaderLeftButton';
 
 export default function CarList({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
@@ -37,11 +38,7 @@ export default function CarList({navigation}) {
           <Icon name="md-add-outline" size={36} color="white" />
         </TouchableOpacity>
       ),
-      headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.openDrawer()}>
-          <Icon name="menu-outline" size={36} color="white" />
-        </TouchableOpacity>
-      ),
+      headerLeft: () => <HeaderLeftButton navigation={navigation} />,
     });
   }, [navigation]);
 

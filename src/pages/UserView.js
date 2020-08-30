@@ -10,14 +10,11 @@ import {
 } from 'react-native';
 import {UserContext} from '../contexts/UserContext';
 import {SystemContext} from '../contexts/SystemContext';
+import HeaderLeftButton from '../shared/components/HeaderLeftButton';
 
 export default function UserView({navigation}) {
   navigation.setOptions({
-    headerLeft: () => (
-      <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Icon name="menu-outline" size={42} color="white" />
-      </TouchableOpacity>
-    ),
+    headerLeft: () => <HeaderLeftButton navigation={navigation} />,
     title: 'بيانات المستخدم',
     headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'lightgrey',

@@ -1,14 +1,11 @@
 import React from 'react';
 import styles from '../shared/styles';
-import {Text, View, ScrollView, TouchableOpacity, Linking} from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import {Text, View, ScrollView, Linking} from 'react-native';
+import HeaderLeftButton from '../shared/components/HeaderLeftButton';
+
 export default function CreditsView({navigation}) {
   navigation.setOptions({
-    headerLeft: () => (
-      <TouchableOpacity onPress={() => navigation.openDrawer()}>
-        <Icon name="menu" size={42} color="white" />
-      </TouchableOpacity>
-    ),
+    headerLeft: () => <HeaderLeftButton navigation={navigation} />,
     title: 'Credits',
     headerTitleStyle: styles.headerTitleStyle,
     headerStyle: {
