@@ -7,9 +7,9 @@ export default StyleSheet.create({
   },
   titleList: {
     fontSize: 28,
-    fontWeight: 'bold',
+    
     marginHorizontal: 15,
-    fontFamily:'Almarai-Regular'
+    fontFamily:'Almarai-Bold'
   },
   imgList: {
     width: 65,
