@@ -43,15 +43,10 @@ export default function CarView({navigation}) {
         onPress={() => {
           setShow(!show);
         }}>
-        <Icon
-          name="ellipsis-vertical-outline"
-          size={30}
-          color="white"
-        />
+        <Icon name="ellipsis-vertical" size={30} color="white" />
       </TouchableOpacity>
     ),
   });
-
 
   const handleDelete = idx => {
     Alert.alert(
@@ -98,8 +93,8 @@ export default function CarView({navigation}) {
             right: 3,
             zIndex: 1,
             backgroundColor: 'lightgrey',
-            padding:8,
-            borderRadius:10
+            padding: 8,
+            borderRadius: 10,
           }}>
           <CustomButton
             title="تعديل"
