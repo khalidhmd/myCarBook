@@ -45,7 +45,7 @@ export default function CarView({navigation}) {
         }}>
         <Icon
           name="ellipsis-vertical-outline"
-          size={32}
+          size={30}
           color="white"
         />
       </TouchableOpacity>

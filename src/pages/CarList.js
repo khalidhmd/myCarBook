@@ -34,7 +34,7 @@ export default function CarList({navigation}) {
               title: 'تسجيل سيارة جديدة',
             })
           }>
-          <Icon name="md-add-circle-outline" size={36} color="white" />
+          <Icon name="md-add-outline" size={36} color="white" />
         </TouchableOpacity>
       ),
       headerLeft: () => (
