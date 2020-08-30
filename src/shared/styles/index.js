@@ -97,6 +97,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     color: 'lightgrey',
     fontSize: 24,
-    fontFamily: 'Almarai-Regular',
+    fontFamily: 'Almarai-Bold',
   },
 });
