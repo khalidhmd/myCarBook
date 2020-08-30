@@ -97,7 +97,9 @@ export default function CarView({navigation}) {
             top: 0,
             right: 3,
             zIndex: 1,
-            backgroundColor: 'white',
+            backgroundColor: 'lightgrey',
+            padding:8,
+            borderRadius:10
           }}>
           <CustomButton
             title="تعديل"
