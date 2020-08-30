@@ -44,8 +44,8 @@ export default function CarView({navigation}) {
           setShow(!show);
         }}>
         <Icon
-          name="ellipsis-horizontal-circle-outline"
-          size={36}
+          name="ellipsis-vertical-outline"
+          size={32}
           color="white"
         />
       </TouchableOpacity>
