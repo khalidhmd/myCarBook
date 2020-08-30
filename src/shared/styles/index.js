@@ -7,9 +7,9 @@ export default StyleSheet.create({
   },
   titleList: {
     fontSize: 28,
-    
+
     marginHorizontal: 15,
-    fontFamily:'Almarai-Bold'
+    fontFamily: 'Almarai-Bold',
   },
   imgList: {
     width: 65,
@@ -49,7 +49,7 @@ export default StyleSheet.create({
     fontSize: 20,
     alignSelf: 'center',
     width: 140,
-    fontFamily:'Almarai-Regular'
+    fontFamily: 'Almarai-Bold',
   },
   text: {
     fontSize: 20,
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     backgroundColor: 'lightgrey',
     borderRadius: 30,
     paddingHorizontal: 15,
-    fontFamily:'Almarai-Regular'
+    fontFamily: 'Almarai-Regular',
   },
   buttonContainer: {
     width: '95%',
@@ -86,12 +86,12 @@ export default StyleSheet.create({
   CreditsTitle: {
     fontSize: 20,
     alignSelf: 'center',
-    fontFamily:'Almarai-Regular'
+    fontFamily: 'Almarai-Bold',
   },
   CreditsText: {
     fontSize: 20,
     textAlign: 'left',
-    fontFamily:'Almarai-Regular'
+    fontFamily: 'Almarai-Regular',
   },
   headerTitleStyle: {
     alignSelf: 'center',
