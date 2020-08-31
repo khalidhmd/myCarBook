@@ -163,8 +163,12 @@ export default function CarForm({route, navigation}) {
     navigation.navigate('CarView', {car});
   };
   return (
-    <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior="height"
+      enabled
+      keyboardVerticalOffset={100}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
         <View style={styles.container}>
           <TouchableOpacity onPress={imageGalleryLaunch}>
             {!!imgURL ? (

@@ -91,9 +91,9 @@ export default function CarView({navigation, route}) {
             position: 'absolute',
             top: 0,
             right: 3,
-            zIndex: 1,
+            zIndex: 5,
             backgroundColor: 'lightgrey',
-            padding: 8,
+            padding: 3,
             borderRadius: 10,
           }}>
           <CustomButton
