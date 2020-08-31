@@ -7,7 +7,6 @@ export default StyleSheet.create({
   },
   titleList: {
     fontSize: 28,
-
     marginHorizontal: 15,
     fontFamily: 'Almarai-Bold',
   },

@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
   Image,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {CarContext} from '../contexts/CarContext';
@@ -55,7 +56,9 @@ export default function CarView({navigation, route}) {
       [
         {
           text: 'لا',
-          onPress: () => {},
+          onPress: () => {
+            setShow(false);
+          },
           style: 'cancel',
         },
         {
@@ -110,42 +113,47 @@ export default function CarView({navigation, route}) {
           />
         </View>
       ) : null}
-
-      <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
+      <TouchableWithoutFeedback onPress={() => setShow(false)}>
         <View style={styles.container}>
-          {!!car.imgURL ? (
-            <Image
-              style={styles.imgForm}
-              source={{uri: 'file://' + car.imgURL}}
-            />
-          ) : null}
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            style={{width: '100%'}}>
+            <View style={styles.container}>
+              {!!car.imgURL ? (
+                <Image
+                  style={styles.imgForm}
+                  source={{uri: 'file://' + car.imgURL}}
+                />
+              ) : null}
 
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>الاسم</Text>
-            <Text style={styles.title}>{car.name}</Text>
-          </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>الماركة</Text>
-            <Text style={styles.title}>{car.make}</Text>
-          </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>الموديل</Text>
-            <Text style={styles.title}>{car.model}</Text>
-          </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>سنة الصنع</Text>
-            <Text style={styles.title}>{car.year}</Text>
-          </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>اللون</Text>
-            <Text style={styles.title}>{car.color}</Text>
-          </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
-            <Text style={styles.title}>قراءة العداد</Text>
-            <Text style={styles.title}>{car.km}</Text>
-          </View>
+              <View style={[styles.subForm, {flexDirection: fd}]}>
+                <Text style={styles.title}>الاسم</Text>
+                <Text style={styles.title}>{car.name}</Text>
+              </View>
+              <View style={[styles.subForm, {flexDirection: fd}]}>
+                <Text style={styles.title}>الماركة</Text>
+                <Text style={styles.title}>{car.make}</Text>
+              </View>
+              <View style={[styles.subForm, {flexDirection: fd}]}>
+                <Text style={styles.title}>الموديل</Text>
+                <Text style={styles.title}>{car.model}</Text>
+              </View>
+              <View style={[styles.subForm, {flexDirection: fd}]}>
+                <Text style={styles.title}>سنة الصنع</Text>
+                <Text style={styles.title}>{car.year}</Text>
+              </View>
+              <View style={[styles.subForm, {flexDirection: fd}]}>
+                <Text style={styles.title}>اللون</Text>
+                <Text style={styles.title}>{car.color}</Text>
+              </View>
+              <View style={[styles.subForm, {flexDirection: fd}]}>
+                <Text style={styles.title}>قراءة العداد</Text>
+                <Text style={styles.title}>{car.km}</Text>
+              </View>
+            </View>
+          </ScrollView>
         </View>
-      </ScrollView>
+      </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 }
