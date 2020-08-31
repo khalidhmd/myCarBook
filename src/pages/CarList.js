@@ -17,7 +17,7 @@ export default function CarList({navigation}) {
 
   const handleItemPress = (navigation, car) => {
     setActiveCar({...car});
-    navigation.navigate('CarView', {title: 'عرض بيانات سيارة'});
+    navigation.navigate('CarView', {title: 'عرض بيانات سيارة', car});
   };
 
   React.useLayoutEffect(() => {

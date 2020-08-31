@@ -22,7 +22,7 @@ import RNFS from 'react-native-fs';
 
 export default function CarForm({route, navigation}) {
   const {addCar, updateCar} = useContext(CarContext);
-  const {setActiveCar, activeCar} = useContext(ActiveCarContext);
+  const {activeCar, setActiveCar} = useContext(ActiveCarContext);
 
   const car = route.params.mode === 'add' ? {} : activeCar;
   const [name, setName] = useState(car.name);
@@ -138,7 +138,8 @@ export default function CarForm({route, navigation}) {
   const handleUpdate = car => {
     updateCar(car);
     setActiveCar({...car});
-    navigation.pop();
+    console.log(activeCar);
+    navigation.popToTop();
     navigation.navigate('CarView', {car});
   };
   return (

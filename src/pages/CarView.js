@@ -15,17 +15,17 @@ import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import CustomButton from '../shared/components/CustomButton';
 
-export default function CarView({navigation}) {
+export default function CarView({navigation, route}) {
   const {removeCar} = useContext(CarContext);
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
-  const [car, setCar] = useState({...activeCar});
+  const [car, setCar] = useState({...route.params.car});
   const [show, setShow] = useState(false);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
-      setCar({...activeCar});
+      setCar({...route.params.car});
     });
 
     return unsubscribe;
