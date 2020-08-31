@@ -6,6 +6,7 @@ import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import HeaderLeftButton from '../shared/components/HeaderLeftButton';
+import HeaderRightButton from '../shared/components/HeaderRightButton';
 
 export default function CarList({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
@@ -20,6 +21,10 @@ export default function CarList({navigation}) {
     navigation.navigate('CarView', {title: 'عرض بيانات سيارة', car});
   };
 
+  const rightButtonPress = () => {
+    navigation.navigate('CarForm', {mode: 'add', title: 'تسجيل سيارة جديدة'});
+  };
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: 'السيارات المسجلة',
@@ -28,15 +33,10 @@ export default function CarList({navigation}) {
         backgroundColor: 'rebeccapurple',
       },
       headerRight: () => (
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('CarForm', {
-              mode: 'add',
-              title: 'تسجيل سيارة جديدة',
-            })
-          }>
-          <Icon name="md-add-outline" size={36} color="white" />
-        </TouchableOpacity>
+        <HeaderRightButton
+          pressHnadler={rightButtonPress}
+          iconName="md-add-circle-outline"
+        />
       ),
       headerLeft: () => <HeaderLeftButton navigation={navigation} />,
     });

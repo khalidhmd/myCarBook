@@ -38,9 +38,10 @@ export default StyleSheet.create({
     backgroundColor: 'whitesmoke',
     alignItems: 'center',
     justifyContent: 'center',
+    width: '100%',
   },
   subForm: {
-    width: '95%',
+    width: '100%',
     marginBottom: 5,
     paddingVertical: 10,
     borderBottomWidth: 1,

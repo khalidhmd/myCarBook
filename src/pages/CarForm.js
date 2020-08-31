@@ -16,7 +16,7 @@ import {CarContext} from '../contexts/CarContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import HeaderRightButton from '../shared/components/HeaderRightButton';
 import ImagePicker from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
 
@@ -37,16 +37,37 @@ export default function CarForm({route, navigation}) {
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      title: route.params.title,
-      headerTitleStyle: styles.headerTitleStyle,
-      headerTintColor: 'lightgrey',
-      headerStyle: {
-        backgroundColor: 'rebeccapurple',
-      },
-    });
-  }, [navigation]);
+  navigation.setOptions({
+    title: route.params.title,
+    headerTitleStyle: styles.headerTitleStyle,
+    headerTintColor: 'whitesmoke',
+    headerStyle: {
+      backgroundColor: 'rebeccapurple',
+    },
+    headerRight: () => (
+      <HeaderRightButton
+        pressHnadler={
+          route.params.mode === 'add'
+            ? () => {
+                handleAdd(name, make, model, imgURL, year, color, km);
+              }
+            : () => {
+                handleUpdate({
+                  name,
+                  make,
+                  model,
+                  imgURL,
+                  year,
+                  color,
+                  km,
+                  id,
+                });
+              }
+        }
+        iconName="checkmark-outline"
+      />
+    ),
+  });
 
   const imageGalleryLaunch = async () => {
     const g = await PermissionsAndroid.check(
@@ -138,16 +159,11 @@ export default function CarForm({route, navigation}) {
   const handleUpdate = car => {
     updateCar(car);
     setActiveCar({...car});
-    console.log(activeCar);
     navigation.popToTop();
     navigation.navigate('CarView', {car});
   };
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior="height"
-      enabled
-      keyboardVerticalOffset={100}>
+    <KeyboardAvoidingView style={styles.container} behavior="height" enabled>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <TouchableOpacity onPress={imageGalleryLaunch}>
@@ -226,38 +242,6 @@ export default function CarForm({route, navigation}) {
               onChangeText={text => setKm(text)}
               keyboardType="number-pad"
             />
-          </View>
-          <View style={[styles.buttonContainer, {flexDirection: fd}]}>
-            {route.params.mode === 'add' ? (
-              <TouchableOpacity
-                onPress={() =>
-                  handleAdd(name, make, model, imgURL, year, color, km)
-                }>
-                <View style={styles.buttonView}>
-                  <Icon name="save-outline" size={22} color="rebeccapurple" />
-                  <Text style={styles.save}>حفظ</Text>
-                </View>
-              </TouchableOpacity>
-            ) : (
-              <TouchableOpacity
-                onPress={() =>
-                  handleUpdate({
-                    name,
-                    make,
-                    model,
-                    imgURL,
-                    year,
-                    color,
-                    km,
-                    id,
-                  })
-                }>
-                <View style={styles.buttonView}>
-                  <Icon name="save-outline" size={22} color="rebeccapurple" />
-                  <Text style={styles.save}>حفظ</Text>
-                </View>
-              </TouchableOpacity>
-            )}
           </View>
         </View>
       </ScrollView>
