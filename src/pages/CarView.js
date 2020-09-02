@@ -82,6 +82,13 @@ export default function CarView({navigation, route}) {
     });
   };
 
+  const handleKm = ()=>{
+    setShow(false);
+    navigation.navigate('KmForm', {
+      title: 'تسجيل عداد كم',
+    });
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -105,12 +112,18 @@ export default function CarView({navigation, route}) {
             pressHandler={handleUpdate}
           />
           <CustomButton
+            title="تسجيل العداد"
+            iconName="speedometer-outline"
+            pressHandler={handleKm}
+          />
+          <CustomButton
             title="حذف"
             iconName="trash-outline"
             pressHandler={() => {
               handleDelete(car.id);
             }}
           />
+          
         </View>
       ) : null}
       <TouchableWithoutFeedback onPress={() => setShow(false)}>

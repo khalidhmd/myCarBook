@@ -15,7 +15,6 @@ import {
 import {CarContext} from '../contexts/CarContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
-import Icon from 'react-native-vector-icons/Ionicons';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 import ImagePicker from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
@@ -224,7 +223,7 @@ export default function CarForm({route, navigation}) {
               style={styles.text}
               placeholder="سنة الصنع"
               value={String(year)}
-              onChangeText={text => setYear(text)}
+              onChangeText={text => setYear(parseInt(text))}
               keyboardType="number-pad"
             />
           </View>
@@ -243,7 +242,7 @@ export default function CarForm({route, navigation}) {
               style={styles.text}
               placeholder="قراءة العداد"
               value={String(km)}
-              onChangeText={text => setKm(text)}
+              onChangeText={text => setKm(parseInt(text))}
               keyboardType="number-pad"
             />
           </View>
