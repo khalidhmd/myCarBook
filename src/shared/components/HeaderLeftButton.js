@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 export default function({navigation}) {
   return (
     <TouchableOpacity onPress={() => navigation.openDrawer()}>
-      <Icon name="menu-outline" size={36} color="white" />
+      <Icon name="menu-outline" size={30} color="white" />
     </TouchableOpacity>
   );
 }

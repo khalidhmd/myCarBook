@@ -7,7 +7,7 @@ export default function(props) {
   return (
     <TouchableOpacity onPress={props.pressHandler}>
       <View style={styles.buttonView}>
-        <Icon name={props.iconName} size={22} color="rebeccapurple" />
+        <Icon name={props.iconName} size={24} color="rebeccapurple" />
         <Text style={styles.save}>{props.title}</Text>
       </View>
     </TouchableOpacity>

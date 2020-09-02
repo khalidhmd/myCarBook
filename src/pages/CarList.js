@@ -35,7 +35,7 @@ export default function CarList({navigation}) {
       headerRight: () => (
         <HeaderRightButton
           pressHnadler={rightButtonPress}
-          iconName="md-add-circle-outline"
+          iconName="md-add-outline"
         />
       ),
       headerLeft: () => <HeaderLeftButton navigation={navigation} />,
