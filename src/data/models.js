@@ -68,7 +68,7 @@ export class maintenanceOperation {
   }
 }
 
-export class RecordKm {
+export class KmRecord {
   constructor(date = '', km = 0, carId) {
     this.date = date;
     this.km = km;

@@ -53,10 +53,14 @@ export async function getKms() {
   }
 }
 
+export async function saveKms(kms) {
+  AsyncStorage.setItem(KM_KEY, JSON.stringify(kms));
+}
+
 export async function addKms(km) {
   const kms = await getKms();
-  cars.push(km);
-  await saveCars(kms);
+  kms.push(km);
+  await saveKms(kms);
 }
 
 export async function deleteCar(id) {
