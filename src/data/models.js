@@ -77,6 +77,17 @@ export class KmRecord {
   }
 }
 
+export class FuelRecord {
+  constructor(date = '', km = 0, carId, quantity = 0, cost = 0) {
+    this.date = date;
+    this.km = km;
+    this.carId = carId;
+    this.quantity = quantity
+    this.cost = cost
+    this.id = uuid.v4();
+  }
+}
+
 export class maintenanceType {
   constructor(title = '', kmRate = 0, timeRate = 0) {
     this.title = title;

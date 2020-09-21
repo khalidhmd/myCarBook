@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import CarForm from '../pages/CarForm';
 import CarView from '../pages/CarView';
 import CarList from '../pages/CarList';
 import KmForm from '../pages/KmForm';
+import FuelForm from '../pages/FuelForm'
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ export default function CarStack() {
       <Stack.Screen name="CarView" component={CarView} />
       <Stack.Screen name="CarForm" component={CarForm} />
       <Stack.Screen name="KmForm" component={KmForm} />
+      <Stack.Screen name="FuelForm" component={FuelForm} />
     </Stack.Navigator>
   );
 }
