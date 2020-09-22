@@ -3,6 +3,8 @@ const USER_KEY = 'MY_CAR_BOOK:user';
 const CARS_KEY = 'MY_CAR_BOOK:cars';
 const KM_KEY = 'MY_CAR_BOOK:km';
 const FUEL_KEY = 'MY_CAR_BOOK:fuel';
+const TYPE_KEY = 'MY_CAR_BOOK:type';
+import data from '../../assets/maintenanceTypes.json';
 
 export async function getCars() {
   try {
@@ -100,4 +102,29 @@ export async function addFuel(fuel) {
   const fuels = await getFuels();
   fuels.push(fuel);
   await saveFuels(fuels);
+}
+
+export async function getTypes() {
+  try {
+    const result = await AsyncStorage.getItem(TYPE_KEY);
+
+    if (!!result && result[0] === '[') {
+      const types = JSON.parse(result);
+      return types;
+    }
+    console.log(data);
+    return data;
+  } catch (e) {
+    console.log('error' + e);
+  }
+}
+
+export async function saveTypes(types) {
+  AsyncStorage.setItem(TYPE_KEY, JSON.stringify(types));
+}
+
+export async function addType(type) {
+  const types = await getTypes();
+  types.push(type);
+  await saveTypes(types);
 }
