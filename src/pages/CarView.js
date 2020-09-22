@@ -74,6 +74,19 @@ export default function CarView({navigation, route}) {
               <Icon name="speedometer-outline" size={24} />
             </View>
           </MenuOption>
+          <MenuOption onSelect={() => navigation.navigate('KmRecords')}>
+            <View
+              style={{
+                flexDirection: 'row-reverse',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Text style={{fontSize: 20, fontFamily: 'Almarai-Regular'}}>
+                بيان كيلومتر
+              </Text>
+              <Icon name="speedometer-outline" size={24} color="#555" />
+            </View>
+          </MenuOption>
           <MenuOption onSelect={handleFuel}>
             <View
               style={{
@@ -100,19 +113,7 @@ export default function CarView({navigation, route}) {
               <FAIcon name="gas-pump" size={24} color="#555" />
             </View>
           </MenuOption>
-          <MenuOption onSelect={() => navigation.navigate('KmRecords')}>
-            <View
-              style={{
-                flexDirection: 'row-reverse',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Text style={{fontSize: 20, fontFamily: 'Almarai-Regular'}}>
-                بيان كيلومتر
-              </Text>
-              <FAIcon name="gas-pump" size={24} color="#555" />
-            </View>
-          </MenuOption>
+
           <MenuOption onSelect={() => handleDelete(car.id)}>
             <View
               style={{
