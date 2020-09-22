@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 const USER_KEY = 'MY_CAR_BOOK:user';
 const CARS_KEY = 'MY_CAR_BOOK:cars';
 const KM_KEY = 'MY_CAR_BOOK:km';
-const FUEL_KEY = 'MY_CAR_BOOK:fuel'
+const FUEL_KEY = 'MY_CAR_BOOK:fuel';
 
 export async function getCars() {
   try {
@@ -82,10 +82,10 @@ export async function addKms(km) {
   await saveKms(kms);
 }
 
-export async function addFuel(km) {
+export async function addFuel(fuel) {
   const fuels = await getFuels();
-  fuels.push(km);
-  await saveFuels(kms);
+  fuels.push(fuel);
+  await saveFuels(fuels);
 }
 
 export async function deleteCar(id) {

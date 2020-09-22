@@ -3,30 +3,31 @@ import styles from '../shared/styles';
 import {Text, View, ScrollView, Image} from 'react-native';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
-import {getKms} from '../data/storage';
+import {getFuels} from '../data/storage';
 
-export default function KmRecords({navigation}) {
+export default function FuelRecords({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
 
   const {language} = useContext(SystemContext);
 
   const fd = language == 'en' ? 'row' : 'row-reverse';
 
-  const [kms, setKms] = useState([]);
+  const [fuels, setFuels] = useState([]);
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
-      const data = await getKms();
-      setKms(data);
+      const data = await getFuels();
+      setFuels(data);
     });
 
     return unsubscribe;
   }, [navigation]);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: 'بيان كيلومتر',
-      headerTitleStyle: styles.headerTitleStyle,
+      title: 'بيان وقود',
       headerTintColor: 'lightgrey',
+      headerTitleStyle: styles.headerTitleStyle,
       headerStyle: {
         backgroundColor: 'rebeccapurple',
       },
@@ -46,13 +47,13 @@ export default function KmRecords({navigation}) {
           </Text>
         </View>
       ) : null}
-      {kms.length ? (
+      {fuels.length ? (
         <ScrollView showsVerticalScrollIndicator={false}>
-          {kms
-            .filter(km => km.carId == activeCar.id)
-            .map(km => {
+          {fuels
+            .filter(fuel => fuel.carId == activeCar.id)
+            .map(fuel => {
               return (
-                <View key={km.id}>
+                <View key={fuel.id}>
                   <View
                     style={[
                       styles.subForm,
@@ -62,12 +63,34 @@ export default function KmRecords({navigation}) {
                       },
                     ]}>
                     <Text style={styles.title}>التاريخ</Text>
-                    <Text style={styles.title}>{km.date}</Text>
+                    <Text style={styles.title}>{fuel.date}</Text>
+                  </View>
+                  <View
+                    style={[
+                      styles.subForm,
+                      {
+                        flexDirection: 'row-reverse',
+                        borderBottomColor: 'white',
+                      },
+                    ]}>
+                    <Text style={styles.title}>العداد</Text>
+                    <Text style={styles.title}>{fuel.km}</Text>
+                  </View>
+                  <View
+                    style={[
+                      styles.subForm,
+                      {
+                        flexDirection: 'row-reverse',
+                        borderBottomColor: 'white',
+                      },
+                    ]}>
+                    <Text style={styles.title}>الكمية</Text>
+                    <Text style={styles.title}>{fuel.quantity}</Text>
                   </View>
                   <View
                     style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
-                    <Text style={styles.title}>العداد</Text>
-                    <Text style={styles.title}>{km.km}</Text>
+                    <Text style={styles.title}>الثمن</Text>
+                    <Text style={styles.title}>{fuel.cost}</Text>
                   </View>
                 </View>
               );
