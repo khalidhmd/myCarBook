@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import CarStack from './CarStack';
 import UserForm from './UserStack';
 import CreditsScreen from './CreditsStack';
+import MaintenanceStack from './MaintenanceStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -36,6 +37,20 @@ export default function MainDrawer() {
           drawerIcon: ({focused}) => (
             <Icon
               name="car-outline"
+              size={30}
+              color={focused ? 'indigo' : '#606060'}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="MaintenanceStack"
+        component={MaintenanceStack}
+        options={{
+          drawerLabel: 'أنواع الصيانات',
+          drawerIcon: ({focused}) => (
+            <Icon
+              name="construct-outline"
               size={30}
               color={focused ? 'indigo' : '#606060'}
             />

@@ -5,6 +5,7 @@ const KM_KEY = 'MY_CAR_BOOK:km';
 const FUEL_KEY = 'MY_CAR_BOOK:fuel';
 const TYPE_KEY = 'MY_CAR_BOOK:type';
 import data from '../../assets/maintenanceTypes.json';
+var uuid = require('react-native-uuid');
 
 export async function getCars() {
   try {
@@ -112,8 +113,7 @@ export async function getTypes() {
       const types = JSON.parse(result);
       return types;
     }
-    console.log(data);
-    return data;
+    return data.map(item => ({...item, id: uuid.v4()}));
   } catch (e) {
     console.log('error' + e);
   }
