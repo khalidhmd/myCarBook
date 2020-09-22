@@ -1,27 +1,27 @@
-import React, { useContext } from 'react';
+import React, {useContext} from 'react';
 import styles from '../shared/styles';
-import { Text, View, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { CarContext } from '../contexts/CarContext';
-import { SystemContext } from '../contexts/SystemContext';
-import { ActiveCarContext } from '../contexts/ActiveCarContext';
+import {Text, View, TouchableOpacity, ScrollView, Image} from 'react-native';
+import {CarContext} from '../contexts/CarContext';
+import {SystemContext} from '../contexts/SystemContext';
+import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import HeaderLeftButton from '../shared/components/HeaderLeftButton';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 
-export default function CarList({ navigation }) {
-  const { setActiveCar, activeCar } = useContext(ActiveCarContext);
-  const { cars } = useContext(CarContext);
+export default function CarList({navigation}) {
+  const {setActiveCar, activeCar} = useContext(ActiveCarContext);
+  const {cars} = useContext(CarContext);
 
-  const { language } = useContext(SystemContext);
+  const {language} = useContext(SystemContext);
 
   const fd = language == 'en' ? 'row' : 'row-reverse';
 
   const handleItemPress = (navigation, car) => {
-    setActiveCar({ ...car });
-    navigation.navigate('CarView', { title: 'عرض بيانات سيارة', car });
+    setActiveCar({...car});
+    navigation.navigate('CarView', {title: 'عرض بيانات سيارة', car});
   };
 
   const rightButtonPress = () => {
-    navigation.navigate('CarForm', { mode: 'add', title: 'تسجيل سيارة جديدة' });
+    navigation.navigate('CarForm', {mode: 'add', title: 'تسجيل سيارة جديدة'});
   };
 
   React.useLayoutEffect(() => {
@@ -50,9 +50,9 @@ export default function CarList({ navigation }) {
             <TouchableOpacity
               key={car.id}
               onPress={() => handleItemPress(navigation, car)}>
-              <View style={[styles.deckCar, { flexDirection: fd }]}>
+              <View style={[styles.deckCar, {flexDirection: fd}]}>
                 <Text style={styles.titleList}>{car.name}</Text>
-                <Image style={styles.imgList} source={{ uri: 'file://' + img }} />
+                <Image style={styles.imgList} source={{uri: 'file://' + img}} />
               </View>
             </TouchableOpacity>
           );

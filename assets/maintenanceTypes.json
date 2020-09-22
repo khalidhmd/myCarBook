@@ -1,0 +1,32 @@
+[
+  {
+    "name": "سير كاتينة",
+    "kmRate": 40000,
+    "timeRate": 60
+  },
+  {
+    "name": "طقم كاتينة",
+    "kmRate": 40000,
+    "timeRate": 60
+  },
+  {
+    "name": "طقم سيور",
+    "kmRate": 20000,
+    "timeRate": 24
+  },
+  {
+    "name": "فلاتر",
+    "kmRate": 20000,
+    "timeRate": 24
+  },
+  {
+    "name": "تغيير زيت",
+    "kmRate": 5000,
+    "timeRate": 6
+  },
+  {
+    "name": "تيل فرامل",
+    "kmRate": 20000,
+    "timeRate": 24
+  }
+]

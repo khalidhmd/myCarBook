@@ -22,6 +22,20 @@ export async function saveCars(cars) {
   AsyncStorage.setItem(CARS_KEY, JSON.stringify(cars));
 }
 
+export async function deleteCar(id) {
+  let cars = await getCars();
+  cars = cars.filter(car => car.id !== id);
+  await saveCars(cars);
+}
+
+export async function updateCar(car) {
+  let cars = await getCars();
+
+  cars = cars.map(c => (c.id !== car.id ? c : car));
+
+  await saveCars(cars);
+}
+
 export async function getUser() {
   try {
     const data = await AsyncStorage.getItem(USER_KEY);
@@ -54,6 +68,16 @@ export async function getKms() {
   }
 }
 
+export async function saveKms(kms) {
+  AsyncStorage.setItem(KM_KEY, JSON.stringify(kms));
+}
+
+export async function addKms(km) {
+  const kms = await getKms();
+  kms.push(km);
+  await saveKms(kms);
+}
+
 export async function getFuels() {
   try {
     const result = await AsyncStorage.getItem(FUEL_KEY);
@@ -68,36 +92,12 @@ export async function getFuels() {
   }
 }
 
-export async function saveKms(kms) {
-  AsyncStorage.setItem(KM_KEY, JSON.stringify(kms));
-}
-
 export async function saveFuels(fuels) {
   AsyncStorage.setItem(FUEL_KEY, JSON.stringify(fuels));
-}
-
-export async function addKms(km) {
-  const kms = await getKms();
-  kms.push(km);
-  await saveKms(kms);
 }
 
 export async function addFuel(fuel) {
   const fuels = await getFuels();
   fuels.push(fuel);
   await saveFuels(fuels);
-}
-
-export async function deleteCar(id) {
-  let cars = await getCars();
-  cars = cars.filter(car => car.id !== id);
-  await saveCars(cars);
-}
-
-export async function updateCar(car) {
-  let cars = await getCars();
-
-  cars = cars.map(c => (c.id !== car.id ? c : car));
-
-  await saveCars(cars);
 }
