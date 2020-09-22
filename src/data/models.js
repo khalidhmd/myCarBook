@@ -31,6 +31,35 @@ export class Car {
   }
 }
 
+export class KmRecord {
+  constructor(date = '', km = 0, carId) {
+    this.date = date;
+    this.km = km;
+    this.carId = carId;
+    this.id = uuid.v4();
+  }
+}
+
+export class FuelRecord {
+  constructor(date = '', km = 0, carId, quantity = 0, cost = 0) {
+    this.date = date;
+    this.km = km;
+    this.carId = carId;
+    this.quantity = quantity;
+    this.cost = cost;
+    this.id = uuid.v4();
+  }
+}
+
+export class maintenanceType {
+  constructor(name = '', kmRate = 0, timeRate = 0) {
+    this.name = name;
+    this.kmRate = kmRate;
+    this.timeRate = timeRate;
+    this.id = uuid.v4();
+  }
+}
+
 export class nextMaintenance {
   constructor(carId, maintenanceId, nextKm = 0, nextDate = '') {
     this.carId = carId;
@@ -64,35 +93,6 @@ export class maintenanceOperation {
     this.nextKm = nextKm;
     this.notes = notes;
     this.maintenanceTypeId = maintenanceTypeId;
-    this.id = uuid.v4();
-  }
-}
-
-export class KmRecord {
-  constructor(date = '', km = 0, carId) {
-    this.date = date;
-    this.km = km;
-    this.carId = carId;
-    this.id = uuid.v4();
-  }
-}
-
-export class FuelRecord {
-  constructor(date = '', km = 0, carId, quantity = 0, cost = 0) {
-    this.date = date;
-    this.km = km;
-    this.carId = carId;
-    this.quantity = quantity
-    this.cost = cost
-    this.id = uuid.v4();
-  }
-}
-
-export class maintenanceType {
-  constructor(title = '', kmRate = 0, timeRate = 0) {
-    this.title = title;
-    this.kmRate = kmRate;
-    this.timeRate = timeRate;
     this.id = uuid.v4();
   }
 }
