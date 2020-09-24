@@ -113,6 +113,7 @@ export async function getTypes() {
       const types = JSON.parse(result);
       return types;
     }
+    console.log('Here');
     return data.map(item => ({...item, id: uuid.v4()}));
   } catch (e) {
     console.log('error' + e);
@@ -126,5 +127,17 @@ export async function saveTypes(types) {
 export async function addType(type) {
   const types = await getTypes();
   types.push(type);
+  await saveTypes(types);
+}
+
+export async function updateType(type) {
+  let types = await getTypes();
+  types = types.map(t => (t.id !== type.id ? t : type));
+  await saveTypes(types);
+}
+
+export async function removeType(id) {
+  let types = await getTypes();
+  types = types.filter(t => t.id !== id);
   await saveTypes(types);
 }

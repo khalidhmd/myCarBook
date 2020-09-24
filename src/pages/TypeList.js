@@ -6,23 +6,25 @@ import {SystemContext} from '../contexts/SystemContext';
 import HeaderLeftButton from '../shared/components/HeaderLeftButton';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 
-export default function TypeList({navigation}) {
+export default function TypeList({navigation, route}) {
   const {language} = useContext(SystemContext);
   const [types, setTypes] = useState([]);
   const fd = language == 'en' ? 'row' : 'row-reverse';
-
-  const handleItemPress = (navigation, type) => {
-    navigation.navigate('TypeView', {title: 'بيانات نوع صيانة', car});
+  const handleItemPress = type => {
+    navigation.navigate('TypeView', {title: 'بيانات نوع صيانة', type, types});
   };
 
   const rightButtonPress = () => {
-    navigation.navigate('TypeForm', {mode: 'add', title: 'تسجيل نوع صيانة'});
+    navigation.navigate('TypeForm', {
+      mode: 'add',
+      title: 'تسجيل نوع صيانة',
+    });
   };
 
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
       const types = await getTypes();
-      setTypes(types);
+      setTypes([...types]);
     });
 
     return unsubscribe;
@@ -52,7 +54,7 @@ export default function TypeList({navigation}) {
           return (
             <TouchableOpacity
               key={type.id}
-              onPress={() => handleItemPress(navigation, type)}>
+              onPress={() => handleItemPress(type)}>
               <View style={[styles.deckCar, {flexDirection: fd}]}>
                 <Text style={styles.titleList}>{type.name}</Text>
               </View>
