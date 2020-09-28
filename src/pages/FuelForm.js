@@ -7,6 +7,7 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
+import {CarContext} from '../contexts/CarContext';
 import {addFuel} from '../data/storage';
 import {FuelRecord} from '../data/models';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
@@ -14,6 +15,7 @@ import {SystemContext} from '../contexts/SystemContext';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 
 export default function FuelForm({route, navigation}) {
+  const {updateCar} = useContext(CarContext);
   const {activeCar, setActiveCar} = useContext(ActiveCarContext);
   const date = new Date();
 
@@ -51,6 +53,9 @@ export default function FuelForm({route, navigation}) {
       cost,
     );
     addFuel(fuelRecord);
+    car.km = km;
+    setActiveCar(car);
+    updateCar(car);
     navigation.popToTop();
     navigation.navigate('CarView', {car});
   };
