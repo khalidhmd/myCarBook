@@ -33,7 +33,7 @@ export default function MainDrawer() {
         name="CarStack"
         component={CarStack}
         options={{
-          drawerLabel: 'السيارات المسجلة',
+          drawerLabel: 'بيانات السيارات المسجلة',
           drawerIcon: ({focused}) => (
             <Icon
               name="car-outline"
@@ -47,7 +47,7 @@ export default function MainDrawer() {
         name="MaintenanceStack"
         component={MaintenanceStack}
         options={{
-          drawerLabel: 'أنواع الصيانات',
+          drawerLabel: 'بيانات أنواع الصيانات',
           drawerIcon: ({focused}) => (
             <Icon
               name="construct-outline"

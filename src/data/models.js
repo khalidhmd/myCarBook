@@ -60,39 +60,29 @@ export class maintenanceType {
   }
 }
 
-export class nextMaintenance {
-  constructor(carId, maintenanceId, nextKm = 0, nextDate = '') {
-    this.carId = carId;
-    this.maintenanceId = maintenanceId;
-    this.nextKm = nextKm;
-    this.nextDate = nextDate;
-    this.id = uuid.v4();
-  }
-}
-
-export class maintenanceOperation {
+export class Maintenance {
   constructor(
     date = '',
-    vendor = '',
     maker = '',
     vPrice = 0,
     mPrice = 0,
     km = 0,
-    nextDate = '',
-    nextKm = 0,
+    timeRate = '',
+    kmRate = 0,
     notes = '',
-    maintenanceTypeId = '',
+    carId = '',
+    typeName = '',
   ) {
     this.date = date;
-    this.vendor = vendor;
     this.maker = maker;
     this.vPrice = vPrice;
     this.mPrice = mPrice;
     this.km = km;
-    this.nextDate = nextDate;
-    this.nextKm = nextKm;
+    this.timeRate = timeRate;
+    this.kmRate = kmRate;
     this.notes = notes;
-    this.maintenanceTypeId = maintenanceTypeId;
+    this.typeName = typeName;
+    this.carId = carId;
     this.id = uuid.v4();
   }
 }

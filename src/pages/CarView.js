@@ -113,7 +113,33 @@ export default function CarView({navigation, route}) {
               <FAIcon name="gas-pump" size={24} color="#555" />
             </View>
           </MenuOption>
-
+          <MenuOption onSelect={handleMaintenance}>
+            <View
+              style={{
+                flexDirection: 'row-reverse',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Text style={{fontSize: 20, fontFamily: 'Almarai-Regular'}}>
+                تسجيل صيانة
+              </Text>
+              <Icon name="construct-outline" size={24} color="#555" />
+            </View>
+          </MenuOption>
+          <MenuOption
+            onSelect={() => navigation.navigate('MaintenanceRecords')}>
+            <View
+              style={{
+                flexDirection: 'row-reverse',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Text style={{fontSize: 20, fontFamily: 'Almarai-Regular'}}>
+                بيان صيانات
+              </Text>
+              <Icon name="construct-outline" size={24} color="#555" />
+            </View>
+          </MenuOption>
           <MenuOption onSelect={() => handleDelete(car.id)}>
             <View
               style={{
@@ -170,6 +196,12 @@ export default function CarView({navigation, route}) {
   const handleFuel = () => {
     navigation.navigate('FuelForm', {
       title: 'تسجيل وقود',
+    });
+  };
+
+  const handleMaintenance = () => {
+    navigation.navigate('MaintenanceForm', {
+      title: 'تسجيل صيانة',
     });
   };
 

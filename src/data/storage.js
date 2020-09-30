@@ -4,6 +4,8 @@ const CARS_KEY = 'MY_CAR_BOOK:cars';
 const KM_KEY = 'MY_CAR_BOOK:km';
 const FUEL_KEY = 'MY_CAR_BOOK:fuel';
 const TYPE_KEY = 'MY_CAR_BOOK:type';
+const MAINTENANCE_KEY = 'MY_CAR_BOOK:maintenance';
+
 import data from '../../assets/maintenanceTypes.json';
 var uuid = require('react-native-uuid');
 
@@ -140,4 +142,33 @@ export async function removeType(id) {
   let types = await getTypes();
   types = types.filter(t => t.id !== id);
   await saveTypes(types);
+}
+
+export async function getMaintenances() {
+  try {
+    const result = await AsyncStorage.getItem(MAINTENANCE_KEY);
+    if (!!result && result[0] === '[') {
+      const maintenances = JSON.parse(result);
+      return maintenances;
+    }
+    return [];
+  } catch (e) {
+    console.log('error' + e);
+  }
+}
+
+export async function saveMaintenances(maintenances) {
+  AsyncStorage.setItem(MAINTENANCE_KEY, JSON.stringify(maintenances));
+}
+
+export async function addMaintenance(maintenance) {
+  const maintenances = await getMaintenances();
+  maintenances.push(maintenance);
+  await saveMaintenances(maintenances);
+}
+
+export async function removeMaintenance(id) {
+  let maintenances = await getMaintenances();
+  maintenances = maintenances.filter(m => m.id !== id);
+  await saveMaintenances(maintenances);
 }
