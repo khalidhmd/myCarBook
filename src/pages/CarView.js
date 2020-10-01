@@ -243,7 +243,7 @@ export default function CarView({navigation, route}) {
             </View>
             <View style={[styles.subForm, {flexDirection: fd}]}>
               <Text style={styles.title}>سنة الصنع</Text>
-              <Text style={styles.title}>{car.year}</Text>
+              <Text style={styles.title}>{String(car.year)}</Text>
             </View>
             <View style={[styles.subForm, {flexDirection: fd}]}>
               <Text style={styles.title}>اللون</Text>
@@ -251,7 +251,7 @@ export default function CarView({navigation, route}) {
             </View>
             <View style={[styles.subForm, {flexDirection: fd}]}>
               <Text style={styles.title}>قراءة العداد</Text>
-              <Text style={styles.title}>{car.km}</Text>
+              <Text style={styles.title}>{String(car.km)}</Text>
             </View>
           </View>
         </ScrollView>

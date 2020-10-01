@@ -118,11 +118,11 @@ export default function TypeView({navigation, route}) {
             </View>
             <View style={[styles.subForm, {flexDirection: fd}]}>
               <Text style={styles.title}>معدل كم</Text>
-              <Text style={styles.title}>{type.kmRate}</Text>
+              <Text style={styles.title}>{String(type.kmRate)}</Text>
             </View>
             <View style={[styles.subForm, {flexDirection: fd}]}>
               <Text style={styles.title}>معدل زمني</Text>
-              <Text style={styles.title}>{type.timeRate}</Text>
+              <Text style={styles.title}>{String(type.timeRate)}</Text>
             </View>
           </View>
         </ScrollView>
