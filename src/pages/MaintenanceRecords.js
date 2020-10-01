@@ -73,7 +73,9 @@ export default function KmRecords({navigation}) {
               );
             })}
         </ScrollView>
-      ) : null}
+      ) : (
+        <Text style={styles.titleList}>لا توجد بيانات مسجلة</Text>
+      )}
     </View>
   );
 }

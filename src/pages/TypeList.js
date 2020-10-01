@@ -63,5 +63,7 @@ export default function TypeList({navigation, route}) {
         })}
       </ScrollView>
     </View>
-  ) : null;
+  ) : (
+    <Text style={styles.titleList}>لا توجد بيانات مسجلة</Text>
+  );
 }

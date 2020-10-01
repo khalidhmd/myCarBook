@@ -59,5 +59,7 @@ export default function CarList({navigation}) {
         })}
       </ScrollView>
     </View>
-  ) : null;
+  ) : (
+    <Text style={styles.titleList}>لا توجد سيارات مسجلة</Text>
+  );
 }
