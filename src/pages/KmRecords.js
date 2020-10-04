@@ -57,27 +57,30 @@ export default function KmRecords({navigation}) {
       ) : null}
       {kms.filter(km => km.carId == activeCar.id).length ? (
         <ScrollView showsVerticalScrollIndicator={false}>
-          {kms.map(km => {
-            return (
-              <View key={km.id}>
-                <View
-                  style={[
-                    styles.subForm,
-                    {
-                      flexDirection: 'row-reverse',
-                      borderBottomColor: 'white',
-                    },
-                  ]}>
-                  <Text style={styles.title}>التاريخ</Text>
-                  <Text style={styles.title}>{km.date}</Text>
+          {kms
+            .filter(km => km.carId == activeCar.id)
+            .map(km => {
+              return (
+                <View key={km.id}>
+                  <View
+                    style={[
+                      styles.subForm,
+                      {
+                        flexDirection: 'row-reverse',
+                        borderBottomColor: 'white',
+                      },
+                    ]}>
+                    <Text style={styles.title}>التاريخ</Text>
+                    <Text style={styles.title}>{km.date}</Text>
+                  </View>
+                  <View
+                    style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
+                    <Text style={styles.title}>العداد</Text>
+                    <Text style={styles.title}>{km.km}</Text>
+                  </View>
                 </View>
-                <View style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
-                  <Text style={styles.title}>العداد</Text>
-                  <Text style={styles.title}>{km.km}</Text>
-                </View>
-              </View>
-            );
-          })}
+              );
+            })}
         </ScrollView>
       ) : (
         <Text style={styles.titleList}>لا توجد بيانات مسجلة</Text>
