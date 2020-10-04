@@ -18,7 +18,7 @@ export default function KmRecords({navigation}) {
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
       const data = await getKms();
-      setKms(data);
+      setKms(data.filter(km => km.carId == activeCar.id));
     });
 
     return unsubscribe;
@@ -55,32 +55,29 @@ export default function KmRecords({navigation}) {
           </Text>
         </View>
       ) : null}
-      {kms.length ? (
+      {kms.filter(km => km.carId == activeCar.id).length ? (
         <ScrollView showsVerticalScrollIndicator={false}>
-          {kms
-            .filter(km => km.carId == activeCar.id)
-            .map(km => {
-              return (
-                <View key={km.id}>
-                  <View
-                    style={[
-                      styles.subForm,
-                      {
-                        flexDirection: 'row-reverse',
-                        borderBottomColor: 'white',
-                      },
-                    ]}>
-                    <Text style={styles.title}>التاريخ</Text>
-                    <Text style={styles.title}>{km.date}</Text>
-                  </View>
-                  <View
-                    style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
-                    <Text style={styles.title}>العداد</Text>
-                    <Text style={styles.title}>{km.km}</Text>
-                  </View>
+          {kms.map(km => {
+            return (
+              <View key={km.id}>
+                <View
+                  style={[
+                    styles.subForm,
+                    {
+                      flexDirection: 'row-reverse',
+                      borderBottomColor: 'white',
+                    },
+                  ]}>
+                  <Text style={styles.title}>التاريخ</Text>
+                  <Text style={styles.title}>{km.date}</Text>
                 </View>
-              );
-            })}
+                <View style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
+                  <Text style={styles.title}>العداد</Text>
+                  <Text style={styles.title}>{km.km}</Text>
+                </View>
+              </View>
+            );
+          })}
         </ScrollView>
       ) : (
         <Text style={styles.titleList}>لا توجد بيانات مسجلة</Text>

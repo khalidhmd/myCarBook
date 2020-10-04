@@ -16,10 +16,14 @@ export default function FuelRecords({navigation}) {
   const [fuels, setFuels] = useState([]);
 
   React.useEffect(() => {
-    const unsubscribe = navigation.addListener('focus', async () => {
-      const data = await getFuels();
-      setFuels(data);
-    });
+    const unsubscribe = navigation.addListener(
+      'focus',
+      async () => {
+        const data = await getFuels();
+        setFuels(data.filter(fuel => fuel.carId == activeCar.id));
+      },
+      [fuels],
+    );
 
     return unsubscribe;
   }, [navigation]);
@@ -56,54 +60,51 @@ export default function FuelRecords({navigation}) {
           </Text>
         </View>
       ) : null}
-      {fuels.length ? (
+      {fuels.filter(fuel => fuel.carId == activeCar.id).length ? (
         <ScrollView showsVerticalScrollIndicator={false}>
-          {fuels
-            .filter(fuel => fuel.carId == activeCar.id)
-            .map(fuel => {
-              return (
-                <View key={fuel.id}>
-                  <View
-                    style={[
-                      styles.subForm,
-                      {
-                        flexDirection: 'row-reverse',
-                        borderBottomColor: 'white',
-                      },
-                    ]}>
-                    <Text style={styles.title}>التاريخ</Text>
-                    <Text style={styles.title}>{fuel.date}</Text>
-                  </View>
-                  <View
-                    style={[
-                      styles.subForm,
-                      {
-                        flexDirection: 'row-reverse',
-                        borderBottomColor: 'white',
-                      },
-                    ]}>
-                    <Text style={styles.title}>العداد</Text>
-                    <Text style={styles.title}>{fuel.km}</Text>
-                  </View>
-                  <View
-                    style={[
-                      styles.subForm,
-                      {
-                        flexDirection: 'row-reverse',
-                        borderBottomColor: 'white',
-                      },
-                    ]}>
-                    <Text style={styles.title}>الكمية</Text>
-                    <Text style={styles.title}>{fuel.quantity}</Text>
-                  </View>
-                  <View
-                    style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
-                    <Text style={styles.title}>الثمن</Text>
-                    <Text style={styles.title}>{fuel.cost}</Text>
-                  </View>
+          {fuels.map(fuel => {
+            return (
+              <View key={fuel.id}>
+                <View
+                  style={[
+                    styles.subForm,
+                    {
+                      flexDirection: 'row-reverse',
+                      borderBottomColor: 'white',
+                    },
+                  ]}>
+                  <Text style={styles.title}>التاريخ</Text>
+                  <Text style={styles.title}>{fuel.date}</Text>
                 </View>
-              );
-            })}
+                <View
+                  style={[
+                    styles.subForm,
+                    {
+                      flexDirection: 'row-reverse',
+                      borderBottomColor: 'white',
+                    },
+                  ]}>
+                  <Text style={styles.title}>العداد</Text>
+                  <Text style={styles.title}>{fuel.km}</Text>
+                </View>
+                <View
+                  style={[
+                    styles.subForm,
+                    {
+                      flexDirection: 'row-reverse',
+                      borderBottomColor: 'white',
+                    },
+                  ]}>
+                  <Text style={styles.title}>الكمية</Text>
+                  <Text style={styles.title}>{fuel.quantity}</Text>
+                </View>
+                <View style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
+                  <Text style={styles.title}>الثمن</Text>
+                  <Text style={styles.title}>{fuel.cost}</Text>
+                </View>
+              </View>
+            );
+          })}
         </ScrollView>
       ) : (
         <Text style={styles.titleList}>لا توجد بيانات مسجلة</Text>
