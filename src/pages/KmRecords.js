@@ -4,6 +4,7 @@ import {Text, View, ScrollView, Image} from 'react-native';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {getKms} from '../data/storage';
+import HeaderRightButton from '../shared/components/HeaderRightButton';
 
 export default function KmRecords({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
@@ -30,9 +31,17 @@ export default function KmRecords({navigation}) {
       headerStyle: {
         backgroundColor: 'rebeccapurple',
       },
+      headerRight: () => (
+        <HeaderRightButton
+          pressHnadler={rightButtonPress}
+          iconName="md-add-outline"
+        />
+      ),
     });
   }, [navigation]);
-
+  const rightButtonPress = () => {
+    navigation.navigate('KmForm', {title: 'تسجيل عداد كم'});
+  };
   return (
     <View style={styles.containerList}>
       {!!activeCar.imgURL ? (

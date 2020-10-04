@@ -4,6 +4,7 @@ import {Text, View, ScrollView, Image} from 'react-native';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {getFuels} from '../data/storage';
+import HeaderRightButton from '../shared/components/HeaderRightButton';
 
 export default function FuelRecords({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
@@ -31,9 +32,17 @@ export default function FuelRecords({navigation}) {
       headerStyle: {
         backgroundColor: 'rebeccapurple',
       },
+      headerRight: () => (
+        <HeaderRightButton
+          pressHnadler={rightButtonPress}
+          iconName="md-add-outline"
+        />
+      ),
     });
   }, [navigation]);
-
+  const rightButtonPress = () => {
+    navigation.navigate('FuelForm', {title: 'تسجيل وقود'});
+  };
   return (
     <View style={styles.containerList}>
       {!!activeCar.imgURL ? (
