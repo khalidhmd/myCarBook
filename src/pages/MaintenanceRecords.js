@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import styles from '../shared/styles';
-import {Text, View, ScrollView, Image} from 'react-native';
+import {Text, View, ScrollView, Image, TouchableOpacity} from 'react-native';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {getMaintenances} from '../data/storage';
@@ -42,6 +42,12 @@ export default function KmRecords({navigation}) {
   const rightButtonPress = () => {
     navigation.navigate('MaintenanceForm', {title: 'تسجيل صيانة'});
   };
+  const handleItemPress = maintenance => {
+    navigation.navigate('MaintenanceView', {
+      title: 'عرض عملية صيانة',
+      maintenance,
+    });
+  };
   return (
     <View style={styles.containerList}>
       {!!activeCar.imgURL ? (
@@ -61,24 +67,26 @@ export default function KmRecords({navigation}) {
             .filter(m => m.carId == activeCar.id)
             .map(m => {
               return (
-                <View key={m.id}>
-                  <View
-                    style={[
-                      styles.subForm,
-                      {
-                        flexDirection: 'row-reverse',
-                        borderBottomColor: 'white',
-                      },
-                    ]}>
-                    <Text style={styles.title}>التاريخ</Text>
-                    <Text style={styles.title}>{m.date}</Text>
+                <TouchableOpacity key={m.id} onPress={() => handleItemPress(m)}>
+                  <View>
+                    <View
+                      style={[
+                        styles.subForm,
+                        {
+                          flexDirection: 'row-reverse',
+                          borderBottomColor: 'white',
+                        },
+                      ]}>
+                      <Text style={styles.title}>التاريخ</Text>
+                      <Text style={styles.title}>{m.date}</Text>
+                    </View>
+                    <View
+                      style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
+                      <Text style={styles.title}>الصيانة</Text>
+                      <Text style={styles.title}>{m.typeName}</Text>
+                    </View>
                   </View>
-                  <View
-                    style={[styles.subForm, {flexDirection: 'row-reverse'}]}>
-                    <Text style={styles.title}>الصيانة</Text>
-                    <Text style={styles.title}>{m.typeName}</Text>
-                  </View>
-                </View>
+                </TouchableOpacity>
               );
             })}
         </ScrollView>

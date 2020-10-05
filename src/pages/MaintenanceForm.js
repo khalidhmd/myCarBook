@@ -164,7 +164,7 @@ export default function MaintenanceForm({route, navigation}) {
             <Text style={styles.title}>معدل كيلومتر</Text>
             <TextInput
               style={styles.text}
-              placeholder="معدل كيلو متر"
+              placeholder="معدل كيلومتر"
               value={String(kmRate)}
               onChangeText={text => {
                 setKmRate(parseInt(text));
