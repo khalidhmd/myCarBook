@@ -21,7 +21,7 @@ import {removeMaintenance} from '../data/storage';
 export default function CarView({navigation, route}) {
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
-  const {setActiveCar, activeCar} = useContext(ActiveCarContext);
+  const {activeCar} = useContext(ActiveCarContext);
   const [maintenance, setMaintenance] = useState({...route.params.maintenance});
 
   useEffect(() => {

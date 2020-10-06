@@ -6,6 +6,7 @@ import {
   View,
   KeyboardAvoidingView,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {Picker} from '@react-native-community/picker';
 import {CarContext} from '../contexts/CarContext';
@@ -14,11 +15,12 @@ import {Maintenance} from '../data/models';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function MaintenanceForm({route, navigation}) {
-  const {updateCar, cars} = useContext(CarContext);
+  const {updateCar} = useContext(CarContext);
   const {activeCar, setActiveCar} = useContext(ActiveCarContext);
-  const date = new Date();
+  const [date, setDate] = useState(new Date());
   const [types, setTypes] = useState([]);
   const [typeName, setTypeName] = useState('');
   const [maker, setMaker] = useState('');
@@ -29,9 +31,20 @@ export default function MaintenanceForm({route, navigation}) {
   const [notes, setNotes] = useState('');
   const [km, setKm] = useState(activeCar.km);
   const car = {...activeCar};
+  const [show, setShow] = useState(false);
 
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
+
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const datePress = () => {
+    setShow(true);
+  };
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
@@ -84,6 +97,7 @@ export default function MaintenanceForm({route, navigation}) {
       enabled
       keyboardVerticalOffset={100}>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
+        {show && <DateTimePicker value={date} onChange={onDateChange} />}
         <View style={styles.container}>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم السيارة</Text>
@@ -91,9 +105,11 @@ export default function MaintenanceForm({route, navigation}) {
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>التاريخ</Text>
-            <Text style={styles.title}>
-              {date.toISOString().substring(0, 10)}
-            </Text>
+            <TouchableOpacity onPress={datePress}>
+              <Text style={styles.title}>
+                {date.toISOString().substring(0, 10)}
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={[styles.subForm, {flexDirection: fd}]}>
