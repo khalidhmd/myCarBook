@@ -114,19 +114,22 @@ export default function MaintenanceForm({route, navigation}) {
 
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>نوع الصيانة</Text>
-            <Picker
-              mode="dropdown"
-              selectedValue={typeName}
-              style={styles.text}
-              onValueChange={(itemValue, itemIndex) => {
-                setTypeName(itemValue);
-                setKmRate(types[itemIndex].kmRate);
-                setTimeRate(types[itemIndex].timeRate);
-              }}>
-              {types.map(t => (
-                <Picker.Item label={t.name} value={t.name} key={t.id} />
-              ))}
-            </Picker>
+            <View style={[styles.text, {borderRadius: 25}]}>
+              <Picker
+                mode="dropdown"
+                selectedValue={typeName}
+                style={[styles.text, {borderRadius: 15, width: '100%'}]}
+                itemStyle={[styles.text, {borderRadius: 15}]}
+                onValueChange={(itemValue, itemIndex) => {
+                  setTypeName(itemValue);
+                  setKmRate(types[itemIndex].kmRate);
+                  setTimeRate(types[itemIndex].timeRate);
+                }}>
+                {types.map(t => (
+                  <Picker.Item label={t.name} value={t.name} key={t.id} />
+                ))}
+              </Picker>
+            </View>
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>جهة الصيانة</Text>
