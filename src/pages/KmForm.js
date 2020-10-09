@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext} from 'react';
 import styles from '../shared/styles';
 import {
   Text,
@@ -7,23 +7,23 @@ import {
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import { addKms } from '../data/storage'
-import { KmRecord } from '../data/models'
-import { CarContext } from '../contexts/CarContext';
-import { ActiveCarContext } from '../contexts/ActiveCarContext';
-import { SystemContext } from '../contexts/SystemContext';
+import {addKms} from '../data/storage';
+import {KmRecord} from '../data/models';
+import {CarContext} from '../contexts/CarContext';
+import {ActiveCarContext} from '../contexts/ActiveCarContext';
+import {SystemContext} from '../contexts/SystemContext';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
+export default function KmForm({route, navigation}) {
+  const {updateCar} = useContext(CarContext);
+  const {activeCar, setActiveCar} = useContext(ActiveCarContext);
+  const [date, setDate] = useState(new Date());
 
-export default function KmForm({ route, navigation }) {
-  const { updateCar } = useContext(CarContext);
-  const { activeCar, setActiveCar } = useContext(ActiveCarContext);
-  const date = new Date()
+  const [km, setKm] = useState('');
+  const car = {...activeCar};
 
-  const [km, setKm] = useState('')
-  const car = { ...activeCar };
-
-  const { language } = useContext(SystemContext);
+  const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
 
   navigation.setOptions({
@@ -35,26 +35,36 @@ export default function KmForm({ route, navigation }) {
     },
     headerRight: () => (
       <HeaderRightButton
-        pressHnadler={
-          () => {
-            handleUpdate(km);
-          }
-        }
+        pressHnadler={() => {
+          handleUpdate(km);
+        }}
         iconName="checkmark-outline"
       />
     ),
   });
 
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+  };
 
+  const datePress = () => {
+    setShow(true);
+  };
 
   const handleUpdate = km => {
-    car.km = km
+    car.km = km;
     updateCar(car);
-    setActiveCar({ ...car });
-    const kmRecord = new KmRecord(date.toISOString().substring(0, 10), km, car.id)
+    setActiveCar({...car});
+    const kmRecord = new KmRecord(
+      date.toISOString().substring(0, 10),
+      km,
+      car.id,
+    );
     addKms(kmRecord);
     navigation.popToTop();
-    navigation.navigate('CarView', { car });
+    navigation.navigate('CarView', {car});
   };
   return (
     <KeyboardAvoidingView
@@ -62,24 +72,30 @@ export default function KmForm({ route, navigation }) {
       behavior="height"
       enabled
       keyboardVerticalOffset={100}>
-      <ScrollView showsVerticalScrollIndicator={false} style={{ width: '100%' }}>
+      <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
         <View style={styles.container}>
-          <View style={[styles.subForm, { flexDirection: fd }]}>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم السيارة</Text>
             <Text style={styles.title}>{car.name}</Text>
           </View>
-          <View style={[styles.subForm, { flexDirection: fd }]}>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>التاريخ</Text>
-            <Text style={styles.title}>{date.toISOString().substring(0, 10)}</Text>
+            <TouchableOpacity onPress={datePress}>
+              <Text style={styles.title}>
+                {date.toISOString().substring(0, 10)}
+              </Text>
+            </TouchableOpacity>
           </View>
 
-          <View style={[styles.subForm, { flexDirection: fd }]}>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>قراءة العداد</Text>
             <TextInput
               style={styles.text}
               placeholder="قراءة العداد"
               value={String(km)}
-              onChangeText={text => { setKm(parseInt(text)) }}
+              onChangeText={text => {
+                setKm(parseInt(text));
+              }}
               keyboardType="number-pad"
             />
           </View>

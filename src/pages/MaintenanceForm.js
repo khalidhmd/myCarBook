@@ -118,8 +118,7 @@ export default function MaintenanceForm({route, navigation}) {
               <Picker
                 mode="dropdown"
                 selectedValue={typeName}
-                style={[styles.text, {borderRadius: 15, width: '100%'}]}
-                itemStyle={[styles.text, {borderRadius: 15}]}
+                style={[styles.text, {width: '100%'}]}
                 onValueChange={(itemValue, itemIndex) => {
                   setTypeName(itemValue);
                   setKmRate(types[itemIndex].kmRate);

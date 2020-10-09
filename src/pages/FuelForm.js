@@ -13,11 +13,12 @@ import {FuelRecord} from '../data/models';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function FuelForm({route, navigation}) {
   const {updateCar} = useContext(CarContext);
   const {activeCar, setActiveCar} = useContext(ActiveCarContext);
-  const date = new Date();
+  const [date, setDate] = useState(new Date());
 
   const [quantity, setQuantity] = useState('');
   const [cost, setCost] = useState('');
@@ -44,6 +45,16 @@ export default function FuelForm({route, navigation}) {
     ),
   });
 
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const datePress = () => {
+    setShow(true);
+  };
+
   const handleUpdate = (quantity, cost, km) => {
     const fuelRecord = new FuelRecord(
       date.toISOString().substring(0, 10),
@@ -66,6 +77,7 @@ export default function FuelForm({route, navigation}) {
       enabled
       keyboardVerticalOffset={100}>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
+        {show && <DateTimePicker value={date} onChange={onDateChange} />}
         <View style={styles.container}>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم السيارة</Text>
@@ -73,9 +85,11 @@ export default function FuelForm({route, navigation}) {
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>التاريخ</Text>
-            <Text style={styles.title}>
-              {date.toISOString().substring(0, 10)}
-            </Text>
+            <TouchableOpacity onPress={datePress}>
+              <Text style={styles.title}>
+                {date.toISOString().substring(0, 10)}
+              </Text>
+            </TouchableOpacity>
           </View>
 
           <View style={[styles.subForm, {flexDirection: fd}]}>
