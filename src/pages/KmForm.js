@@ -73,6 +73,7 @@ export default function KmForm({route, navigation}) {
       enabled
       keyboardVerticalOffset={100}>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
+        {show && <DateTimePicker value={date} onChange={onDateChange} />}
         <View style={styles.container}>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اسم السيارة</Text>
