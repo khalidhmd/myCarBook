@@ -10,7 +10,6 @@ import HeaderRightButton from '../shared/components/HeaderRightButton';
 export default function CarList({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const {cars} = useContext(CarContext);
-
   const {language} = useContext(SystemContext);
 
   const fd = language == 'en' ? 'row' : 'row-reverse';

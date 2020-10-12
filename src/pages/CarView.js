@@ -253,6 +253,10 @@ export default function CarView({navigation, route}) {
               <Text style={styles.title}>قراءة العداد</Text>
               <Text style={styles.title}>{String(car.km)}</Text>
             </View>
+            <View style={[styles.subForm, {flexDirection: fd}]}>
+              <Text style={styles.title}>نهاية الترخيص</Text>
+              <Text style={styles.title}>{car.lExpiry}</Text>
+            </View>
           </View>
         </ScrollView>
       </View>

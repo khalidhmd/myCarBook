@@ -18,20 +18,28 @@ import {SystemContext} from '../contexts/SystemContext';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 import ImagePicker from 'react-native-image-picker';
 import RNFS from 'react-native-fs';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function CarForm({route, navigation}) {
   const {addCar, updateCar} = useContext(CarContext);
   const {activeCar, setActiveCar} = useContext(ActiveCarContext);
-
-  const car = route.params.mode === 'add' ? {} : activeCar;
+  const today = new Date();
+  const mode = route.params.mode;
+  const car = mode === 'add' ? {} : activeCar;
   const [name, setName] = useState(car.name);
   const [make, setMake] = useState(car.make);
   const [model, setModel] = useState(car.model);
-  const [year, setYear] = useState(car.year || 2000);
+  const [year, setYear] = useState(
+    mode === 'add' ? today.getFullYear() : car.year,
+  );
   const [color, setColor] = useState(car.color);
   const [km, setKm] = useState(car.km || 0);
   const [id, setId] = useState(car.id);
   const [imgURL, setImgURL] = useState(car.imgURL);
+  const [lExpiry, setLExpiry] = useState(
+    mode === 'add' ? today.toISOString().substring(0, 10) : car.lExpiry,
+  );
+  const [show, setShow] = useState(false);
 
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
@@ -48,7 +56,7 @@ export default function CarForm({route, navigation}) {
         pressHnadler={
           route.params.mode === 'add'
             ? () => {
-                handleAdd(name, make, model, imgURL, year, color, km);
+                handleAdd(name, make, model, imgURL, year, color, km, lExpiry);
               }
             : () => {
                 handleUpdate({
@@ -59,6 +67,7 @@ export default function CarForm({route, navigation}) {
                   year,
                   color,
                   km,
+                  lExpiry,
                   id,
                 });
               }
@@ -127,7 +136,7 @@ export default function CarForm({route, navigation}) {
       }
     });
   };
-  const handleAdd = (name, make, model, imgURL, y, color, k) => {
+  const handleAdd = (name, make, model, imgURL, y, color, k, lExpiry) => {
     if (
       name == '' ||
       make == '' ||
@@ -149,10 +158,20 @@ export default function CarForm({route, navigation}) {
     }
     const year = parseInt(y);
     const km = parseInt(k);
-    const car = new Car(name, make, model, imgURL, year, color, km);
+    const car = new Car(name, make, model, imgURL, year, color, km, lExpiry);
     addCar(car);
     setActiveCar({...car});
     navigation.popToTop();
+  };
+
+  const onDateChange = (event, selectedDate) => {
+    const currentDate = selectedDate || new Date(lExpiry);
+    setShow(false);
+    setLExpiry(currentDate.toISOString().substring(0, 10));
+  };
+
+  const datePress = () => {
+    setShow(true);
   };
 
   const handleUpdate = car => {
@@ -168,6 +187,7 @@ export default function CarForm({route, navigation}) {
       enabled
       keyboardVerticalOffset={100}>
       <ScrollView showsVerticalScrollIndicator={false} style={{width: '100%'}}>
+        {show && <DateTimePicker value={today} onChange={onDateChange} />}
         <View style={styles.container}>
           <TouchableOpacity onPress={imageGalleryLaunch}>
             {!!imgURL ? (
@@ -186,7 +206,7 @@ export default function CarForm({route, navigation}) {
                   borderRadius: 10,
                   fontFamily: 'Almarai-Regular',
                 }}>
-                إضغط هنا لاضافة صورة أو اضغط على الصورة لاحقا لتغييرها
+                إضغط هنا لاضافة صورة
               </Text>
             )}
           </TouchableOpacity>
@@ -226,6 +246,12 @@ export default function CarForm({route, navigation}) {
               onChangeText={text => setYear(parseInt(text))}
               keyboardType="number-pad"
             />
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>نهاية الترخيص</Text>
+            <TouchableOpacity onPress={datePress}>
+              <Text style={styles.title}>{lExpiry}</Text>
+            </TouchableOpacity>
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>اللون</Text>

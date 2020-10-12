@@ -6,6 +6,7 @@ import {
   View,
   KeyboardAvoidingView,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {addKms} from '../data/storage';
 import {KmRecord} from '../data/models';
@@ -22,6 +23,7 @@ export default function KmForm({route, navigation}) {
 
   const [km, setKm] = useState('');
   const car = {...activeCar};
+  const [show, setShow] = useState(false);
 
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';

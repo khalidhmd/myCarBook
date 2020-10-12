@@ -19,6 +19,7 @@ export class Car {
     year = 2000,
     color = '',
     km = 0,
+    lExpiry = '',
   ) {
     this.name = name;
     this.make = make;
@@ -27,6 +28,7 @@ export class Car {
     this.year = year;
     this.color = color;
     this.km = km;
+    this.lExpiry = lExpiry;
     this.id = uuid.v4();
   }
 }

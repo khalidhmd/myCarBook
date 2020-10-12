@@ -6,6 +6,7 @@ import {
   View,
   KeyboardAvoidingView,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
 import {addFuel} from '../data/storage';
@@ -19,6 +20,7 @@ export default function FuelForm({route, navigation}) {
   const {updateCar} = useContext(CarContext);
   const {activeCar, setActiveCar} = useContext(ActiveCarContext);
   const [date, setDate] = useState(new Date());
+  const [show, setShow] = useState(false);
 
   const [quantity, setQuantity] = useState('');
   const [cost, setCost] = useState('');
