@@ -54,10 +54,12 @@ export class FuelRecord {
 }
 
 export class maintenanceType {
-  constructor(name = '', kmRate = 0, timeRate = 0) {
+  constructor(name = '', kmRate = 0, timeRate = 0, alertKm = 0, alertTime = 0) {
     this.name = name;
     this.kmRate = kmRate;
     this.timeRate = timeRate;
+    this.alertKm = alertKm;
+    this.alertTime = alertTime;
     this.id = uuid.v4();
   }
 }

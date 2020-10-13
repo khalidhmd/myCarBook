@@ -19,6 +19,8 @@ export default function TypeForm({route, navigation}) {
   const [name, setName] = useState(type.name);
   const [kmRate, setKmRate] = useState(type.kmRate || 50000);
   const [timeRate, setTimeRate] = useState(type.timeRate || 6);
+  const [alertKm, setAlertKm] = useState(type.alertKm || 1000);
+  const [alertTime, setAlertTime] = useState(type.alertTime || 30);
   const [id, setId] = useState(type.id);
   const {language} = useContext(SystemContext);
   const fd = language == 'en' ? 'row-reverse' : 'row';
@@ -35,13 +37,15 @@ export default function TypeForm({route, navigation}) {
         pressHnadler={
           route.params.mode === 'add'
             ? () => {
-                handleAdd(name, kmRate, timeRate);
+                handleAdd(name, kmRate, timeRate, alertKm, alertTime);
               }
             : () => {
                 handleUpdate({
                   name,
                   kmRate,
                   timeRate,
+                  alertKm,
+                  alertTime,
                   id,
                 });
               }
@@ -51,7 +55,7 @@ export default function TypeForm({route, navigation}) {
     ),
   });
 
-  const handleAdd = async (name, kmRate, timeRate) => {
+  const handleAdd = async (name, kmRate, timeRate, alertKm, alertTime) => {
     if (
       name == '' ||
       kmRate == '' ||
@@ -68,6 +72,8 @@ export default function TypeForm({route, navigation}) {
       name,
       parseInt(kmRate),
       parseInt(timeRate),
+      parseInt(alertKm),
+      parseInt(alertTime),
     );
     await addType(type);
     navigation.navigate('TypeList');
@@ -113,6 +119,26 @@ export default function TypeForm({route, navigation}) {
               placeholder="المدة بالشهور"
               value={String(timeRate)}
               onChangeText={text => setTimeRate(parseInt(text))}
+              keyboardType="numeric"
+            />
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>التنبيه الزمني</Text>
+            <TextInput
+              style={styles.text}
+              placeholder="المدة بالأيام"
+              value={String(alertTime)}
+              onChangeText={text => setAlertTime(parseInt(text))}
+              keyboardType="numeric"
+            />
+          </View>
+          <View style={[styles.subForm, {flexDirection: fd}]}>
+            <Text style={styles.title}>التنبيه بال كم</Text>
+            <TextInput
+              style={styles.text}
+              placeholder="كم"
+              value={String(alertKm)}
+              onChangeText={text => setAlertKm(parseInt(text))}
               keyboardType="numeric"
             />
           </View>

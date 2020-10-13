@@ -124,6 +124,14 @@ export default function TypeView({navigation, route}) {
               <Text style={styles.title}>معدل زمني</Text>
               <Text style={styles.title}>{String(type.timeRate)}</Text>
             </View>
+            <View style={[styles.subForm, {flexDirection: fd}]}>
+              <Text style={styles.title}>التنبيه الزمني</Text>
+              <Text style={styles.title}>{String(type.alertTime)}</Text>
+            </View>
+            <View style={[styles.subForm, {flexDirection: fd}]}>
+              <Text style={styles.title}>التنبيه عند كم</Text>
+              <Text style={styles.title}>{String(type.alertKm)}</Text>
+            </View>
           </View>
         </ScrollView>
       </View>
