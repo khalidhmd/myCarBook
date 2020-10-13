@@ -250,7 +250,9 @@ export default function CarForm({route, navigation}) {
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>نهاية الترخيص</Text>
             <TouchableOpacity onPress={datePress}>
-              <Text style={styles.title}>{lExpiry}</Text>
+              <Text style={[styles.text, {paddingVertical: 10}]}>
+                {lExpiry}
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={[styles.subForm, {flexDirection: fd}]}>

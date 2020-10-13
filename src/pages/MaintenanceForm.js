@@ -106,7 +106,7 @@ export default function MaintenanceForm({route, navigation}) {
           <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>التاريخ</Text>
             <TouchableOpacity onPress={datePress}>
-              <Text style={styles.title}>
+              <Text style={[styles.text, {paddingVertical: 10}]}>
                 {date.toISOString().substring(0, 10)}
               </Text>
             </TouchableOpacity>
