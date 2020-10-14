@@ -5,6 +5,7 @@ const KM_KEY = 'MY_CAR_BOOK:km';
 const FUEL_KEY = 'MY_CAR_BOOK:fuel';
 const TYPE_KEY = 'MY_CAR_BOOK:type';
 const MAINTENANCE_KEY = 'MY_CAR_BOOK:maintenance';
+const LAST_MAINTENANCES_KEY = 'MY_CAR_BOOK:last_maintenance';
 
 import data from '../../assets/maintenanceTypes.json';
 var uuid = require('react-native-uuid');
@@ -24,21 +25,31 @@ export async function getCars() {
 }
 
 export async function saveCars(cars) {
-  AsyncStorage.setItem(CARS_KEY, JSON.stringify(cars));
+  try {
+    AsyncStorage.setItem(CARS_KEY, JSON.stringify(cars));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function deleteCar(id) {
-  let cars = await getCars();
-  cars = cars.filter(car => car.id !== id);
-  await saveCars(cars);
+  try {
+    let cars = await getCars();
+    cars = cars.filter(car => car.id !== id);
+    await saveCars(cars);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function updateCar(car) {
-  let cars = await getCars();
-
-  cars = cars.map(c => (c.id !== car.id ? c : car));
-
-  await saveCars(cars);
+  try {
+    let cars = await getCars();
+    cars = cars.map(c => (c.id !== car.id ? c : car));
+    await saveCars(cars);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getUser() {
@@ -56,7 +67,11 @@ export async function getUser() {
 }
 
 export async function saveUser(user) {
-  AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
+  try {
+    AsyncStorage.setItem(USER_KEY, JSON.stringify(user));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getKms() {
@@ -74,13 +89,21 @@ export async function getKms() {
 }
 
 export async function saveKms(kms) {
-  AsyncStorage.setItem(KM_KEY, JSON.stringify(kms));
+  try {
+    AsyncStorage.setItem(KM_KEY, JSON.stringify(kms));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function addKms(km) {
-  const kms = await getKms();
-  kms.push(km);
-  await saveKms(kms);
+  try {
+    const kms = await getKms();
+    kms.push(km);
+    await saveKms(kms);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getFuels() {
@@ -98,13 +121,21 @@ export async function getFuels() {
 }
 
 export async function saveFuels(fuels) {
-  AsyncStorage.setItem(FUEL_KEY, JSON.stringify(fuels));
+  try {
+    AsyncStorage.setItem(FUEL_KEY, JSON.stringify(fuels));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function addFuel(fuel) {
-  const fuels = await getFuels();
-  fuels.push(fuel);
-  await saveFuels(fuels);
+  try {
+    const fuels = await getFuels();
+    fuels.push(fuel);
+    await saveFuels(fuels);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getTypes() {
@@ -123,25 +154,41 @@ export async function getTypes() {
 }
 
 export async function saveTypes(types) {
-  AsyncStorage.setItem(TYPE_KEY, JSON.stringify(types));
+  try {
+    AsyncStorage.setItem(TYPE_KEY, JSON.stringify(types));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function addType(type) {
-  const types = await getTypes();
-  types.push(type);
-  await saveTypes(types);
+  try {
+    const types = await getTypes();
+    types.push(type);
+    await saveTypes(types);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function updateType(type) {
-  let types = await getTypes();
-  types = types.map(t => (t.id !== type.id ? t : type));
-  await saveTypes(types);
+  try {
+    let types = await getTypes();
+    types = types.map(t => (t.id !== type.id ? t : type));
+    await saveTypes(types);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function removeType(id) {
-  let types = await getTypes();
-  types = types.filter(t => t.id !== id);
-  await saveTypes(types);
+  try {
+    let types = await getTypes();
+    types = types.filter(t => t.id !== id);
+    await saveTypes(types);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function getMaintenances() {
@@ -158,17 +205,71 @@ export async function getMaintenances() {
 }
 
 export async function saveMaintenances(maintenances) {
-  AsyncStorage.setItem(MAINTENANCE_KEY, JSON.stringify(maintenances));
+  try {
+    AsyncStorage.setItem(MAINTENANCE_KEY, JSON.stringify(maintenances));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function addMaintenance(maintenance) {
-  const maintenances = await getMaintenances();
-  maintenances.push(maintenance);
-  await saveMaintenances(maintenances);
+  try {
+    const maintenances = await getMaintenances();
+    maintenances.push(maintenance);
+    await saveMaintenances(maintenances);
+    await saveLastMaintenance(maintenance); // update or save last maintenance
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function removeMaintenance(id) {
-  let maintenances = await getMaintenances();
-  maintenances = maintenances.filter(m => m.id !== id);
-  await saveMaintenances(maintenances);
+  try {
+    let maintenances = await getMaintenances();
+    maintenances = maintenances.filter(m => m.id !== id);
+    await saveMaintenances(maintenances);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getLastMiantenances() {
+  try {
+    const data = await AsyncStorage.getItem(LAST_MAINTENANCES_KEY);
+    if (!data || data == 'null') {
+      return {};
+    } else {
+      return JSON.parse(data);
+    }
+  } catch (e) {
+    console.log('error: ', e);
+  }
+}
+
+async function saveLastMaintenance(lastMaintenance) {
+  try {
+    const lastMaintenances = await getLastMiantenances();
+    lastMaintenances[lastMaintenance.carId][
+      lastMaintenance.typeName
+    ] = lastMaintenance;
+    AsyncStorage.setItem(
+      LAST_MAINTENANCES_KEY,
+      JSON.stringify(lastMaintenances),
+    );
+  } catch (e) {
+    console.log('error: ', e);
+  }
+}
+
+export async function addLastMaintenanceEntry(car) {
+  try {
+    const lastMaintenances = await getLastMiantenances();
+    lastMaintenances[car.id] = {};
+    AsyncStorage.setItem(
+      LAST_MAINTENANCES_KEY,
+      JSON.stringify(lastMaintenances),
+    );
+  } catch (e) {
+    console.log('error: ', e);
+  }
 }

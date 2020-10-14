@@ -13,6 +13,7 @@ import {
   PermissionsAndroid,
 } from 'react-native';
 import {CarContext} from '../contexts/CarContext';
+import {addLastMaintenanceEntry} from '../data/storage';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
@@ -160,6 +161,7 @@ export default function CarForm({route, navigation}) {
     const km = parseInt(k);
     const car = new Car(name, make, model, imgURL, year, color, km, lExpiry);
     addCar(car);
+    addLastMaintenanceEntry(car);
     setActiveCar({...car});
     navigation.popToTop();
   };
