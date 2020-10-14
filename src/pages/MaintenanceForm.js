@@ -83,7 +83,7 @@ export default function MaintenanceForm({route, navigation}) {
       car.id,
       typeName,
     );
-    addMaintenance(maintenance);
+    addMaintenance(maintenance); // will also update the last maintenance for this maintenance type.
     car.km = km;
     setActiveCar(car);
     updateCar(car);
