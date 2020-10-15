@@ -31,6 +31,7 @@ export default StyleSheet.create({
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'flex-end',
+    flexDirection: 'row',
   },
   container: {
     flex: 1,
@@ -98,5 +99,16 @@ export default StyleSheet.create({
     color: 'lightgrey',
     fontSize: 24,
     fontFamily: 'Almarai-Bold',
+  },
+  carListBadge: {
+    fontSize: 22,
+    width: 50,
+    height: 50,
+    backgroundColor: 'red',
+    borderRadius: 25,
+    fontWeight: 'bold',
+    color: 'white',
+    textAlign: 'center',
+    textAlignVertical: 'center',
   },
 });

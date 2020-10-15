@@ -32,7 +32,6 @@ export default function CarView({navigation, route}) {
     const unsubscribe = navigation.addListener('focus', async () => {
       setCar({...route.params.car});
       const ls = await getLastMiantenances();
-      console.log(ls);
     });
 
     return unsubscribe;

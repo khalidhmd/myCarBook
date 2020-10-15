@@ -46,14 +46,19 @@ export default function CarList({navigation}) {
         {cars.map(car => {
           const img = car.imgURL ? car.imgURL : 'sample.jpeg';
           return (
-            <TouchableOpacity
-              key={car.id}
-              onPress={() => handleItemPress(navigation, car)}>
-              <View style={[styles.deckCar, {flexDirection: fd}]}>
+            <View key={car.id} style={[styles.deckCar]}>
+              <TouchableOpacity style={{right: 200}}>
+                <Text style={styles.carListBadge}>22</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleItemPress(navigation, car)}>
                 <Text style={styles.titleList}>{car.name}</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => handleItemPress(navigation, car)}>
                 <Image style={styles.imgList} source={{uri: 'file://' + img}} />
-              </View>
-            </TouchableOpacity>
+              </TouchableOpacity>
+            </View>
           );
         })}
       </ScrollView>
