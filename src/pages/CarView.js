@@ -31,7 +31,6 @@ export default function CarView({navigation, route}) {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
       setCar({...route.params.car});
-      const ls = await getLastMiantenances();
     });
 
     return unsubscribe;

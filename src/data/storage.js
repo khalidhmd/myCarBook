@@ -146,7 +146,6 @@ export async function getTypes() {
       const types = JSON.parse(result);
       return types;
     }
-    console.log('Here');
     return data.map(item => ({...item, id: uuid.v4()}));
   } catch (e) {
     console.log('error' + e);

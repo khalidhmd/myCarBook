@@ -101,14 +101,15 @@ export default StyleSheet.create({
     fontFamily: 'Almarai-Bold',
   },
   carListBadge: {
-    fontSize: 22,
-    width: 50,
-    height: 50,
+    fontSize: 20,
+    width: 45,
+    height: 45,
     backgroundColor: 'red',
     borderRadius: 25,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
     textAlignVertical: 'center',
+    letterSpacing: 2,
   },
 });

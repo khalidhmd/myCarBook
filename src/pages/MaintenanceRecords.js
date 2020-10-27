@@ -20,7 +20,6 @@ export default function KmRecords({navigation}) {
       const data = await getMaintenances();
       setMaintenances(data.filter(m => m.carId == activeCar.id));
     });
-
     return unsubscribe;
   }, [navigation]);
   React.useLayoutEffect(() => {
