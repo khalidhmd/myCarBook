@@ -19,7 +19,6 @@ import FAIcon from 'react-native-vector-icons/FontAwesome5';
 import {CarContext} from '../contexts/CarContext';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
-import {getLastMiantenances} from '../data/storage';
 
 export default function CarView({navigation, route}) {
   const {removeCar} = useContext(CarContext);
@@ -31,6 +30,7 @@ export default function CarView({navigation, route}) {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
       setCar({...route.params.car});
+      setActiveCar({...route.params.car});
     });
 
     return unsubscribe;

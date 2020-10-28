@@ -1,13 +1,15 @@
-export default function(maintenances, {km}) {
+export default function(maintenances, car) {
   let n = 0;
   for (id in maintenances) {
     if (
       maintenances[id].kmRate > 0 &&
-      maintenances[id].kmRate + maintenances[id].km <= km
+      maintenances[id].kmRate + maintenances[id].km <= car.km
     ) {
       n += 1;
       continue;
     }
+    console.log('car km ', car.km);
+    console.log('car id ', car.id);
     const maintenanceDate = new Date(maintenances[id].date);
     const today = new Date();
     const diffTime = Math.abs(today - maintenanceDate);
