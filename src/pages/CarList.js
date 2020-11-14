@@ -8,7 +8,7 @@ import HeaderLeftButton from '../shared/components/HeaderLeftButton';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 import getLateMaintenanceCount from '../shared/helpers/getLateMaintenance';
 import {getLastMiantenances} from '../data/storage';
-
+import getExperiedLicense from '../shared/helpers/getExperiedLicense';
 export default function CarList({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
   const {cars} = useContext(CarContext);
@@ -61,11 +61,22 @@ export default function CarList({navigation}) {
                 styles.deckCar,
                 {flexDirection: fd, justifyContent: 'space-between'},
               ]}>
-              <View>
+              <View style={{flexDirection: fd, alignItems: 'center'}}>
                 {getLateMaintenanceCount(lastMaintenances[car.id], car) ? (
                   <TouchableOpacity>
                     <Text style={styles.carListBadge}>
                       {getLateMaintenanceCount(lastMaintenances[car.id], car)}
+                    </Text>
+                  </TouchableOpacity>
+                ) : null}
+                {getExperiedLicense(car) ? (
+                  <TouchableOpacity>
+                    <Text
+                      style={[
+                        styles.carListBadge,
+                        {fontSize: 14, marginLeft: 3},
+                      ]}>
+                      {'ترخيص'}
                     </Text>
                   </TouchableOpacity>
                 ) : null}

@@ -8,14 +8,10 @@ export default function(maintenances, car) {
       n += 1;
       continue;
     }
-
     const maintenanceDate = new Date(maintenances[id].date);
-
     const today = new Date();
-
     const diffTime = Math.abs(today - maintenanceDate);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
     if (diffDays > maintenances[id].timeRate * 30) n += 1;
   }
   return n;

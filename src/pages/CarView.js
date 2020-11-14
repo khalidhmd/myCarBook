@@ -62,7 +62,7 @@ export default function CarView({navigation, route}) {
               <Icon name="create-outline" size={24} />
             </View>
           </MenuOption>
-          <MenuOption onSelect={handleKm}>
+          {/* <MenuOption onSelect={handleKm}>
             <View
               style={{
                 flexDirection: 'row-reverse',
@@ -74,7 +74,7 @@ export default function CarView({navigation, route}) {
               </Text>
               <Icon name="speedometer-outline" size={24} />
             </View>
-          </MenuOption>
+          </MenuOption> */}
           <MenuOption onSelect={() => navigation.navigate('KmRecords')}>
             <View
               style={{
@@ -88,7 +88,7 @@ export default function CarView({navigation, route}) {
               <Icon name="speedometer-outline" size={24} color="#555" />
             </View>
           </MenuOption>
-          <MenuOption onSelect={handleFuel}>
+          {/* <MenuOption onSelect={handleFuel}>
             <View
               style={{
                 flexDirection: 'row-reverse',
@@ -100,7 +100,7 @@ export default function CarView({navigation, route}) {
               </Text>
               <FAIcon name="gas-pump" size={24} color="#555" />
             </View>
-          </MenuOption>
+          </MenuOption> */}
           <MenuOption onSelect={() => navigation.navigate('FuelRecords')}>
             <View
               style={{
@@ -114,7 +114,7 @@ export default function CarView({navigation, route}) {
               <FAIcon name="gas-pump" size={24} color="#555" />
             </View>
           </MenuOption>
-          <MenuOption onSelect={handleMaintenance}>
+          {/* <MenuOption onSelect={handleMaintenance}>
             <View
               style={{
                 flexDirection: 'row-reverse',
@@ -126,7 +126,7 @@ export default function CarView({navigation, route}) {
               </Text>
               <Icon name="construct-outline" size={24} color="#555" />
             </View>
-          </MenuOption>
+          </MenuOption> */}
           <MenuOption
             onSelect={() => navigation.navigate('MaintenanceRecords')}>
             <View
