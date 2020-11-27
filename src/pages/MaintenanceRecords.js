@@ -6,7 +6,7 @@ import {ActiveCarContext} from '../contexts/ActiveCarContext';
 import {getMaintenances} from '../data/storage';
 import HeaderRightButton from '../shared/components/HeaderRightButton';
 
-export default function KmRecords({navigation}) {
+export default function MaintenanceRecords({navigation}) {
   const {setActiveCar, activeCar} = useContext(ActiveCarContext);
 
   const {language} = useContext(SystemContext);

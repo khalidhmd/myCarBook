@@ -10,6 +10,7 @@ import FuelRecords from '../pages/FuelRecords';
 import MaintenanceForm from '../pages/MaintenanceForm';
 import MaintenanceRecords from '../pages/MaintenanceRecords';
 import MaintenanceView from '../pages/MaintenanceView';
+import LateMaintenanceRecords from '../pages/LateMaintenanceRecords';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,10 @@ export default function CarStack() {
       <Stack.Screen name="MaintenanceForm" component={MaintenanceForm} />
       <Stack.Screen name="MaintenanceView" component={MaintenanceView} />
       <Stack.Screen name="MaintenanceRecords" component={MaintenanceRecords} />
+      <Stack.Screen
+        name="LateMaintenanceRecords"
+        component={LateMaintenanceRecords}
+      />
     </Stack.Navigator>
   );
 }

@@ -114,19 +114,7 @@ export default function CarView({navigation, route}) {
               <FAIcon name="gas-pump" size={24} color="#555" />
             </View>
           </MenuOption>
-          {/* <MenuOption onSelect={handleMaintenance}>
-            <View
-              style={{
-                flexDirection: 'row-reverse',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-              }}>
-              <Text style={{fontSize: 20, fontFamily: 'Almarai-Regular'}}>
-                تسجيل صيانة
-              </Text>
-              <Icon name="construct-outline" size={24} color="#555" />
-            </View>
-          </MenuOption> */}
+
           <MenuOption
             onSelect={() => navigation.navigate('MaintenanceRecords')}>
             <View
@@ -139,6 +127,19 @@ export default function CarView({navigation, route}) {
                 بيان صيانات
               </Text>
               <Icon name="construct-outline" size={24} color="#555" />
+            </View>
+          </MenuOption>
+          <MenuOption onSelect={handleLateMaintenance}>
+            <View
+              style={{
+                flexDirection: 'row-reverse',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+              }}>
+              <Text style={{fontSize: 20, fontFamily: 'Almarai-Regular'}}>
+                صيانات مطلوبة
+              </Text>
+              <Icon name="hourglass-outline" size={26} color="#555" />
             </View>
           </MenuOption>
           <MenuOption onSelect={() => handleDelete(car.id)}>
@@ -200,8 +201,8 @@ export default function CarView({navigation, route}) {
     });
   };
 
-  const handleMaintenance = () => {
-    navigation.navigate('MaintenanceForm', {
+  const handleLateMaintenance = () => {
+    navigation.navigate('LateMaintenanceRecords', {
       title: 'تسجيل صيانة',
     });
   };
