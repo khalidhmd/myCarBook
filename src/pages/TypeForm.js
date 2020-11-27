@@ -122,7 +122,7 @@ export default function TypeForm({route, navigation}) {
               keyboardType="numeric"
             />
           </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
+          {/* <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>التنبيه الزمني</Text>
             <TextInput
               style={styles.text}
@@ -131,8 +131,8 @@ export default function TypeForm({route, navigation}) {
               onChangeText={text => setAlertTime(parseInt(text))}
               keyboardType="numeric"
             />
-          </View>
-          <View style={[styles.subForm, {flexDirection: fd}]}>
+          </View> */}
+          {/* <View style={[styles.subForm, {flexDirection: fd}]}>
             <Text style={styles.title}>التنبيه بال كم</Text>
             <TextInput
               style={styles.text}
@@ -141,7 +141,7 @@ export default function TypeForm({route, navigation}) {
               onChangeText={text => setAlertKm(parseInt(text))}
               keyboardType="numeric"
             />
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
