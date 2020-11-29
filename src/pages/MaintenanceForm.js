@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Picker} from '@react-native-community/picker';
-import {CarContext} from '../contexts/CarContext';
+// import {CarContext} from '../contexts/CarContext';
 import {addMaintenance, getTypes} from '../data/storage';
 import {Maintenance} from '../data/models';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
@@ -18,7 +18,7 @@ import HeaderRightButton from '../shared/components/HeaderRightButton';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default function MaintenanceForm({route, navigation}) {
-  const {updateCar} = useContext(CarContext);
+  // const {updateCar} = useContext(CarContext);
   const {activeCar, setActiveCar} = useContext(ActiveCarContext);
   const [date, setDate] = useState(new Date());
   const [types, setTypes] = useState([]);
@@ -84,9 +84,9 @@ export default function MaintenanceForm({route, navigation}) {
       typeName,
     );
     addMaintenance(maintenance); // will also update the last maintenance for this maintenance type.
-    car.km = km;
-    setActiveCar(car);
-    updateCar(car);
+    // car.km = km;
+    // setActiveCar(car);
+    // updateCar(car);
     navigation.popToTop();
     navigation.navigate('CarView', {car});
   };

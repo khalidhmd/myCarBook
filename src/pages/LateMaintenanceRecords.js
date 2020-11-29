@@ -18,9 +18,10 @@ export default function MaintenanceRecords({navigation}) {
   React.useEffect(() => {
     const unsubscribe = navigation.addListener('focus', async () => {
       const data = await getLastMiantenances();
+
       const carMaintenances = data[activeCar.id];
       setMaintenances(
-        Object(carMaintenances).keys.map(key => carMaintenances[key]),
+        Object.keys(carMaintenances).map(key => carMaintenances[key]),
       );
     });
     return unsubscribe;
