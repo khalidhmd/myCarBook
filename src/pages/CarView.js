@@ -195,11 +195,11 @@ export default function CarView({navigation, route}) {
     });
   };
 
-  const handleFuel = () => {
-    navigation.navigate('FuelForm', {
-      title: 'تسجيل وقود',
-    });
-  };
+  // const handleFuel = () => {
+  //   navigation.navigate('FuelForm', {
+  //     title: 'تسجيل وقود',
+  //   });
+  // };
 
   const handleLateMaintenance = () => {
     navigation.navigate('LateMaintenanceRecords', {
@@ -207,11 +207,11 @@ export default function CarView({navigation, route}) {
     });
   };
 
-  const handleKm = () => {
-    navigation.navigate('KmForm', {
-      title: 'تسجيل عداد كم',
-    });
-  };
+  // const handleKm = () => {
+  //   navigation.navigate('KmForm', {
+  //     title: 'تسجيل عداد كم',
+  //   });
+  // };
 
   return (
     <KeyboardAvoidingView

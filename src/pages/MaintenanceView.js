@@ -16,7 +16,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import {SystemContext} from '../contexts/SystemContext';
 import {ActiveCarContext} from '../contexts/ActiveCarContext';
-import {removeMaintenance} from '../data/storage';
+import {removeMaintenance, removeLastMaintenance} from '../data/storage';
 
 export default function CarView({navigation, route}) {
   const {language} = useContext(SystemContext);
@@ -96,7 +96,9 @@ export default function CarView({navigation, route}) {
           text: 'حذف',
           onPress: async () => {
             removeMaintenance(idx);
+            removeLastMaintenance(maintenance);
             navigation.pop();
+            navigation.navigate('CarView');
           },
         },
       ],

@@ -260,6 +260,19 @@ async function saveLastMaintenance(lastMaintenance) {
   }
 }
 
+export async function removeLastMaintenance(lastMaintenance) {
+  try {
+    const lastMaintenances = await getLastMiantenances();
+    delete lastMaintenances[lastMaintenance.carId][lastMaintenance.typeName];
+    AsyncStorage.setItem(
+      LAST_MAINTENANCES_KEY,
+      JSON.stringify(lastMaintenances),
+    );
+  } catch (e) {
+    console.log('error: ', e);
+  }
+}
+
 export async function addLastMaintenanceEntry(car) {
   try {
     const lastMaintenances = await getLastMiantenances();
