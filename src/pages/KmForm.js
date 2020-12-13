@@ -95,7 +95,7 @@ export default function KmForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="قراءة العداد"
-              value={String(km)}
+              value={km ? String(km) : km}
               onChangeText={text => {
                 setKm(parseInt(text));
               }}

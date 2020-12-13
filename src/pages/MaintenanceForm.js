@@ -147,7 +147,7 @@ export default function MaintenanceForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="سعر قطع الغيار"
-              value={String(vPrice)}
+              value={vPrice ? String(vPrice) : vPrice}
               onChangeText={text => {
                 setVPrice(parseInt(text));
               }}
@@ -159,7 +159,7 @@ export default function MaintenanceForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="سعر المصنعية"
-              value={String(mPrice)}
+              value={mPrice ? String(mPrice) : mPrice}
               onChangeText={text => {
                 setMPrice(parseInt(text));
               }}
@@ -171,7 +171,7 @@ export default function MaintenanceForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="قراءة العداد"
-              value={String(km)}
+              value={km ? String(km) : km}
               onChangeText={text => {
                 setKm(parseInt(text));
               }}
@@ -183,7 +183,7 @@ export default function MaintenanceForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="معدل كيلومتر"
-              value={String(kmRate)}
+              value={kmRate ? String(kmRate) : kmRate}
               onChangeText={text => {
                 setKmRate(parseInt(text));
               }}
@@ -195,7 +195,7 @@ export default function MaintenanceForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="معدل زمني بالشهر"
-              value={String(timeRate)}
+              value={timeRate ? String(timeRate) : timeRate}
               onChangeText={text => {
                 setTimeRate(parseInt(text));
               }}

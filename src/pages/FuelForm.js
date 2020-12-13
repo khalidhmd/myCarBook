@@ -99,7 +99,7 @@ export default function FuelForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="عدد اللترات"
-              value={String(quantity)}
+              value={quantity ? String(quantity) : quantity}
               onChangeText={text => {
                 setQuantity(parseInt(text));
               }}
@@ -112,7 +112,7 @@ export default function FuelForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="المبلغ"
-              value={String(cost)}
+              value={cost ? String(cost) : cost}
               onChangeText={text => {
                 setCost(parseInt(text));
               }}
@@ -124,7 +124,7 @@ export default function FuelForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="العداد"
-              value={String(km)}
+              value={km ? String(km) : km}
               onChangeText={text => {
                 setKm(parseInt(text));
               }}

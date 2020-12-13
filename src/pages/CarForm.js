@@ -244,8 +244,8 @@ export default function CarForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="سنة الصنع"
-              value={String(year)}
-              onChangeText={text => setYear(parseInt(text))}
+              value={year ? String(year) : year}
+              onChangeText={text => (text ? setYear(parseInt(text)) : text)}
               keyboardType="number-pad"
             />
           </View>
@@ -271,8 +271,8 @@ export default function CarForm({route, navigation}) {
             <TextInput
               style={styles.text}
               placeholder="قراءة العداد"
-              value={String(km)}
-              onChangeText={text => setKm(parseInt(text))}
+              value={km ? String(km) : km}
+              onChangeText={text => (text ? setKm(parseInt(text)) : text)}
               keyboardType="number-pad"
             />
           </View>
